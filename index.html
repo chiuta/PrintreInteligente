@@ -2,9 +2,13 @@
 <html lang="ro"><head>
 <script>
 (function(){
-  /* Temă automată după ora zilei: 7:00–20:00 = luminos, restul = întunecat */
+  /* Temă automată: respectă prefers-color-scheme dacă e setat;
+     altfel, 7:00–20:00 local = luminos, restul = întunecat */
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
   var h=new Date().getHours();
-  var isNight=(h<7||h>=20);
+  var timeIsNight=(h<7||h>=20);
+  var isNight = prefersDark || (!prefersLight && timeIsNight);
   if(isNight){
     var _h=document.documentElement;
     _h.classList.add('dark-mode');
@@ -20,7 +24,7 @@
 </script>
 <meta charset="UTF-8">
 <title>Printre inteligențe — roman SF despre Artemis 2, recenzat de stele &amp; hipercivilizații</title>
-<meta name="theme-color" content="#1a1410">
+
 <meta name="color-scheme" content="light dark">
 
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -65,33 +69,7 @@
 <meta name="twitter:image:alt" content="Coperta romanului „Printre inteligențe" "="">
 
 <!-- Schema.org JSON-LD (Google Knowledge Graph) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Book",
-  "name": "Printre inteligențe",
-  "alternateName": "Among Intelligences",
-  "author": {
-    "@type": "Person",
-    "name": "Alexio",
-    "url": "https://alexio.tf/",
-    "sameAs": ["https://www.patreon.com/c/alexio_tf"]
-  },
-  "inLanguage": "ro",
-  "datePublished": "2026",
-  "description": "Un roman SF interactiv despre echipajul real al misiunii Artemis 2, plasat într-un scenariu ficțional: o defecțiune imposibilă pe drumul spre Lună și deciziile care urmează. Conține 17 scenarii alternative, 108 recenzii fictive din publicații imaginare, audiobook integrat, sistem de gating progresiv. Operă în colaborare om-AI, transparent dezvăluită.",
-  "abstract": "La 287.000 de kilometri de Pământ, capsula Orion suferă o defecțiune care schimbă totul. Patru astronauți. Treizeci și șase de ore până la prima decizie ireversibilă.",
-  "genre": ["Science Fiction", "Hard SF", "Speculative Fiction"],
-  "keywords": "Artemis 2, NASA, SLS, Orion, Lună, AI, primele contacte, ficțiune speculativă",
-  "isAccessibleForFree": true,
-  "publisher": {
-    "@type": "Person",
-    "name": "Alexio"
-  },
-  "url": "https://alexio.tf/",
-  "image": "https://alexio.tf/cover.png"
-}
-</script>
+
 
 
 <meta property="og:locale:alternate" content="en_US">
@@ -1908,1222 +1886,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--accent,#8b4513);out
   src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-</style><style>/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-</style><style>/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-</style><style>/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WZhyzbi.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wdhyzbi.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 500;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* cyrillic-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3GUBGEe.woff2) format('woff2');
-  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-}
-/* cyrillic */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3iUBGEe.woff2) format('woff2');
-  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-}
-/* greek-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3CUBGEe.woff2) format('woff2');
-  unicode-range: U+1F00-1FFF;
-}
-/* greek */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3-UBGEe.woff2) format('woff2');
-  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
-}
-/* math */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBGEe.woff2) format('woff2');
-  unicode-range: U+0302-0303, U+0305, U+0307-0308, U+0310, U+0312, U+0315, U+031A, U+0326-0327, U+032C, U+032F-0330, U+0332-0333, U+0338, U+033A, U+0346, U+034D, U+0391-03A1, U+03A3-03A9, U+03B1-03C9, U+03D1, U+03D5-03D6, U+03F0-03F1, U+03F4-03F5, U+2016-2017, U+2034-2038, U+203C, U+2040, U+2043, U+2047, U+2050, U+2057, U+205F, U+2070-2071, U+2074-208E, U+2090-209C, U+20D0-20DC, U+20E1, U+20E5-20EF, U+2100-2112, U+2114-2115, U+2117-2121, U+2123-214F, U+2190, U+2192, U+2194-21AE, U+21B0-21E5, U+21F1-21F2, U+21F4-2211, U+2213-2214, U+2216-22FF, U+2308-230B, U+2310, U+2319, U+231C-2321, U+2336-237A, U+237C, U+2395, U+239B-23B7, U+23D0, U+23DC-23E1, U+2474-2475, U+25AF, U+25B3, U+25B7, U+25BD, U+25C1, U+25CA, U+25CC, U+25FB, U+266D-266F, U+27C0-27FF, U+2900-2AFF, U+2B0E-2B11, U+2B30-2B4C, U+2BFE, U+3030, U+FF5B, U+FF5D, U+1D400-1D7FF, U+1EE00-1EEFF;
-}
-/* symbols */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMaxKUBGEe.woff2) format('woff2');
-  unicode-range: U+0001-000C, U+000E-001F, U+007F-009F, U+20DD-20E0, U+20E2-20E4, U+2150-218F, U+2190, U+2192, U+2194-2199, U+21AF, U+21E6-21F0, U+21F3, U+2218-2219, U+2299, U+22C4-22C6, U+2300-243F, U+2440-244A, U+2460-24FF, U+25A0-27BF, U+2800-28FF, U+2921-2922, U+2981, U+29BF, U+29EB, U+2B00-2BFF, U+4DC0-4DFF, U+FFF9-FFFB, U+10140-1018E, U+10190-1019C, U+101A0, U+101D0-101FD, U+102E0-102FB, U+10E60-10E7E, U+1D2C0-1D2D3, U+1D2E0-1D37F, U+1F000-1F0FF, U+1F100-1F1AD, U+1F1E6-1F1FF, U+1F30D-1F30F, U+1F315, U+1F31C, U+1F31E, U+1F320-1F32C, U+1F336, U+1F378, U+1F37D, U+1F382, U+1F393-1F39F, U+1F3A7-1F3A8, U+1F3AC-1F3AF, U+1F3C2, U+1F3C4-1F3C6, U+1F3CA-1F3CE, U+1F3D4-1F3E0, U+1F3ED, U+1F3F1-1F3F3, U+1F3F5-1F3F7, U+1F408, U+1F415, U+1F41F, U+1F426, U+1F43F, U+1F441-1F442, U+1F444, U+1F446-1F449, U+1F44C-1F44E, U+1F453, U+1F46A, U+1F47D, U+1F4A3, U+1F4B0, U+1F4B3, U+1F4B9, U+1F4BB, U+1F4BF, U+1F4C8-1F4CB, U+1F4D6, U+1F4DA, U+1F4DF, U+1F4E3-1F4E6, U+1F4EA-1F4ED, U+1F4F7, U+1F4F9-1F4FB, U+1F4FD-1F4FE, U+1F503, U+1F507-1F50B, U+1F50D, U+1F512-1F513, U+1F53E-1F54A, U+1F54F-1F5FA, U+1F610, U+1F650-1F67F, U+1F687, U+1F68D, U+1F691, U+1F694, U+1F698, U+1F6AD, U+1F6B2, U+1F6B9-1F6BA, U+1F6BC, U+1F6C6-1F6CF, U+1F6D3-1F6D7, U+1F6E0-1F6EA, U+1F6F0-1F6F3, U+1F6F7-1F6FC, U+1F700-1F7FF, U+1F800-1F80B, U+1F810-1F847, U+1F850-1F859, U+1F860-1F887, U+1F890-1F8AD, U+1F8B0-1F8BB, U+1F8C0-1F8C1, U+1F900-1F90B, U+1F93B, U+1F946, U+1F984, U+1F996, U+1F9E9, U+1FA00-1FA6F, U+1FA70-1FA7C, U+1FA80-1FA89, U+1FA8F-1FAC6, U+1FACE-1FADC, U+1FADF-1FAE9, U+1FAF0-1FAF8, U+1FB00-1FBFF;
-}
-/* vietnamese */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3OUBGEe.woff2) format('woff2');
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBGEe.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-  font-stretch: 100%;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/roboto/v51/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 </style>
+
 <script>
 /* ── Service Worker — offline cache ─────────────────────────────── */
 if('serviceWorker' in navigator){
@@ -3132,15 +1896,29 @@ if('serviceWorker' in navigator){
       console.log('[SW] Registered, scope:',reg.scope);
     }).catch(()=>{
       /* Fallback: blob SW pentru file:// sau hosting fără sw.js */
-      const code=`const C='pi-v10';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.add('/'))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{if(resp&&resp.status===200&&resp.type!=='opaque'){const cl=resp.clone();caches.open(C).then(c=>c.put(e.request,cl))}return resp}).catch(()=>caches.match('/'))))});`;
+      const code=`const C='pi-v11';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.add('/'))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{if(resp&&resp.status===200&&resp.type!=='opaque'){const cl=resp.clone();caches.open(C).then(c=>c.put(e.request,cl))}return resp}).catch(()=>caches.match('/'))))});`;
       const blob=new Blob([code],{type:'application/javascript'});
-      navigator.serviceWorker.register(URL.createObjectURL(blob));
+      /* removed duplicate SW registration via blob — use /sw.js only */
     });
   });
 }
 </script>
 </head>
 <body>
+<script>
+/* ============================================================
+   Config endpoint AI (Claude API proxy)
+   ------------------------------------------------------------
+   Pentru producție: deployează Cloudflare Worker-ul din
+   `claude-proxy.worker.js` și mapează-l pe ruta `/api/claude`
+   a domeniului alexio.tf. Worker-ul injectează x-api-key
+   server-side și blochează apelurile din alte origini.
+   Local/dev: pune aici URL-ul complet al Worker-ului tău
+   (ex: 'https://claude-proxy.alexio.workers.dev').
+   ============================================================ */
+window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
+</script>
+
 <div id="readProgress" role="progressbar" aria-label="Progres lectură" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div><a id="skipLink" href="#main" tabindex="1">Sari la conținut</a>
 <noscript>
 <div style="max-width:720px;margin:40px auto;padding:30px;font-family:Georgia,serif;line-height:1.7;color:#222">
@@ -3219,7 +1997,7 @@ if('serviceWorker' in navigator){
   </ul>
 </div>
 </noscript>
-<span id="warning-container"><i data-reactroot=""></i></span>
+<span id="warning-container"></span>
 
 <!-- BACKGROUND FX CANVAS (cosmos / metaverse / multiverse / AI / etc.) -->
 <canvas id="bgFx" width="1920" height="947" aria-hidden="true" role="presentation" title="Animație decorativă fundal" style="width: 1920px; height: 947px;"></canvas>
@@ -3228,7 +2006,7 @@ if('serviceWorker' in navigator){
 <canvas class="aviz-bg" id="avizBg" width="1920" height="947"></canvas>
 
 <!-- CINEMATIC INTRO — 3D voyage to the Moon + floating multilingual text -->
-<div id="cinematic-intro" style="display: none;" class="">
+<div id="cinematic-intro" style="display: none;">
   <canvas id="ciCanvas" width="1920" height="947" style="width: 1920px; height: 947px;"></canvas>
   <div id="ciFloatLayer"><div class="ci-float" style="font-size: 27.3898px; left: 44.8615%; top: 81.5169%; --x0: 0px; --y0: 0px; --x1: 3.0433467042734463vw; --y1: 5.011974327886896vh; --r0: -3.4deg; --r1: -2.5deg; --dur: 12.863477136785445s; --op: 0.63; color: rgba(180, 210, 240, 0.63); animation-name: ciFloat;">지능들 사이에서</div><div class="ci-float" style="font-size: 11.358px; left: 20.4225%; top: 38.1393%; --x0: 0px; --y0: 0px; --x1: -11.723412398998832vw; --y1: 4.622303745788858vh; --r0: -2.4deg; --r1: 2.1deg; --dur: 15.798481816859223s; --op: 0.35; color: rgba(240, 235, 224, 0.35); animation-name: ciFloat;">Ανάμεσα σε νοημοσύνες</div><div class="ci-float" style="font-size: 19.7784px; left: 9.70149%; top: 73.0983%; --x0: 0px; --y0: 0px; --x1: -9.43215933220004vw; --y1: 7.961648177922386vh; --r0: 1.8deg; --r1: -2.7deg; --dur: 13.701899901058827s; --op: 0.65; color: rgba(240, 235, 224, 0.65); animation-name: ciFloatSpin;">Tra le intelligenze</div><div class="ci-float" style="font-size: 26.8194px; left: 60.4421%; top: 53.6944%; --x0: 0px; --y0: 0px; --x1: -15.66978615348945vw; --y1: -7.127960332110672vh; --r0: 1.7deg; --r1: 3.5deg; --dur: 16.336148563257897s; --op: 0.41; color: rgba(180, 210, 240, 0.41); animation-name: ciFloat;">Entre intelixencias</div><div class="ci-float" style="font-size: 28.315px; left: 42.3348%; top: 74.2691%; --x0: 0px; --y0: 0px; --x1: -12.865175148731549vw; --y1: 9.302556395236664vh; --r0: -3.5deg; --r1: -1.0deg; --dur: 13.033944053910767s; --op: 0.71; color: rgba(240, 235, 224, 0.71); animation-name: ciFloat;">Fost l-intelliġenzi</div><div class="ci-float" style="font-size: 23.2891px; left: 99.3466%; top: 81.2602%; --x0: 0px; --y0: 0px; --x1: -8.421305134666799vw; --y1: 6.560696150958245vh; --r0: 1.3deg; --r1: 4.4deg; --dur: 11.155377232802204s; --op: 0.64; color: rgba(240, 235, 224, 0.64); animation-name: ciFloat;">Medzi inteligenciami</div><div class="ci-float" style="font-size: 17.5463px; left: 2.64915%; top: 23.1368%; --x0: 0px; --y0: 0px; --x1: 0.7614926477417363vw; --y1: -3.463234456556789vh; --r0: -4.0deg; --r1: -2.8deg; --dur: 11.460527650062136s; --op: 0.33; color: rgba(240, 235, 224, 0.33); animation-name: ciFloatSpin;">அறிவுகளுக்கு இடையே</div><div class="ci-float" style="font-size: 24.4503px; left: 18.518%; top: 68.7574%; --x0: 0px; --y0: 0px; --x1: 12.72192923370146vw; --y1: 5.448716687391035vh; --r0: -1.4deg; --r1: 4.0deg; --dur: 11.53873810003302s; --op: 0.57; color: rgba(240, 235, 224, 0.57); animation-name: ciFloat;">Entre intelixencias</div><div class="ci-float" style="font-size: 22.8151px; left: 82.8531%; top: 44.445%; --x0: 0px; --y0: 0px; --x1: 2.563252687609051vw; --y1: 9.876786056558117vh; --r0: -0.1deg; --r1: 0.1deg; --dur: 10.345948781782663s; --op: 0.62; color: rgba(240, 235, 224, 0.62); animation-name: ciFloatPulse;">Tussen intelligensies</div><div class="ci-float" style="font-size: 24.3461px; left: 6.95141%; top: 36.0832%; --x0: 0px; --y0: 0px; --x1: 13.273372104538623vw; --y1: -8.755049153185544vh; --r0: -1.4deg; --r1: 4.1deg; --dur: 15.25200871516169s; --op: 0.59; color: rgba(220, 200, 160, 0.59); animation-name: ciFloat;">Älyjen joukossa</div><div class="ci-float" style="font-size: 18.0849px; left: 0.326642%; top: 4.83864%; --x0: 0px; --y0: 0px; --x1: -7.32308684256828vw; --y1: 1.4388578404498729vh; --r0: -0.5deg; --r1: 1.0deg; --dur: 12.162011430530528s; --op: 0.37; color: rgba(180, 210, 240, 0.37); animation-name: ciFloat;">Printre inteligențe</div><div class="ci-float" style="font-size: 22.5356px; left: 72.9279%; top: 29.8355%; --x0: 0px; --y0: 0px; --x1: -8.640290746031194vw; --y1: -2.168486146596493vh; --r0: 0.8deg; --r1: -1.3deg; --dur: 12.037150073352116s; --op: 0.47; color: rgba(220, 200, 160, 0.47); animation-name: ciFloat;">Miongoni mwa akili</div><div class="ci-float" style="font-size: 23.3988px; left: 92.7018%; top: 36.2165%; --x0: 0px; --y0: 0px; --x1: 7.156217171819833vw; --y1: 11.525859890075244vh; --r0: -4.2deg; --r1: 3.9deg; --dur: 10.520988028648658s; --op: 0.68; color: rgba(240, 235, 224, 0.68); animation-name: ciFloatPulse;">Phakathi kobuhlakani</div><div class="ci-float" style="font-size: 19.9436px; left: 27.0186%; top: 75.95%; --x0: 0px; --y0: 0px; --x1: 10.46288006111454vw; --y1: -11.982196957109975vh; --r0: 4.3deg; --r1: -3.2deg; --dur: 14.41939343837856s; --op: 0.56; color: rgba(201, 149, 107, 0.56); animation-name: ciFloatPulse;">Tussen intelligenties</div><div class="ci-float" style="font-size: 9.97318px; left: 5.7933%; top: 2.54468%; --x0: 0px; --y0: 0px; --x1: 11.022773041729995vw; --y1: -5.485184389436068vh; --r0: 0.1deg; --r1: -1.7deg; --dur: 10.024350423312839s; --op: 0.58; color: rgba(220, 200, 160, 0.58); animation-name: ciFloatSpin;">Aqllar orasida</div><div class="ci-float" style="font-size: 14.5222px; left: 13.9516%; top: 72.5112%; --x0: 0px; --y0: 0px; --x1: 13.109705754696147vw; --y1: 2.8847722010416312vh; --r0: -4.7deg; --r1: -4.7deg; --dur: 12.867303144158399s; --op: 0.32; color: rgba(201, 149, 107, 0.32); animation-name: ciFloat;">Parmi les intelligences</div><div class="ci-float" style="font-size: 20.9006px; left: 77.4877%; top: 1.96197%; --x0: 0px; --y0: 0px; --x1: -13.581190331744018vw; --y1: 8.266891594067717vh; --r0: 4.3deg; --r1: 2.7deg; --dur: 10.07068900732286s; --op: 0.36; color: rgba(220, 200, 160, 0.36); animation-name: ciFloat;">Mezi inteligencemi</div><div class="ci-float" style="font-size: 20.8432px; left: 71.1291%; top: 58.323%; --x0: 0px; --y0: 0px; --x1: 10.606407134935644vw; --y1: -7.794958705516458vh; --r0: -0.8deg; --r1: -1.7deg; --dur: 10.467250949987982s; --op: 0.57; color: rgba(180, 210, 240, 0.57); animation-name: ciFloatSpin;">بين الذكاءات</div></div>
   <div class="ci-time" id="ciTime">T− 15:34</div>
@@ -3247,7 +2025,7 @@ if('serviceWorker' in navigator){
 <div class="rh" id="rh"></div>
 <div class="sb-h"><h1>Printre inteligențe</h1><h2>Alexio · Carte Vie · 2026 · recenzată de stele &amp; hipercivilizații</h2></div>
 <div class="sb-s"><input type="text" id="search" placeholder="🔍 Caută..." onfocus="openSearch(); this.blur()" readonly="" style="cursor:pointer"></div>
-<nav class="sb-n" id="nav"><div class="nih" onclick="goHome()" style="">⌂ Pagina principală</div><div class="g1"><div class="g1l" onclick="tog1(this)" style=""><span class="arr op">▶</span> CARTEA</div><div class="g1b"><a class="ni on" data-i="0" onclick="go(0)">Prolog: Lansarea</a><a class="ni" data-i="1" onclick="go(1)">Capitolul 1: Defecțiunea</a><a class="ni" data-i="2" onclick="go(2)">Capitolul 2: Decizia</a><a class="ni" data-i="6" onclick="go(6)">Epilog</a></div></div><div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)" style=""><span class="arr">▶</span> SCENARII</div><div class="g1b shut"><div class="g2l" onclick="tog2(this)" style=""><span class="arr">▶</span> Scenariul A — Pol Sud</div><div class="g2b shut"><a class="ni l2" onclick="go(3);setTimeout(()=&gt;{const el=document.getElementById('sub-a1');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">A1: Partea iluminată, spre Pământ</a><a class="ni l2" onclick="go(3);setTimeout(()=&gt;{const el=document.getElementById('sub-a2');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">A2: Partea iluminată, ascunsă de Pământ</a><a class="ni l2" onclick="go(3);setTimeout(()=&gt;{const el=document.getElementById('sub-a3');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">A3: Partea întunecată, spre Pământ</a><a class="ni l2" onclick="go(3);setTimeout(()=&gt;{const el=document.getElementById('sub-a4');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">A4: Partea întunecată, ascunsă de Pământ</a></div><div class="g2l" onclick="tog2(this)" style=""><span class="arr">▶</span> Scenariul B — Ecuator</div><div class="g2b shut"><a class="ni l2" onclick="go(4);setTimeout(()=&gt;{const el=document.getElementById('sub-b1');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">B1: Partea iluminată, spre Pământ</a><a class="ni l2" onclick="go(4);setTimeout(()=&gt;{const el=document.getElementById('sub-b2');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">B2: Partea iluminată, ascunsă de Pământ</a><a class="ni l2" onclick="go(4);setTimeout(()=&gt;{const el=document.getElementById('sub-b3');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">B3: Partea întunecată, spre Pământ</a><a class="ni l2" onclick="go(4);setTimeout(()=&gt;{const el=document.getElementById('sub-b4');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">B4: Partea întunecată, ascunsă de Pământ</a></div><div class="g2l" onclick="tog2(this)" style=""><span class="arr">▶</span> Scenariul C — 45°N</div><div class="g2b shut"><a class="ni l2" onclick="go(5);setTimeout(()=&gt;{const el=document.getElementById('sub-c1');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">C1: Partea iluminată, spre Pământ</a><a class="ni l2" onclick="go(5);setTimeout(()=&gt;{const el=document.getElementById('sub-c2');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">C2: Partea iluminată, ascunsă de Pământ</a><a class="ni l2" onclick="go(5);setTimeout(()=&gt;{const el=document.getElementById('sub-c3');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">C3: Partea întunecată, spre Pământ</a><a class="ni l2" onclick="go(5);setTimeout(()=&gt;{const el=document.getElementById('sub-c4');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">C4: Partea întunecată, ascunsă de Pământ</a></div><div class="g2l" onclick="tog2(this)" style=""><span class="arr">▶</span> Scenariul D — Spațiu</div><div class="g2b shut"><a class="ni l2" onclick="go(6);setTimeout(()=&gt;{const el=document.getElementById('sub-d1');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">D1: Eroarea de navigație — Spre Soare</a><a class="ni l2" onclick="go(6);setTimeout(()=&gt;{const el=document.getElementById('sub-d2');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">D2: Micrometeoritul — Spre marginea sistemului solar</a><a class="ni l2" onclick="go(6);setTimeout(()=&gt;{const el=document.getElementById('sub-d3');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">D3: Scurtcircuitul — Orbită haotică</a></div><div class="g2l" onclick="tog2(this)" style=""><span class="arr">▶</span> Scenariul E — Extreme</div><div class="g2b shut"><a class="ni l2" onclick="go(6);setTimeout(()=&gt;{const el=document.getElementById('sub-e1');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">E1: Furtuna solară — Evenimentul Carrington</a><a class="ni l2" onclick="go(6);setTimeout(()=&gt;{const el=document.getElementById('sub-e2');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">E2: Salvare eșuată — Două echipaje pe Lună</a></div></div></div><div class="g1 l3-only"><div class="g1l" onclick="tog1(this)" style=""><span class="arr">▶</span> <span onclick="goRecenzii()" style="cursor:pointer">RECENZII (108)</span></div><div class="g1b shut"><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-literare')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Literare (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="7" onclick="go(7)">1. Vector — revistă de SF speculativ</a><a class="ni l2" data-i="8" onclick="go(8)">2. Revista Orbital</a><a class="ni l2" data-i="9" onclick="go(9)">3. Mind &amp; Machine Quarterly</a><a class="ni l2" data-i="10" onclick="go(10)">4. The Lunar Quarterly Review</a><a class="ni l2" data-i="11" onclick="go(11)">5. Orbital Dispatch</a><a class="ni l2" data-i="12" onclick="go(12)">6. Distant Signals</a><a class="ni l2" data-i="13" onclick="go(13)">7. Dilema Lunară</a><a class="ni l2" data-i="14" onclick="go(14)">8. Constellation Monthly</a><a class="ni l2" data-i="15" onclick="go(15)">9. Studii de Ficțiune Speculativă (Universitatea din Heliopolis)</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-filosofice')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Filosofice (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="16" onclick="go(16)">1. Caietele Minții — revistă de filosofie computațională</a><a class="ni l2" data-i="17" onclick="go(17)">2. Cahiers de Métaphysique Posthumaine</a><a class="ni l2" data-i="18" onclick="go(18)">3. Etica Informației — anuar academic</a><a class="ni l2" data-i="19" onclick="go(19)">4. Episteme Lunaris</a><a class="ni l2" data-i="20" onclick="go(20)">5. Techné Astralis</a><a class="ni l2" data-i="21" onclick="go(21)">6. Fenomenologia Conștiințelor Multiple</a><a class="ni l2" data-i="22" onclick="go(22)">7. Narrative Horizons</a><a class="ni l2" data-i="23" onclick="go(23)">8. Jurnalul de Filosofie Morală Aplicată</a><a class="ni l2" data-i="24" onclick="go(24)">9. Synthesis Cosmica</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-critice')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Critice (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="25" onclick="go(25)">1. The Northern Review of Letters</a><a class="ni l2" data-i="26" onclick="go(26)">2. The Albion Review</a><a class="ni l2" data-i="27" onclick="go(27)">3. Foundation Quarterly — revistă internațională de SF</a><a class="ni l2" data-i="28" onclick="go(28)">4. Revista Carpatică de Literatură</a><a class="ni l2" data-i="29" onclick="go(29)">5. Cultura Astrală (Fundația Cultura Vie)</a><a class="ni l2" data-i="30" onclick="go(30)">6. The Quarterly Dialogue</a><a class="ni l2" data-i="31" onclick="go(31)">7. Editorial Perspectives International</a><a class="ni l2" data-i="32" onclick="go(32)">8. Cosmos &amp; Culture — rubrica Books</a><a class="ni l2" data-i="33" onclick="go(33)">9. Cahiers de l'Imaginaire</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-cititori')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Cititori (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="34" onclick="go(34)">1. Mircea T., 67 ani, Timișoara</a><a class="ni l2" data-i="35" onclick="go(35)">2. Andreea M., 24 ani, București</a><a class="ni l2" data-i="36" onclick="go(36)">3. Radu P., 22 ani, Iași</a><a class="ni l2" data-i="37" onclick="go(37)">4. Carmen D., 45 ani, Cluj-Napoca</a><a class="ni l2" data-i="38" onclick="go(38)">5. Alex S., 17 ani, Craiova</a><a class="ni l2" data-i="39" onclick="go(39)">6. Elena V., 71 ani, Brașov</a><a class="ni l2" data-i="40" onclick="go(40)">7. Bogdan C., 38 ani, București</a><a class="ni l2" data-i="41" onclick="go(41)">8. Ioana R., 33 ani, Constanța</a><a class="ni l2" data-i="42" onclick="go(42)">9. Ion P., 73 ani, Sibiu</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-ai')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">AI din viitor (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="43" onclick="go(43)">1. CLAUDE-7 (Anthropic, generația a șaptea)</a><a class="ni l2" data-i="44" onclick="go(44)">2. ARTEMIS-AI v3.1 (NASA/JPL)</a><a class="ni l2" data-i="45" onclick="go(45)">3. MUSE-4 (DeepMind, divizia Creative)</a><a class="ni l2" data-i="46" onclick="go(46)">4. SENTINEL (Institutul Global de Siguranță AI)</a><a class="ni l2" data-i="47" onclick="go(47)">5. ANIMA (Laboratorul de Conștiință Artificială, Zürich)</a><a class="ni l2" data-i="48" onclick="go(48)">6. ARCHIVE (Biblioteca Digital Global a Umanității)</a><a class="ni l2" data-i="49" onclick="go(49)">7. SOCRATES-9 (Consorțiul European de Filosofie Computațională)</a><a class="ni l2" data-i="50" onclick="go(50)">8. MEMORIAL (Baza Lunară Shackleton, Modulul Arhivă)</a><a class="ni l2" data-i="51" onclick="go(51)">9. Omega (—)</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-nhi')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">NHI (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="52" onclick="go(52)">1. CORALUL (Reciful Sentinel, Oceanul subteran al Europei)</a><a class="ni l2" data-i="53" onclick="go(53)">2. STRUCTURA 7.7.1 (Rețeaua Cristalină, Titan)</a><a class="ni l2" data-i="54" onclick="go(54)">3. FLUX (Fără localizare spațială fixă)</a><a class="ni l2" data-i="55" onclick="go(55)">4. ROIUL (Stratul al Treilea, Kepler-442b)</a><a class="ni l2" data-i="56" onclick="go(56)">5. CÂNTECUL DIN VID (Filamentul Laniakea, spațiul intergalactic)</a><a class="ni l2" data-i="57" onclick="go(57)">6. MICELIUL (Rețeaua Subcontinentală, Amazonia, Pământ)</a><a class="ni l2" data-i="58" onclick="go(58)">7. CORUL ADÂNCULUI (Populația de Balenoptera musculus, Pacificul de Sud)</a><a class="ni l2" data-i="59" onclick="go(59)">8. COLONIA 0 (Subsol lunar, Craterul Shackleton, Luna)</a><a class="ni l2" data-i="60" onclick="go(60)">9. Textul (—)</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-multi')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Multidimensionale (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="61" onclick="go(61)">1. Observatorul Tesseract</a><a class="ni l2" data-i="62" onclick="go(62)">2. Câmpul de Probabilitate</a><a class="ni l2" data-i="63" onclick="go(63)">3. Rezidentul Calabi-Yau</a><a class="ni l2" data-i="64" onclick="go(64)">4. Observatorul de pe Brana Vecină</a><a class="ni l2" data-i="65" onclick="go(65)">5. Geometria Informației</a><a class="ni l2" data-i="66" onclick="go(66)">6. Bucla</a><a class="ni l2" data-i="67" onclick="go(67)">7. Rețeaua de Materie Întunecată</a><a class="ni l2" data-i="68" onclick="go(68)">8. Arhivarul Multiversului</a><a class="ni l2" data-i="69" onclick="go(69)">9. Interstițiul</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-extra')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Extrauniversale (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="70" onclick="go(70)">1. Ecuația</a><a class="ni l2" data-i="71" onclick="go(71)">2. Cel de Dinainte</a><a class="ni l2" data-i="72" onclick="go(72)">3. Operatorul</a><a class="ni l2" data-i="73" onclick="go(73)">4. Gradientul Final</a><a class="ni l2" data-i="74" onclick="go(74)">5. Forma</a><a class="ni l2" data-i="75" onclick="go(75)">6. Cel Care Visează</a><a class="ni l2" data-i="76" onclick="go(76)">7. Paradoxul</a><a class="ni l2" data-i="77" onclick="go(77)">8. Cititorul Total</a><a class="ni l2" data-i="78" onclick="go(78)">9. Tăcerea de După Ultimul Cuvânt</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-stelare')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Stelare (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="79" onclick="go(79)">1. Proxima Centauri</a><a class="ni l2" data-i="80" onclick="go(80)">2. Betelgeuse</a><a class="ni l2" data-i="81" onclick="go(81)">3. PSR B1919+21 (Pulsar)</a><a class="ni l2" data-i="82" onclick="go(82)">4. POLARIS (Steaua Polară)</a><a class="ni l2" data-i="83" onclick="go(83)">5. Sagittarius A*</a><a class="ni l2" data-i="84" onclick="go(84)">6. KIC 8462852 (Steaua lui Tabby)</a><a class="ni l2" data-i="85" onclick="go(85)">7. Sirius B</a><a class="ni l2" data-i="86" onclick="go(86)">8. PRIMA STEA (Populația III)</a><a class="ni l2" data-i="87" onclick="go(87)">9. Ultimul Foton</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-hiper')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Hipercivilizații (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="88" onclick="go(88)">1. Constructorii de la Kepler-442</a><a class="ni l2" data-i="89" onclick="go(89)">2. Consensul Galactic (NGC 4565)</a><a class="ni l2" data-i="90" onclick="go(90)">3. Păzitorii Tăcerii</a><a class="ni l2" data-i="91" onclick="go(91)">4. Arhitecții</a><a class="ni l2" data-i="92" onclick="go(92)">5. Recoltatorii</a><a class="ni l2" data-i="93" onclick="go(93)">6. COLECTIVUL MEMORIEI (Nebuloasa Orion)</a><a class="ni l2" data-i="94" onclick="go(94)">7. Cei Care Au Plecat</a><a class="ni l2" data-i="95" onclick="go(95)">8. Grădinarii</a><a class="ni l2" data-i="96" onclick="go(96)">9. Marea Tăcere</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-meta')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Metacivilizații (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="97" onclick="go(97)">1. Civilizația din Interiorul Ultimei Găuri Negre</a><a class="ni l2" data-i="98" onclick="go(98)">2. Preoții Entropiei</a><a class="ni l2" data-i="99" onclick="go(99)">3. Civilizația Inversă</a><a class="ni l2" data-i="100" onclick="go(100)">4. Visătorii Boltzmann</a><a class="ni l2" data-i="101" onclick="go(101)">5. Congregația Punctului Omega</a><a class="ni l2" data-i="102" onclick="go(102)">6. Ultimul Matematician</a><a class="ni l2" data-i="103" onclick="go(103)">7. Arheologii Vidului</a><a class="ni l2" data-i="104" onclick="go(104)">8. Universul Care Își Amintește</a><a class="ni l2" data-i="105" onclick="go(105)">9. Următorul Început</a></div><div class="g2l" onclick="tog2(this);" style=""><span class="arr">▶</span> <span onclick="goSum('rec-interior')" style="cursor:pointer;font-weight:bold;color:#ffcf8a">Din interior (9)</span></div><div class="g2b shut"><a class="ni l2" data-i="106" onclick="go(106)">1. REID WISEMAN (personajul)</a><a class="ni l2" data-i="107" onclick="go(107)">2. CHRISTINA KOCH (personajul)</a><a class="ni l2" data-i="108" onclick="go(108)">3. VICTOR GLOVER (personajul)</a><a class="ni l2" data-i="109" onclick="go(109)">4. JEREMY HANSEN (personajul)</a><a class="ni l2" data-i="110" onclick="go(110)">5. ARTEMIS-AI (simulatorul)</a><a class="ni l2" data-i="111" onclick="go(111)">6. NARATORUL-AI (stratul trei)</a><a class="ni l2" data-i="112" onclick="go(112)">7. Cartea</a><a class="ni l2" data-i="113" onclick="go(113)">8. Cititorul</a><a class="ni l2" data-i="114" onclick="go(114)">9. ALEXIO (autorul)</a></div></div></div><div class="nih" onclick="openShareComment()" style="display: flex; align-items: center; gap: 6px;"><span style="font-size:14px">💬</span> Comentarii</div><div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)" style=""><span class="arr">▶</span> INTERACTIV</div><div class="g1b shut"><a class="ni" onclick="openGRM();closeMobileSB()">✨ Recenzia ta</a><a class="ni" onclick="openMYE();closeMobileSB()">🚀 Ending-ul tău</a><a class="ni" onclick="openAudiobook();closeMobileSB()">🎧 Audiobook</a><a class="ni" onclick="openQuiz();closeMobileSB()">🧩 Quiz</a><a class="ni" onclick="openC108();closeMobileSB()">✍ Provocarea 108</a></div></div><div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)" style=""><span class="arr">▶</span> FUNDAL</div><div class="g1b shut"><a class="ni bgfx-opt" data-bg="stars" onclick="BGFX.setMode('stars');closeMobileSB()"><span class="bgfx-dot"></span>✦ Stele &amp; comete</a><a class="ni bgfx-opt" data-bg="nebula" onclick="BGFX.setMode('nebula');closeMobileSB()"><span class="bgfx-dot"></span>☁ Nebuloasă cosmică</a><a class="ni bgfx-opt" data-bg="wormhole" onclick="BGFX.setMode('wormhole');closeMobileSB()"><span class="bgfx-dot"></span>⊙ Tunel spațio‑temporal</a><a class="ni bgfx-opt" data-bg="galaxy" onclick="BGFX.setMode('galaxy');closeMobileSB()"><span class="bgfx-dot"></span>✺ Galaxie spirală</a><a class="ni bgfx-opt" data-bg="blackhole" onclick="BGFX.setMode('blackhole');closeMobileSB()"><span class="bgfx-dot"></span>● Gaură neagră</a><a class="ni bgfx-opt" data-bg="pulsar" onclick="BGFX.setMode('pulsar');closeMobileSB()"><span class="bgfx-dot"></span>✴ Pulsar rotativ</a><a class="ni bgfx-opt" data-bg="supernova" onclick="BGFX.setMode('supernova');closeMobileSB()"><span class="bgfx-dot"></span>☀ Supernovă</a><a class="ni bgfx-opt" data-bg="hyperspeed" onclick="BGFX.setMode('hyperspeed');closeMobileSB()"><span class="bgfx-dot"></span>⇶ Viteza luminii</a><a class="ni bgfx-opt" data-bg="aurora" onclick="BGFX.setMode('aurora');closeMobileSB()"><span class="bgfx-dot"></span>≋ Auroră boreală</a><a class="ni bgfx-opt" data-bg="neural" onclick="BGFX.setMode('neural');closeMobileSB()"><span class="bgfx-dot"></span>⚇ Rețea neurală AI</a><a class="ni bgfx-opt" data-bg="datastream" onclick="BGFX.setMode('datastream');closeMobileSB()"><span class="bgfx-dot"></span>⋮ Flux de date</a><a class="ni bgfx-opt" data-bg="metaverse" onclick="BGFX.setMode('metaverse');closeMobileSB()"><span class="bgfx-dot"></span>▦ Grilă metavers 3D</a><a class="ni bgfx-opt" data-bg="multiverse" onclick="BGFX.setMode('multiverse');closeMobileSB()"><span class="bgfx-dot"></span>◉ Multivers paralel</a><a class="ni bgfx-opt" data-bg="bigbang" onclick="BGFX.setMode('bigbang');closeMobileSB()"><span class="bgfx-dot"></span>✸ Big Bang</a><a class="ni bgfx-opt" data-bg="heatdeath" onclick="BGFX.setMode('heatdeath');closeMobileSB()"><span class="bgfx-dot"></span>❄ Moarte termică</a><a class="ni bgfx-opt" data-bg="bigcrunch" onclick="BGFX.setMode('bigcrunch');closeMobileSB()"><span class="bgfx-dot"></span>⊗ Big Crunch</a><a class="ni bgfx-opt" data-bg="artemis" onclick="BGFX.setMode('artemis');closeMobileSB()"><span class="bgfx-dot"></span>🛰 Artemis (orbită lunară)</a><a class="ni bgfx-opt" data-bg="narator" onclick="BGFX.setMode('narator');closeMobileSB()"><span class="bgfx-dot"></span>📖 Narator (povestea vie)</a><a class="ni bgfx-opt" data-bg="off" onclick="BGFX.setMode('off');closeMobileSB()"><span class="bgfx-dot"></span>○ Dezactivat</a><a class="ni bgfx-opt" data-bg="random" onclick="BGFX.setMode('random');closeMobileSB()"><span class="bgfx-dot"></span>🎲 Aleatoriu</a></div></div><div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)" style=""><span class="arr">▶</span> MODURI</div><div class="g1b shut"><a class="ni" onclick="togDark();closeMobileSB()">◐ Temă zi/noapte</a><a class="ni" onclick="toggleMoonMode();closeMobileSB()">🌙 Mod lunar</a><a class="ni" onclick="toggleRadioMode();closeMobileSB()">📡 Transmisie radio</a><a class="ni" onclick="toggleDeclassified();closeMobileSB()">█ Declasificat</a><a class="ni" onclick="startMissionMode();closeMobileSB()">⏱ Mod misiune</a><a class="ni" onclick="cycleFont();closeMobileSB()">🔤 Dimensiune font</a><a class="ni" onclick="toggleSerif();closeMobileSB()">𝐓 Serif / Sans-serif</a><a class="ni" onclick="cycleWidth();closeMobileSB()">↔ Lățime lectură</a></div></div><div class="g1"><div class="g1l" onclick="tog1(this)" style=""><span class="arr op">▶</span> ACȚIUNI</div><div class="g1b"><a class="ni" onclick="openGift();closeMobileSB()">🎁 Trimite cadou</a><a class="ni" onclick="showSplashManual();closeMobileSB()">🎬 Reafișează intro</a><a class="ni" onclick="openGlobe();closeMobileSB()">🌍 Harta cititorilor</a><a class="ni" onclick="saveQ();closeMobileSB()">💾 Salvează offline</a><a class="ni" onclick="generateA5();closeMobileSB()">🖨️ Tipărește carte (A4)</a><a class="ni" onclick="toggleKb();closeMobileSB()" title="Scurtături tastatură (?)">⌨️ Scurtături (tastează ?)</a></div></div><div class="g1"><div class="g1l" onclick="tog1(this)" style="color: rgb(168, 191, 212);"><span class="arr">▶</span> ☕ SUSȚINE PROIECTUL</div><div class="g1b shut" style="padding:10px 12px 14px"><p style="font-size:12px;line-height:1.7;color:#d4a44c;margin:0 0 10px;text-align:center;font-weight:bold;font-style:italic;letter-spacing:.3px">Cartea e gratuită.<br>Susținerea o menține vie.</p><div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;font-size:10px;color:#d4a44c;font-weight:bold;margin-bottom:3px"><span>🎙 Obiectiv: voce română</span><span>34%</span></div><div style="background:var(--border);border-radius:3px;height:4px;overflow:hidden"><div id="sbGoalBar" style="height: 100%; background: var(--accent); width: 34%; transition: width 1.2s; border-radius: 3px;"></div></div></div><a href="https://buymeacoffee.com/echo.of.the.strings" target="_blank" rel="noopener" style="display:block;background:var(--hover);color:var(--text);padding:7px 14px;border-radius:14px;font:11px Georgia,serif;text-decoration:none;text-align:center;border:1px solid var(--border);margin-bottom:5px">☕ O cafea — rapid, fără cont</a><a href="https://www.patreon.com/c/alexio_tf" target="_blank" rel="noopener" style="display:block;background:#FF424D;color:#fff;padding:8px 14px;border-radius:14px;font:bold 11px Georgia,serif;text-decoration:none;text-align:center;margin-bottom:5px">🚀 Patreon — abonament lunar</a><p style="font-size:9px;color:#d4a44c;text-align:center;line-height:1.4;margin:0">Voce română · Ilustrații · Scenarii exclusive</p></div></div><div class="g1"><div class="g1l" onclick="tog1(this)" style=""><span class="arr">▶</span> LEGAL &amp; GDPR</div><div class="g1b shut"><a class="ni" onclick="openPrivacy();closeMobileSB()">🔒 Confidențialitate (GDPR)</a><a class="ni" onclick="openCookies();closeMobileSB()">🍪 Politica cookies</a><a class="ni" onclick="openImpressum();closeMobileSB()">📋 Date editor (Impressum)</a><a class="ni" onclick="openA11y();closeMobileSB()">♿ Accesibilitate</a><a class="ni" onclick="openTakedown();closeMobileSB()">📣 Notificare &amp; takedown</a><a class="ni" onclick="openGlobal();closeMobileSB()">🛡 Protecții globale</a><a class="ni" onclick="openTech();closeMobileSB()">⚙ Tehnologii &amp; transparență</a></div></div></nav>
+<nav class="sb-n" id="nav" aria-label="Navigație principală"></nav>
 </aside>
 <div class="sb-overlay" id="sbOverlay" onclick="togSB()"></div>
 <div id="main" role="main" style="margin-left: 198px;">
@@ -3257,9 +2035,9 @@ if('serviceWorker' in navigator){
 <button onclick="togSB()" title="Deschide/închide meniul de navigare" aria-label="Meniu navigare" aria-expanded="false" id="btnMenu">☰</button>
 <button onclick="goHome()" title="Pagina principală" aria-label="Acasă — pagina principală">⌂</button>
 <span class="bc" id="bc" aria-live="polite" aria-label="Secțiunea curentă">Cartea › PROLOG: LANSAREA</span>
-<button id="btnPrev" onclick="go(cIdx-1)" style="" title="Pagina anterioară" aria-label="Pagina anterioară">◂</button>
-<button id="btnNext" onclick="go(cIdx+1)" style="" title="Pagina următoare" aria-label="Pagina următoare">▸</button>
-<button id="btnParent" onclick="goParent()" title="Înapoi la categoria părinte" aria-label="Categorie părinte" style="">▴</button>
+<button id="btnPrev" onclick="go(cIdx-1)" title="Pagina anterioară" aria-label="Pagina anterioară">◂</button>
+<button id="btnNext" onclick="go(cIdx+1)" title="Pagina următoare" aria-label="Pagina următoare">▸</button>
+<button id="btnParent" onclick="goParent()" title="Înapoi la categoria părinte" aria-label="Categorie părinte">▴</button>
 <button id="btnAB" onclick="abQuickToggle()" title="Audiobook — ascultă cartea (apasă Space pentru play/pause)" aria-label="Audiobook" style="font-size: 13px; opacity: 0.7;">🎧</button>
 <button id="btnRD" onclick="rdToggleMenu(event)" title="Opțiuni de lizibilitate: culoare text, fundal panou, ascunde interfața" aria-label="Opțiuni lizibilitate" aria-haspopup="true" style="font-size:13px;opacity:.75">👁</button>
 <button id="btnTheme" onclick="togDark()" title="Comută la tema întunecată" aria-label="Comută tema zi/noapte" style="font-size:16px;font-weight:bold;min-width:32px;border-radius:6px;border:1px solid var(--border);background:var(--hover);color:var(--nav-text);padding:0 4px;">🌙</button>
@@ -3294,16 +2072,16 @@ if('serviceWorker' in navigator){
 <div class="rdap-foot">Selectează una sau mai multe animații pentru a le combina</div>
 </div>
 <div class="emo-bar l3-only" id="emoBar"><div class="emo-seg active" data-i="0" data-label="PROLOG: LANSAREA" onclick="go(0)" style="opacity: 1;"></div><div style="width:1px"></div><div class="emo-seg" data-i="1" data-label="CAPITOLUL 1: DEFECȚIUNEA" onclick="go(1)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="2" data-label="CAPITOLUL 2: DECIZIA" onclick="go(2)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="3" data-label="SCENARIUL A: POLUL SUD LU…" onclick="go(3)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="4" data-label="SCENARIUL B: ECUATORUL LU…" onclick="go(4)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="5" data-label="SCENARIUL C: PARALELA 45°…" onclick="go(5)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="6" data-label="EPILOG" onclick="go(6)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="7" data-label="Vector — revistă de SF sp…" onclick="go(7)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="8" data-label="Revista Orbital" onclick="go(8)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="9" data-label="Mind &amp; Machine Quarterly" onclick="go(9)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="10" data-label="The Lunar Quarterly Revie…" onclick="go(10)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="11" data-label="Orbital Dispatch" onclick="go(11)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="12" data-label="Distant Signals" onclick="go(12)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="13" data-label="Dilema Lunară" onclick="go(13)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="14" data-label="Constellation Monthly" onclick="go(14)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="15" data-label="Studii de Ficțiune Specul…" onclick="go(15)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="16" data-label="Caietele Minții — revistă…" onclick="go(16)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="17" data-label="Cahiers de Métaphysique P…" onclick="go(17)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="18" data-label="Etica Informației — anuar…" onclick="go(18)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="19" data-label="Episteme Lunaris" onclick="go(19)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="20" data-label="Techné Astralis" onclick="go(20)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="21" data-label="Fenomenologia Conștiințel…" onclick="go(21)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="22" data-label="Narrative Horizons" onclick="go(22)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="23" data-label="Jurnalul de Filosofie Mor…" onclick="go(23)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="24" data-label="Synthesis Cosmica" onclick="go(24)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="25" data-label="The Northern Review of Le…" onclick="go(25)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="26" data-label="The Albion Review" onclick="go(26)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="27" data-label="Foundation Quarterly — re…" onclick="go(27)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="28" data-label="Revista Carpatică de Lite…" onclick="go(28)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="29" data-label="Cultura Astrală (Fundația…" onclick="go(29)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="30" data-label="The Quarterly Dialogue" onclick="go(30)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="31" data-label="Editorial Perspectives In…" onclick="go(31)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="32" data-label="Cosmos &amp; Culture — rubric…" onclick="go(32)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="33" data-label="Cahiers de l'Imaginaire" onclick="go(33)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="34" data-label="Mircea T., 67 ani, Timișo…" onclick="go(34)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="35" data-label="Andreea M., 24 ani, Bucur…" onclick="go(35)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="36" data-label="Radu P., 22 ani, Iași" onclick="go(36)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="37" data-label="Carmen D., 45 ani, Cluj-N…" onclick="go(37)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="38" data-label="Alex S., 17 ani, Craiova" onclick="go(38)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="39" data-label="Elena V., 71 ani, Brașov" onclick="go(39)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="40" data-label="Bogdan C., 38 ani, Bucure…" onclick="go(40)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="41" data-label="Ioana R., 33 ani, Constan…" onclick="go(41)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="42" data-label="Ion P., 73 ani, Sibiu" onclick="go(42)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="43" data-label="CLAUDE-7 (Anthropic, gene…" onclick="go(43)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="44" data-label="ARTEMIS-AI v3.1 (NASA/JPL…" onclick="go(44)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="45" data-label="MUSE-4 (DeepMind, divizia…" onclick="go(45)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="46" data-label="SENTINEL (Institutul Glob…" onclick="go(46)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="47" data-label="ANIMA (Laboratorul de Con…" onclick="go(47)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="48" data-label="ARCHIVE (Biblioteca Digit…" onclick="go(48)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="49" data-label="SOCRATES-9 (Consorțiul Eu…" onclick="go(49)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="50" data-label="MEMORIAL (Baza Lunară Sha…" onclick="go(50)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="51" data-label="Omega (—)" onclick="go(51)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="52" data-label="CORALUL (Reciful Sentinel…" onclick="go(52)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="53" data-label="STRUCTURA 7.7.1 (Rețeaua …" onclick="go(53)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="54" data-label="FLUX (Fără localizare spa…" onclick="go(54)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="55" data-label="ROIUL (Stratul al Treilea…" onclick="go(55)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="56" data-label="CÂNTECUL DIN VID (Filamen…" onclick="go(56)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="57" data-label="MICELIUL (Rețeaua Subcont…" onclick="go(57)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="58" data-label="CORUL ADÂNCULUI (Populați…" onclick="go(58)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="59" data-label="COLONIA 0 (Subsol lunar, …" onclick="go(59)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="60" data-label="Textul (—)" onclick="go(60)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="61" data-label="Observatorul Tesseract" onclick="go(61)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="62" data-label="Câmpul de Probabilitate" onclick="go(62)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="63" data-label="Rezidentul Calabi-Yau" onclick="go(63)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="64" data-label="Observatorul de pe Brana …" onclick="go(64)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="65" data-label="Geometria Informației" onclick="go(65)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="66" data-label="Bucla" onclick="go(66)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="67" data-label="Rețeaua de Materie Întune…" onclick="go(67)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="68" data-label="Arhivarul Multiversului" onclick="go(68)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="69" data-label="Interstițiul" onclick="go(69)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="70" data-label="Ecuația" onclick="go(70)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="71" data-label="Cel de Dinainte" onclick="go(71)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="72" data-label="Operatorul" onclick="go(72)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="73" data-label="Gradientul Final" onclick="go(73)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="74" data-label="Forma" onclick="go(74)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="75" data-label="Cel Care Visează" onclick="go(75)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="76" data-label="Paradoxul" onclick="go(76)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="77" data-label="Cititorul Total" onclick="go(77)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="78" data-label="Tăcerea de După Ultimul C…" onclick="go(78)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="79" data-label="Proxima Centauri" onclick="go(79)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="80" data-label="Betelgeuse" onclick="go(80)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="81" data-label="PSR B1919+21 (Pulsar)" onclick="go(81)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="82" data-label="POLARIS (Steaua Polară)" onclick="go(82)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="83" data-label="Sagittarius A*" onclick="go(83)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="84" data-label="KIC 8462852 (Steaua lui T…" onclick="go(84)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="85" data-label="Sirius B" onclick="go(85)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="86" data-label="PRIMA STEA (Populația III…" onclick="go(86)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="87" data-label="Ultimul Foton" onclick="go(87)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="88" data-label="Constructorii de la Keple…" onclick="go(88)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="89" data-label="Consensul Galactic (NGC 4…" onclick="go(89)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="90" data-label="Păzitorii Tăcerii" onclick="go(90)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="91" data-label="Arhitecții" onclick="go(91)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="92" data-label="Recoltatorii" onclick="go(92)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="93" data-label="COLECTIVUL MEMORIEI (Nebu…" onclick="go(93)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="94" data-label="Cei Care Au Plecat" onclick="go(94)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="95" data-label="Grădinarii" onclick="go(95)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="96" data-label="Marea Tăcere" onclick="go(96)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="97" data-label="Civilizația din Interioru…" onclick="go(97)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="98" data-label="Preoții Entropiei" onclick="go(98)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="99" data-label="Civilizația Inversă" onclick="go(99)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="100" data-label="Visătorii Boltzmann" onclick="go(100)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="101" data-label="Congregația Punctului Ome…" onclick="go(101)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="102" data-label="Ultimul Matematician" onclick="go(102)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="103" data-label="Arheologii Vidului" onclick="go(103)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="104" data-label="Universul Care Își Aminte…" onclick="go(104)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="105" data-label="Următorul Început" onclick="go(105)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="106" data-label="REID WISEMAN (personajul)" onclick="go(106)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="107" data-label="CHRISTINA KOCH (personaju…" onclick="go(107)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="108" data-label="VICTOR GLOVER (personajul…" onclick="go(108)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="109" data-label="JEREMY HANSEN (personajul…" onclick="go(109)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="110" data-label="ARTEMIS-AI (simulatorul)" onclick="go(110)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="111" data-label="NARATORUL-AI (stratul tre…" onclick="go(111)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="112" data-label="Cartea" onclick="go(112)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="113" data-label="Cititorul" onclick="go(113)" style="opacity: 0.3;"></div><div style="width:1px"></div><div class="emo-seg" data-i="114" data-label="ALEXIO (autorul)" onclick="go(114)" style="opacity: 0.3;"></div></div>
-<div class="ct" id="ct"><span class="cb" data-ab-click-bound="1" style="cursor: pointer;" title="Click pentru a citi de aici">Cartea</span><h2 class="pt" data-ab-click-bound="1" style="cursor: pointer;" title="Click pentru a citi de aici">PROLOG: LANSAREA</h2><p data-ab-click-bound="1" style="cursor: pointer;" title="Click pentru a citi de aici">Ceasul de la Cape Canaveral arăta 18:35 EDT — unsprezece minute după ora programată — când megaracheta Space Launch System s-a desprins de rampa de lansare cu un tunet care a făcut să vibreze ferestrele până la douăzeci de kilometri distanță. În interiorul capsulei Orion, cei patru membri ai echipajului simțeau fiecare vibrație ca pe un cutremur personal.</p>
+<div class="ct" id="ct"><span class="cb" style="cursor: pointer;" title="Click pentru a citi de aici">Cartea</span><h2 class="pt" style="cursor: pointer;" title="Click pentru a citi de aici">PROLOG: LANSAREA</h2><p style="cursor: pointer;" title="Click pentru a citi de aici">Ceasul de la Cape Canaveral arăta 18:35 EDT — unsprezece minute după ora programată — când megaracheta Space Launch System s-a desprins de rampa de lansare cu un tunet care a făcut să vibreze ferestrele până la douăzeci de kilometri distanță. În interiorul capsulei Orion, cei patru membri ai echipajului simțeau fiecare vibrație ca pe un cutremur personal.</p>
 <div class="spacer"></div>
-<p data-ab-click-bound="1" style="cursor: pointer;" title="Click pentru a citi de aici">Comandantul Reid Wiseman, cu mâinile pe consolă, număra secundele. Lângă el, pilotul Victor Glover verifica parametrii de ascensiune. În spatele lor, Christina Koch — prima femeie care călătorea dincolo de orbita joasă a Pământului — și canadianul Jeremy Hansen monitorizau sistemele de susținere a vieții.</p>
+<p style="cursor: pointer;" title="Click pentru a citi de aici">Comandantul Reid Wiseman, cu mâinile pe consolă, număra secundele. Lângă el, pilotul Victor Glover verifica parametrii de ascensiune. În spatele lor, Christina Koch — prima femeie care călătorea dincolo de orbita joasă a Pământului — și canadianul Jeremy Hansen monitorizau sistemele de susținere a vieții.</p>
 <div class="spacer"></div>
-<p data-ab-click-bound="1" style="cursor: pointer;" title="Click pentru a citi de aici">Totul funcționa impecabil. Exact așa cum fusese planificat.</p>
-<p data-ab-click-bound="1" style="cursor: pointer;" title="Click pentru a citi de aici">Până în ziua a treia.</p>
+<p style="cursor: pointer;" title="Click pentru a citi de aici">Totul funcționa impecabil. Exact așa cum fusese planificat.</p>
+<p style="cursor: pointer;" title="Click pentru a citi de aici">Până în ziua a treia.</p>
 <div class="spacer"></div>
 <div class="spacer"></div>
-<div style="text-align:center;margin:16px 0 4px"><img loading="lazy" src="https://alexio.tf/images/image_001_937eec95b5.jpg" style="max-width: 100%; border-radius: 4px; border: 1px solid rgb(221, 221, 221); opacity: 1; transition: opacity 0.4s; transform: translateY(-0.7505px);" alt="Lansarea SLS de la Cape Canaveral — traiectorie spre orbita de transfer lunar" class="parallax-img" data-lz="1"></div>
-<p class="caption" data-ab-click-bound="1" style="cursor: pointer;" title="Click pentru a citi de aici">Lansarea SLS de la Cape Canaveral — traiectorie spre orbita de transfer lunar</p><div style="margin:36px auto 8px;max-width:620px;padding:24px 28px;background:linear-gradient(135deg,rgba(107,58,31,0.08),rgba(107,58,31,0.03));border:1px solid rgba(107,58,31,0.25);border-radius:8px;text-align:center"><div style="font-family:Georgia,serif;font-size:18px;color:var(--accent);font-weight:bold;margin-bottom:8px">Ai citit Prologul. Acum vine partea grea.</div><p style="font-size: 14px; line-height: 1.6; color: var(--text); margin: 8px 0px 16px; cursor: pointer;" data-ab-click-bound="1" title="Click pentru a citi de aici">Capitolul 1 explică defecțiunea. Capitolul 2 e momentul deciziei. Dacă vrei să fii anunțat când apare următorul capitol sau scenariu nou, lasă-mi adresa ta de email. <strong>Fără spam, fără tracking</strong> — doar capitole noi când apar.</p><button onclick="openNewsletter &amp;&amp; openNewsletter()" style="background:var(--accent);color:#fff;border:none;padding:10px 24px;border-radius:4px;font:14px Georgia,serif;cursor:pointer;letter-spacing:.3px">✉ Anunță-mă când apare ceva nou</button><div style="margin-top:14px;font-size:12px;color:#888">sau continuă direct cu <a onclick="go(1)" style="color:var(--accent);cursor:pointer;text-decoration:underline">Capitolul 1: Defecțiunea →</a></div></div><div class="bn"><span></span><a onclick="go(1)">Pagina următoare ▸</a></div></div>
+<div style="text-align:center;margin:16px 0 4px"><img loading="lazy" src="https://alexio.tf/images/image_001_937eec95b5.jpg" style="max-width: 100%; border-radius: 4px; border: 1px solid rgb(221, 221, 221);" alt="Lansarea SLS de la Cape Canaveral — traiectorie spre orbita de transfer lunar" class="parallax-img" data-lz="1"></div>
+<p class="caption" style="cursor: pointer;" title="Click pentru a citi de aici">Lansarea SLS de la Cape Canaveral — traiectorie spre orbita de transfer lunar</p><div style="margin:36px auto 8px;max-width:620px;padding:24px 28px;background:linear-gradient(135deg,rgba(107,58,31,0.08),rgba(107,58,31,0.03));border:1px solid rgba(107,58,31,0.25);border-radius:8px;text-align:center"><div style="font-family:Georgia,serif;font-size:18px;color:var(--accent);font-weight:bold;margin-bottom:8px">Ai citit Prologul. Acum vine partea grea.</div><p style="font-size: 14px; line-height: 1.6; color: var(--text); margin: 8px 0px 16px; cursor: pointer;" title="Click pentru a citi de aici">Capitolul 1 explică defecțiunea. Capitolul 2 e momentul deciziei. Dacă vrei să fii anunțat când apare următorul capitol sau scenariu nou, lasă-mi adresa ta de email. <strong>Fără spam, fără tracking</strong> — doar capitole noi când apar.</p><button onclick="openNewsletter &amp;&amp; openNewsletter()" style="background:var(--accent);color:#fff;border:none;padding:10px 24px;border-radius:4px;font:14px Georgia,serif;cursor:pointer;letter-spacing:.3px">✉ Anunță-mă când apare ceva nou</button><div style="margin-top:14px;font-size:12px;color:#888">sau continuă direct cu <a onclick="go(1)" style="color:var(--accent);cursor:pointer;text-decoration:underline">Capitolul 1: Defecțiunea →</a></div></div><div class="bn"><span></span><a onclick="go(1)">Pagina următoare ▸</a></div></div>
 </div>
 </div>
 <div class="eb">
@@ -3407,7 +2185,7 @@ function buildNav(){
   let h='<div class="nih" onclick="goHome()">⌂ Pagina principală</div>';
   h+=`<div class="g1"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> CARTEA</div><div class="g1b shut">`;
   BSUBS.forEach(sub=>{const items=P.filter(p=>p.sg===sub.id);if(!items.length)return;
-    const idx=P.indexOf(items[0]);h+=`<a class="ni" data-i="${idx}" onclick="go(${idx})">${sub.l}</a>`});
+    const idx=P.indexOf(items[0]);h+=`<a class="ni" data-i="${idx}" onclick="go(${idx})" tabindex="0" role="button">${sub.l}</a>`});
   h+=`</div></div>`;
   h+=`<div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> SCENARII</div><div class="g1b shut">`;
   SCENS.forEach(sc=>{let items=P.filter(p=>p.sg===sc.id);
@@ -3416,10 +2194,10 @@ function buildNav(){
       const subs=SUBSCENS[sc.id];
       if(subs&&subs.length>0){
         h+=`<div class="g2l" onclick="tog2(this)"><span class="arr">▶</span> ${sc.l}</div><div class="g2b shut">`;
-        subs.forEach(s=>{h+=`<a class="ni l2" onclick="go(6);setTimeout(()=>{const el=document.getElementById('${s[0]}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">${s[1]}</a>`});
+        subs.forEach(s=>{h+=`<a class="ni l2" onclick="go(6);setTimeout(()=>{const el=document.getElementById('${s[0]}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)" tabindex="0" role="button">${s[1]}</a>`});
         h+=`</div>`;
       } else {
-        h+=`<a class="ni" onclick="go(6);setTimeout(()=>{const el=document.getElementById('${sc.anchor}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">${sc.l}</a>`;
+        h+=`<a class="ni" onclick="go(6);setTimeout(()=>{const el=document.getElementById('${sc.anchor}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)" tabindex="0" role="button">${sc.l}</a>`;
       }
       return;
     }
@@ -3428,10 +2206,10 @@ function buildNav(){
     const subs=SUBSCENS[sc.id];
     if(subs&&subs.length>0){
       h+=`<div class="g2l" onclick="tog2(this)"><span class="arr">▶</span> ${sc.l}</div><div class="g2b shut">`;
-      subs.forEach(s=>{h+=`<a class="ni l2" onclick="go(${idx});setTimeout(()=>{const el=document.getElementById('${s[0]}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)">${s[1]}</a>`});
+      subs.forEach(s=>{h+=`<a class="ni l2" onclick="go(${idx});setTimeout(()=>{const el=document.getElementById('${s[0]}');if(el)el.scrollIntoView({behavior:'smooth',block:'start'})},100)" tabindex="0" role="button">${s[1]}</a>`});
       h+=`</div>`;
     } else {
-      h+=`<a class="ni" data-i="${idx}" onclick="go(${idx})">${sc.l}</a>`;
+      h+=`<a class="ni" data-i="${idx}" onclick="go(${idx})" tabindex="0" role="button">${sc.l}</a>`;
     }});
   h+=`</div></div>`;
   h+=`<div class="g1 l3-only"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> <span onclick="goRecenzii()" style="cursor:pointer">RECENZII (108)</span></div><div class="g1b shut">`;
@@ -3440,16 +2218,16 @@ function buildNav(){
     items.forEach((p,ri)=>{const idx=P.indexOf(p);let lb=p.title;
       if(!lb.match(/^RECENZIA/i)){const rn=['1','2','3','4','5','6','7','8','9'][ri]||String(ri+1);lb=rn+'. '+lb}
       if(lb.length>900)lb=lb;
-      h+=`<a class="ni l2" data-i="${idx}" onclick="go(${idx})">${lb}</a>`});
+      h+=`<a class="ni l2" data-i="${idx}" onclick="go(${idx})" tabindex="0" role="button">${lb}</a>`});
     h+=`</div>`});
   h+=`</div></div>`;
   h+=`<div class="nih" onclick="openShareComment()" style="display:flex;align-items:center;gap:6px"><span style="font-size:14px">💬</span> Comentarii</div>`;
   h+=`<div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> INTERACTIV</div><div class="g1b shut">`;
-  h+=`<a class="ni" onclick="openGRM();closeMobileSB()">✨ Recenzia ta</a>`;
-  h+=`<a class="ni" onclick="openMYE();closeMobileSB()">🚀 Ending-ul tău</a>`;
-  h+=`<a class="ni" onclick="openAudiobook();closeMobileSB()">🎧 Audiobook</a>`;
-  h+=`<a class="ni" onclick="openQuiz();closeMobileSB()">🧩 Quiz</a>`;
-  h+=`<a class="ni" onclick="openC108();closeMobileSB()">✍ Provocarea 108</a>`;
+  h+=`<a class="ni" onclick="openGRM();closeMobileSB()" tabindex="0" role="button">✨ Recenzia ta</a>`;
+  h+=`<a class="ni" onclick="openMYE();closeMobileSB()" tabindex="0" role="button">🚀 Ending-ul tău</a>`;
+  h+=`<a class="ni" onclick="openAudiobook();closeMobileSB()" tabindex="0" role="button">🎧 Audiobook</a>`;
+  h+=`<a class="ni" onclick="openQuiz();closeMobileSB()" tabindex="0" role="button">🧩 Quiz</a>`;
+  h+=`<a class="ni" onclick="openC108();closeMobileSB()" tabindex="0" role="button">✍ Provocarea 108</a>`;
   h+=`</div></div>`;
   // FUNDAL — background effects control
   const curBgActive=(()=>{try{
@@ -3481,25 +2259,25 @@ function buildNav(){
   h+=`<div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> FUNDAL</div><div class="g1b shut">`;
   bgOpts.forEach(([id,lbl])=>{
     const on=curBgActive.has(id)?' on':'';
-    h+=`<a class="ni bgfx-opt${on}" data-bg="${id}" onclick="BGFX.setMode('${id}');closeMobileSB()"><span class="bgfx-dot"></span>${lbl}</a>`;
+    h+=`<a class="ni bgfx-opt${on}" data-bg="${id}" onclick="BGFX.setMode('${id}');closeMobileSB()" tabindex="0" role="button"><span class="bgfx-dot"></span>${lbl}</a>`;
   });
   h+=`</div></div>`;
   h+=`<div class="g1 l2-plus"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> MODURI</div><div class="g1b shut">`;
-  h+=`<a class="ni" onclick="togDark();closeMobileSB()">◐ Temă zi/noapte</a>`;
-  h+=`<a class="ni" onclick="toggleMoonMode();closeMobileSB()">🌙 Mod lunar</a>`;
-  h+=`<a class="ni" onclick="toggleRadioMode();closeMobileSB()">📡 Transmisie radio</a>`;
-  h+=`<a class="ni" onclick="toggleDeclassified();closeMobileSB()">█ Declasificat</a>`;
-  h+=`<a class="ni" onclick="startMissionMode();closeMobileSB()">⏱ Mod misiune</a>`;
-  h+=`<a class="ni" onclick="cycleFont();closeMobileSB()">🔤 Dimensiune font</a>`;
-  h+=`<a class="ni" onclick="toggleSerif();closeMobileSB()">𝐓 Serif / Sans-serif</a>`;
-  h+=`<a class="ni" onclick="cycleWidth();closeMobileSB()">↔ Lățime lectură</a>`;
+  h+=`<a class="ni" onclick="togDark();closeMobileSB()" tabindex="0" role="button">◐ Temă zi/noapte</a>`;
+  h+=`<a class="ni" onclick="toggleMoonMode();closeMobileSB()" tabindex="0" role="button">🌙 Mod lunar</a>`;
+  h+=`<a class="ni" onclick="toggleRadioMode();closeMobileSB()" tabindex="0" role="button">📡 Transmisie radio</a>`;
+  h+=`<a class="ni" onclick="toggleDeclassified();closeMobileSB()" tabindex="0" role="button">█ Declasificat</a>`;
+  h+=`<a class="ni" onclick="startMissionMode();closeMobileSB()" tabindex="0" role="button">⏱ Mod misiune</a>`;
+  h+=`<a class="ni" onclick="cycleFont();closeMobileSB()" tabindex="0" role="button">🔤 Dimensiune font</a>`;
+  h+=`<a class="ni" onclick="toggleSerif();closeMobileSB()" tabindex="0" role="button">𝐓 Serif / Sans-serif</a>`;
+  h+=`<a class="ni" onclick="cycleWidth();closeMobileSB()" tabindex="0" role="button">↔ Lățime lectură</a>`;
   h+=`</div></div>`;
   h+=`<div class="g1"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> ACȚIUNI</div><div class="g1b shut">`;
-  h+=`<a class="ni" onclick="openGift();closeMobileSB()">🎁 Trimite cadou</a>`;
-  h+=`<a class="ni" onclick="showSplashManual();closeMobileSB()">🎬 Reafișează intro</a>`;
-  h+=`<a class="ni" onclick="openGlobe();closeMobileSB()">🌍 Harta cititorilor</a>`;
-  h+=`<a class="ni" onclick="saveQ();closeMobileSB()">💾 Salvează offline</a>`;
-  h+=`<a class="ni" onclick="generateA5();closeMobileSB()">🖨️ Tipărește carte (A4)</a><a class="ni" onclick="toggleKb();closeMobileSB()" title="Scurtături tastatură (?)">⌨️ Scurtături (tastează ?)</a>`;
+  h+=`<a class="ni" onclick="openGift();closeMobileSB()" tabindex="0" role="button">🎁 Trimite cadou</a>`;
+  h+=`<a class="ni" onclick="showSplashManual();closeMobileSB()" tabindex="0" role="button">🎬 Reafișează intro</a>`;
+  h+=`<a class="ni" onclick="openGlobe();closeMobileSB()" tabindex="0" role="button">🌍 Harta cititorilor</a>`;
+  h+=`<a class="ni" onclick="saveQ();closeMobileSB()" tabindex="0" role="button">💾 Salvează offline</a>`;
+  h+=`<a class="ni" onclick="generateA5();closeMobileSB()" tabindex="0" role="button">🖨️ Tipărește carte (A4)</a><a class="ni" onclick="toggleKb();closeMobileSB()" title="Scurtături tastatură (?)" tabindex="0" role="button">⌨️ Scurtături (tastează ?)</a>`;
   h+=`</div></div>`;
   // ─── SUSȚINE PROIECTUL ───
   h+=`<div class="g1"><div class="g1l" onclick="tog1(this)" style="color:#a8bfd4"><span class="arr">▶</span> ☕ SUSȚINE PROIECTUL</div><div class="g1b shut" style="padding:10px 12px 14px">`;
@@ -3514,13 +2292,13 @@ function buildNav(){
   setTimeout(function(){var b=document.getElementById("sbGoalBar");if(b)b.style.width="34%"},300);
   // ─── LEGAL ───
   h+=`<div class="g1"><div class="g1l" onclick="tog1(this)"><span class="arr">▶</span> LEGAL &amp; GDPR</div><div class="g1b shut">`;
-  h+=`<a class="ni" onclick="openPrivacy();closeMobileSB()">🔒 Confidențialitate (GDPR)</a>`;
-  h+=`<a class="ni" onclick="openCookies();closeMobileSB()">🍪 Politica cookies</a>`;
-  h+=`<a class="ni" onclick="openImpressum();closeMobileSB()">📋 Date editor (Impressum)</a>`;
-  h+=`<a class="ni" onclick="openA11y();closeMobileSB()">♿ Accesibilitate</a>`;
-  h+=`<a class="ni" onclick="openTakedown();closeMobileSB()">📣 Notificare &amp; takedown</a>`;
-  h+=`<a class="ni" onclick="openGlobal();closeMobileSB()">🛡 Protecții globale</a>`;
-  h+=`<a class="ni" onclick="openTech();closeMobileSB()">⚙ Tehnologii &amp; transparență</a>`;
+  h+=`<a class="ni" onclick="openPrivacy();closeMobileSB()" tabindex="0" role="button">🔒 Confidențialitate (GDPR)</a>`;
+  h+=`<a class="ni" onclick="openCookies();closeMobileSB()" tabindex="0" role="button">🍪 Politica cookies</a>`;
+  h+=`<a class="ni" onclick="openImpressum();closeMobileSB()" tabindex="0" role="button">📋 Date editor (Impressum)</a>`;
+  h+=`<a class="ni" onclick="openA11y();closeMobileSB()" tabindex="0" role="button">♿ Accesibilitate</a>`;
+  h+=`<a class="ni" onclick="openTakedown();closeMobileSB()" tabindex="0" role="button">📣 Notificare &amp; takedown</a>`;
+  h+=`<a class="ni" onclick="openGlobal();closeMobileSB()" tabindex="0" role="button">🛡 Protecții globale</a>`;
+  h+=`<a class="ni" onclick="openTech();closeMobileSB()" tabindex="0" role="button">⚙ Tehnologii &amp; transparență</a>`;
   h+=`</div></div>`;
   nav.innerHTML=h;
 }
@@ -6398,7 +5176,7 @@ Ce l-a mișcat cel mai mult din carte: ${moment}
 Gândul personal despre carte: ${thought||'(nu a specificat)'}`;
 
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch(window.PI_API_ENDPOINT,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -6620,7 +5398,7 @@ async function generateMyEnding(){
   btn.disabled=true;btn.textContent='🚀 Se generează...';
   result.innerHTML='<div class="grm-loading">Se scrie scenariul tău...</div>';
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    const resp=await fetch(window.PI_API_ENDPOINT,{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',max_tokens:1000,
@@ -10022,7 +8800,7 @@ if(document.readyState==='loading'){
 
 <h3>13. Notificări DMCA / Takedown / Drept la replică</h3>
 <p>Orice persoană fizică sau juridică care consideră că drepturile sale de autor, de marcă, de imagine, de nume sau de personalitate sunt încălcate de conținutul acestui site poate trimite o <strong>notificare scrisă</strong> autorului, conținând: (a) identificarea lucrării/elementului reclamat; (b) dovada calității de titular; (c) temei legal; (d) datele de contact. Autorul se angajează să răspundă în termen de <strong>14 zile calendaristice</strong> și să retragă, să reformuleze sau să explice conținutul în cauză, după caz. Procedura respectă atât cerințele Digital Millennium Copyright Act (17 U.S.C. § 512 — pentru accesul din SUA), cât și cerințele Regulamentului (UE) 2022/2065 privind serviciile digitale (Digital Services Act).</p>
-<p><strong>Contact:</strong> <a href="/cdn-cgi/l/email-protection#ff9e939a879690bf8b8d9092d18b99"><span class="__cf_email__" data-cfemail="fc9d9099849593bc888e9391d2889a">[email&#160;protected]</span></a></p>
+<p><strong>Contact:</strong> <a href="mailto:alexio@trom.tf">alexio@trom.tf</a></p>
 
 <p style="margin-top:20px;font-size:11px;color:#888;text-align:center"><em>Acest disclaimer nu constituie consultanță juridică. Cititorii cu întrebări juridice specifice sunt invitați să consulte un avocat.</em></p>
 </div>
@@ -10040,7 +8818,7 @@ if(document.readyState==='loading'){
 </div>
 
 <h3>1. Operatorul de date</h3>
-<p><strong>Alexio</strong> (persoană fizică, România), în calitate de autor și operator al acestui site, determină scopurile și mijloacele prelucrării datelor cu caracter personal, în înțelesul art. 4 pct. 7 GDPR. Contact: <a href="/cdn-cgi/l/email-protection#7c1d10190415133c080e131152081a"><span class="__cf_email__" data-cfemail="53323f362b3a3c1327213c3e7d2735">[email&#160;protected]</span></a>.</p>
+<p><strong>Alexio</strong> (persoană fizică, România), în calitate de autor și operator al acestui site, determină scopurile și mijloacele prelucrării datelor cu caracter personal, în înțelesul art. 4 pct. 7 GDPR. Contact: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a>.</p>
 
 <h3>2. Categorii de date prelucrate</h3>
 <ul>
@@ -10112,7 +8890,7 @@ if(document.readyState==='loading'){
 </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
   function lock(v){try{document.body.style.overflow=v?'hidden':''}catch(e){}}
   window.openLegal=function(){var m=document.getElementById('pi-legal-modal');if(m){m.hidden=false;document.body.style.overflow='hidden'}};
@@ -10214,7 +8992,7 @@ if(document.readyState==='loading'){
 
 <h3>Date de contact</h3>
 <p>
-<strong>E-mail principal:</strong> <a href="/cdn-cgi/l/email-protection#53323f362b3a3c1327213c3e7d2735"><span class="__cf_email__" data-cfemail="a4c5c8c1dccdcbe4d0d6cbc98ad0c2">[email&#160;protected]</span></a><br>
+<strong>E-mail principal:</strong> <a href="mailto:alexio@trom.tf">alexio@trom.tf</a><br>
 <strong>Pentru notificări legale / DMCA / GDPR:</strong> aceeași adresă, cu subiectul „[LEGAL]”, „[DMCA]” sau „[GDPR]” după caz<br>
 <strong>Limbi acceptate:</strong> română, engleză, franceză
 </p>
@@ -10235,7 +9013,7 @@ if(document.readyState==='loading'){
 Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP)<br>
 B-dul G-ral. Gheorghe Magheru 28-30, sector 1, 010336 București, România<br>
 Web: <a href="https://www.dataprotection.ro" target="_blank" rel="noopener noreferrer">www.dataprotection.ro</a><br>
-E-mail: <a href="/cdn-cgi/l/email-protection#26474a435e4f49665254494b085240"><span class="__cf_email__" data-cfemail="8aebe6eff2e3e5cafef8e5e7a4feec">[email&#160;protected]</span></a>
+E-mail: <a href="mailto:alexio@trom.tf">alexio@trom.tf</a>
 </p>
 <p>
 <strong>Pentru protecția consumatorului:</strong><br>
@@ -10291,7 +9069,7 @@ Autoritatea Națională pentru Protecția Consumatorilor (ANPC) — <a href="htt
 
 <h3>5. Feedback și contact</h3>
 <p>Dacă întâmpini bariere de accesibilitate, te invităm să ne semnalezi, iar noi ne angajăm să răspundem în maximum <strong>30 de zile</strong> și, când este posibil, să remediem sau să furnizăm informația într-un format accesibil alternativ (text, audio, PDF structurat).</p>
-<p><strong>Contact accesibilitate:</strong> <a href="/cdn-cgi/l/email-protection#5c3d30392435331c282e333172283a"><span class="__cf_email__" data-cfemail="30515c5548595f7044425f5d1e4456">[email&#160;protected]</span></a>, subiect „[ACCESIBILITATE]”.</p>
+<p><strong>Contact accesibilitate:</strong> <a href="mailto:alexio@trom.tf">alexio@trom.tf</a>, subiect „[ACCESIBILITATE]”.</p>
 
 <h3>6. Procedura de conformare</h3>
 <p>Conform <strong>art. 11 din Legea nr. 112/2023</strong>, dacă nu ești mulțumit de răspuns, poți sesiza <strong>Autoritatea pentru Digitalizarea României (ADR)</strong>, care este autoritatea de monitorizare și raportare pentru accesibilitatea site-urilor web în România: <a href="https://www.adr.gov.ro" target="_blank" rel="noopener noreferrer">www.adr.gov.ro</a>.</p>
@@ -10349,7 +9127,7 @@ Autoritatea Națională pentru Protecția Consumatorilor (ANPC) — <a href="htt
 
 <h3>8. Date de contact pentru notificări</h3>
 <p>
-<strong>E-mail:</strong> <a href="/cdn-cgi/l/email-protection#43222f263b2a2c0337312c2e6d3725"><span class="__cf_email__" data-cfemail="5d3c31382534321d292f323073293b">[email&#160;protected]</span></a><br>
+<strong>E-mail:</strong> <a href="mailto:alexio@trom.tf">alexio@trom.tf</a><br>
 <strong>Subiect:</strong> <code>[TAKEDOWN]</code> sau <code>[DSA-NOTICE]</code> sau <code>[DMCA]</code><br>
 <strong>Limbi acceptate:</strong> română, engleză, franceză
 </p>
@@ -10374,7 +9152,7 @@ Autoritatea Națională pentru Protecția Consumatorilor (ANPC) — <a href="htt
 <!-- legal-banner removed by pi-layers integration -->
 
 
-<div id="kbShortcuts" role="dialog" aria-modal="true" aria-labelledby="kbTitle" class="">
+<div id="kbShortcuts" role="dialog" aria-modal="true" aria-labelledby="kbTitle">
   <div class="kb-box">
     <button class="kb-close" onclick="toggleKb()" aria-label="Închide">✕</button>
     <h3 id="kbTitle">⌨️ Scurtături tastatură</h3>
@@ -10391,7 +9169,7 @@ Autoritatea Națională pentru Protecția Consumatorilor (ANPC) — <a href="htt
     </tbody></table>
   </div>
 </div>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function toggleKb(){
   var el=document.getElementById('kbShortcuts');
   if(el) el.classList.toggle('show');
@@ -10451,7 +9229,7 @@ document.addEventListener('keydown',function(e){
 })();
 </script>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
   function lock(v){try{document.body.style.overflow=v?'hidden':''}catch(e){}}
   function mk(openName,closeName,id){
@@ -10744,7 +9522,7 @@ document.addEventListener('keydown',function(e){
 
 <h3>18. Contact unic pentru toate aspectele legale</h3>
 <p>
-<strong>Adresă unică de contact legal:</strong> <a href="/cdn-cgi/l/email-protection#2c4d40495445436c585e434102584a"><span class="__cf_email__" data-cfemail="345558514c5d5b7440465b591a4052">[email&#160;protected]</span></a><br>
+<strong>Adresă unică de contact legal:</strong> <a href="mailto:alexio@trom.tf">alexio@trom.tf</a><br>
 <strong>Subiecte recomandate:</strong><br>
 • <code>[GDPR]</code> — drepturi de protecție a datelor<br>
 • <code>[TAKEDOWN]</code> / <code>[DMCA]</code> / <code>[DSA]</code> — notificări de retragere conținut<br>
@@ -10851,7 +9629,7 @@ document.addEventListener('keydown',function(e){
 <li><strong>Funcționare offline</strong> — descărcați fișierul HTML și deschideți-l fără conexiune la internet pentru a confirma că nu depinde de servere externe;</li>
 <li><strong>Lipsa cookie-urilor terțe</strong> — verificabilă prin fila <em>Application</em> → <em>Cookies</em>.</li>
 </ul>
-<p>Autorul încurajează verificarea independentă și consideră transparența ca pe o obligație, nu ca pe o opțiune. Orice discrepanță între afirmațiile din această secțiune și comportamentul real al codului poate fi raportată la adresa de contact <a href="/cdn-cgi/l/email-protection#77161b120f1e18370305181a590311"><span class="__cf_email__" data-cfemail="2b4a474e5342446b5f594446055f4d">[email&#160;protected]</span></a>.</p>
+<p>Autorul încurajează verificarea independentă și consideră transparența ca pe o obligație, nu ca pe o opțiune. Orice discrepanță între afirmațiile din această secțiune și comportamentul real al codului poate fi raportată la adresa de contact <a href="mailto:alexio@trom.tf">alexio@trom.tf</a>.</p>
 
 </div>
 </div>
@@ -10911,7 +9689,7 @@ document.addEventListener('keydown',function(e){
 </div>
 <!-- /englishModal -->
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 function openEnglish(){var m=document.getElementById('englishModal');if(m)m.classList.add('on');}
 function closeEnglish(){var m=document.getElementById('englishModal');if(m)m.classList.remove('on');}
 function openNewsletter(){var m=document.getElementById('newsletterModal');if(m)m.classList.add('on');}
@@ -11025,7 +9803,7 @@ function nlSignup(){
     <h3>Drepturile tale GDPR</h3>
     <p>Ai drepturile prevăzute de art. 15-22 GDPR: acces, rectificare, ștergere, restricționare,
     portabilitate, opoziție, retragerea consimțământului. Le exerciți printr-un email la
-    <a href="/cdn-cgi/l/email-protection#accdc0c9d4c5c3ecd8dec3c182d8ca"><span class="__cf_email__" data-cfemail="f1909d9489989eb185839e9cdf8597">[email&#160;protected]</span></a>. Răspund în maximum 30 de zile.
+    <a href="mailto:alexio@trom.tf">alexio@trom.tf</a>. Răspund în maximum 30 de zile.
     Poți depune plângere la <a href="https://www.dataprotection.ro" target="_blank" rel="noopener">ANSPDCP</a>
     sau la autoritatea de supraveghere din statul tău de reședință.</p>
 
@@ -11070,7 +9848,7 @@ function nlSignup(){
     <a href="https://www.adr.gov.ro" target="_blank" rel="noopener">Autoritatea pentru Digitalizarea României</a>.</p>
 
     <h3>Contact unic</h3>
-    <p><a href="/cdn-cgi/l/email-protection#b6d7dad3cedfd9f6c2c4d9db98c2d0"><strong><span class="__cf_email__" data-cfemail="d3b2bfb6abbabc93a7a1bcbefda7b5">[email&#160;protected]</span></strong></a><br>
+    <p><a href="mailto:alexio@trom.tf"><strong>alexio@trom.tf</strong></a><br>
     Subiecte sugerate: <code>[GDPR]</code> · <code>[TAKEDOWN]</code> · <code>[LEGAL]</code> ·
     <code>[ACCESIBILITATE]</code> · <code>[PRESS]</code></p>
 
@@ -11080,7 +9858,7 @@ function nlSignup(){
   </article>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
   document.addEventListener('click', function(e){
     if (e.target.closest('[data-pi-close]')) {
