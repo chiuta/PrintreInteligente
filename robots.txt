@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://alexio.tf/sitemap.xml
+
+# Crawl-delay (optional, pentru politete)
+Crawl-delay: 2
+
+# Permite indexarea deplina
+# Nu exista sectiuni private pe acest site
