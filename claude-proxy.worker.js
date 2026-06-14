@@ -14,7 +14,7 @@
  *
  * Rolul Worker-ului:
  *   1. Injectează x-api-key server-side (cheia NU ajunge în browser)
- *   2. Blochează apelurile din alte origini (CORS whitelist)
+ *   2. Restrânge apelurile din browser la origini permise (CORS — vezi modelul de amenințare)
  *   3. Aplică rate-limit per IP (împotriva abuzului)
  *   4. Validează payload-ul (model permis, max_tokens limitat)
  *
@@ -29,7 +29,19 @@
  *
  * Cost estimativ: Workers Free = 100.000 requests/zi, suficient.
  * Cost API Anthropic: ~$0.003/apel Sonnet 4 (1000 tokens).
- * Cu rate-limit-ul de mai jos, abuzul e imposibil.
+ *
+ * MODEL DE AMENINȚARE (onest — fără iluzii):
+ *   - CORS NU oprește abuzul. Verificarea `Origin` e impusă DOAR de browsere; un
+ *     client curl/server poate trimite `Origin: https://alexio.tf` și trece de corsOk.
+ *   - Protecția REALĂ e MĂRGINIREA COSTULUI prin plafoanele de mai jos: per-IP/oră +
+ *     plafon global/zi + cap pe max_tokens/payload/mesaje. Acestea limitează dauna
+ *     (ordin de mărime: câțiva $/zi în cel mai rău caz), nu o fac imposibilă.
+ *   - Fără autentificare, un singur „griefer" poate epuiza ieftin plafonul global/zi
+ *     și refuza serviciul utilizatorilor legitimi. De aceea: activează Cloudflare
+ *     Turnstile (gratuit) setând TURNSTILE_SECRET — vezi pasul 3b mai jos.
+ *   - Contoarele KV NU sunt atomice (read-then-write, eventual-consistent): sub rafale
+ *     concurente pot subevalua → plafon „moale", nu dur. Pentru plafon DUR, mută
+ *     contorul global pe un Durable Object (increment serializat).
  */
 
 const ALLOWED_ORIGINS = new Set([
@@ -47,6 +59,8 @@ const ALLOWED_MODELS = new Set([
 const MAX_TOKENS_LIMIT = 1500;          // hard cap, ignoră orice depășește
 const RATE_LIMIT_PER_IP_PER_HOUR = 30;  // 30 apeluri/oră/IP
 const GLOBAL_DAILY_LIMIT = 2000;        // plafon global/zi (plasă de siguranță)
+// Turnstile: setează secret-ul `TURNSTILE_SECRET` în Worker → Variables ca să-l activezi.
+// Cât timp NU e setat, pasul e sărit (comportament identic cu varianta anterioară).
 
 export default {
   async fetch(request, env, ctx) {
@@ -91,6 +105,31 @@ export default {
     }
     ctx.waitUntil(env.RATELIMIT_KV.put(rlKey, String(current + 1), { expirationTtl: 3700 }));
     ctx.waitUntil(env.RATELIMIT_KV.put(dayKey, String(dayCount + 1), { expirationTtl: 90000 }));
+
+    // ─── 3b. Cloudflare Turnstile (opțional, recomandat contra DoS pe plafonul global) ───
+    // Activează setând TURNSTILE_SECRET. Clientul trebuie să trimită token-ul în
+    // header-ul 'cf-turnstile-response'. Cât timp secret-ul nu e setat, pasul e sărit.
+    if (env.TURNSTILE_SECRET) {
+      const tsToken = request.headers.get('cf-turnstile-response') || '';
+      if (!tsToken) {
+        return jsonError(403, 'Turnstile token lipsă.', origin);
+      }
+      let tsOk = false;
+      try {
+        const verify = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: tsToken, remoteip: ip }),
+        });
+        const vr = await verify.json();
+        tsOk = !!(vr && vr.success);
+      } catch {
+        tsOk = false;
+      }
+      if (!tsOk) {
+        return jsonError(403, 'Verificare Turnstile eșuată.', origin);
+      }
+    }
 
     // ─── 4. Validare payload ───────────────────────────────────
     let body;
