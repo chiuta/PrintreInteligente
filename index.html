@@ -1,5 +1,28 @@
 <!DOCTYPE html>
+<!--
+  ============================================================================
+  PrintreInteligente
+  Autor: Alexandru-Ionuț Chiuță (Alexio · „Ecoul Stringurilor")
+  Aplicație single-file, offline-first, fără telemetrie.
+
+  LICENȚĂ — TRADE-FREE + CC0 1.0 (Public Domain Dedication)
+  Oferită liber, fără troc, în spiritul mișcării TROM (trom.tf). În măsura
+  permisă de lege, autorul renunță la drepturile de autor și dedică lucrarea
+  domeniului public: https://creativecommons.org/publicdomain/zero/1.0/
+  Poți folosi, copia, modifica și redistribui liber, în orice scop.
+
+  Sprijin voluntar (opțional, niciodată obligatoriu):
+    Patreon:         https://www.patreon.com/c/alexio_tf
+    Buy Me a Coffee: https://buymeacoffee.com/echo.of.the.strings
+  ============================================================================
+-->
 <html lang="ro"><head>
+<style id="tf-a11y-motion">
+/* Accesibilitate: respectă preferința utilizatorului pentru mai puțină mișcare (TROM/a11y). */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+</style>
 <script>
 (function(){
   /* Temă automată: respectă prefers-color-scheme dacă e setat;
@@ -86,9 +109,7 @@
 <link rel="dns-prefetch" href="//buymeacoffee.com">
 <link rel="dns-prefetch" href="//www.patreon.com">
 <link rel="preconnect" href="https://api.anthropic.com" crossorigin="">
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<!-- preload hint pentru fontul principal Georgia nu e necesar (system font) -->
+<!-- Fonturile nu sunt încărcate extern: fontul principal e Georgia (system); Montserrat/Roboto sunt doar fallback-uri în stack. Preconnect-urile către Google au fost eliminate (nu se descarcă niciun font, deci nu mai există handshake/scurgere de IP către Google). -->
 <meta name="format-detection" content="telephone=no">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
