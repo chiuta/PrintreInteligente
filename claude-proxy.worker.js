@@ -41,12 +41,12 @@ const ALLOWED_ORIGINS = new Set([
 
 const ALLOWED_MODELS = new Set([
   'claude-sonnet-4-20250514',
-  'claude-opus-4-5',
   'claude-haiku-4-5-20251001',
 ]);
 
 const MAX_TOKENS_LIMIT = 1500;          // hard cap, ignoră orice depășește
 const RATE_LIMIT_PER_IP_PER_HOUR = 30;  // 30 apeluri/oră/IP
+const GLOBAL_DAILY_LIMIT = 2000;        // plafon global/zi (plasă de siguranță)
 
 export default {
   async fetch(request, env, ctx) {
@@ -75,17 +75,22 @@ export default {
     const hour = Math.floor(Date.now() / 3_600_000);
     const rlKey = `rl:${ip}:${hour}`;
 
-    if (env.RATELIMIT_KV) {
-      const current = parseInt(await env.RATELIMIT_KV.get(rlKey) || '0', 10);
-      if (current >= RATE_LIMIT_PER_IP_PER_HOUR) {
-        return jsonError(429, 'Rate limit exceeded. Încearcă într-o oră.', origin);
-      }
-      ctx.waitUntil(
-        env.RATELIMIT_KV.put(rlKey, String(current + 1), { expirationTtl: 3700 })
-      );
+    if (!env.RATELIMIT_KV) {
+      // SECURITATE: fără KV nu există rate-limit -> proxy deschis. Refuzăm explicit.
+      return jsonError(503, 'Rate limiting indisponibil (KV neconfigurat).', origin);
     }
-    // Dacă nu ai KV configurat, rate-limit-ul e skipped — recomandat să-l adaugi:
-    // Dashboard → Workers & Pages → KV → Create → "RATELIMIT_KV" → bind la worker.
+    const current = parseInt(await env.RATELIMIT_KV.get(rlKey) || '0', 10);
+    if (current >= RATE_LIMIT_PER_IP_PER_HOUR) {
+      return jsonError(429, 'Rate limit exceeded. Încearcă într-o oră.', origin);
+    }
+    // Plafon global zilnic (plasă de siguranță peste limita per-IP)
+    const dayKey = `rl:GLOBAL:${Math.floor(Date.now() / 86400000)}`;
+    const dayCount = parseInt(await env.RATELIMIT_KV.get(dayKey) || '0', 10);
+    if (dayCount >= GLOBAL_DAILY_LIMIT) {
+      return jsonError(429, 'Limită globală zilnică atinsă.', origin);
+    }
+    ctx.waitUntil(env.RATELIMIT_KV.put(rlKey, String(current + 1), { expirationTtl: 3700 }));
+    ctx.waitUntil(env.RATELIMIT_KV.put(dayKey, String(dayCount + 1), { expirationTtl: 90000 }));
 
     // ─── 4. Validare payload ───────────────────────────────────
     let body;
@@ -103,6 +108,13 @@ export default {
     }
     if (!Array.isArray(body.messages) || body.messages.length === 0) {
       return jsonError(400, 'messages lipsă sau invalid', origin);
+    }
+    if (body.messages.length > 40) {
+      return jsonError(400, 'Prea multe mesaje', origin);
+    }
+    const totalChars = JSON.stringify(body.messages).length + (body.system ? String(body.system).length : 0);
+    if (totalChars > 60000) {
+      return jsonError(413, 'Payload prea mare', origin);
     }
 
     // ─── 5. Proxy către Anthropic ──────────────────────────────
