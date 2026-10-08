@@ -52,7 +52,8 @@ const ALLOWED_ORIGINS = new Set([
 ]);
 
 const ALLOWED_MODELS = new Set([
-  'claude-sonnet-4-20250514',
+  'claude-sonnet-5-5',
+  'claude-sonnet-4-20250514', // retras 15.06.2026 — păstrat doar pentru clienți cache-uiți; elimină după migrare
   'claude-haiku-4-5-20251001',
 ]);
 

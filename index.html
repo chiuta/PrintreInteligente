@@ -17,6 +17,7 @@
   ============================================================================
 -->
 <html lang="ro"><head>
+<meta charset="UTF-8">
 <style id="tf-a11y-motion">
 /* Accesibilitate: respectă preferința utilizatorului pentru mai puțină mișcare (TROM/a11y). */
 @media (prefers-reduced-motion: reduce){
@@ -45,7 +46,6 @@
   }
 })();
 </script>
-<meta charset="UTF-8">
 <title>Printre inteligențe — roman SF despre Artemis 2, recenzat de stele &amp; hipercivilizații</title>
 
 <meta name="color-scheme" content="light dark">
@@ -61,14 +61,14 @@
 <meta name="description" content="Ceasul de la Cape Canaveral arăta 18:35 EDT — unsprezece minute după ora programată — când megaracheta Space Launch System s-a desprins de rampa de lansare cu u…">
 <meta name="author" content="Alexio">
 <meta name="keywords" content="SF românesc, Artemis 2, roman interactiv, science fiction, NASA, Lună, ficțiune speculativă, AI, carte gratuită, audiobook">
-<link rel="canonical" href="https://alexio.tf/#carte-prolog-lansarea-2">
+<link rel="canonical" href="https://alexio.tf/">
 
 <!-- Open Graph (Facebook, LinkedIn, WhatsApp, Discord, Telegram) -->
 <meta property="og:type" content="book">
 <meta property="og:site_name" content="Printre inteligențe">
-<meta property="og:title" content="PROLOG: LANSAREA — Printre inteligențe">
+<meta property="og:title" content="Printre inteligențe — roman SF despre Artemis 2">
 <meta property="og:description" content="Ceasul de la Cape Canaveral arăta 18:35 EDT — unsprezece minute după ora programată — când megaracheta Space Launch System s-a desprins de rampa de lansare cu un tunet care a făcut să vibreze ferestre">
-<meta property="og:url" content="https://alexio.tf/#carte-prolog-lansarea-2">
+<meta property="og:url" content="https://alexio.tf/">
 <meta property="og:image" content="https://alexio.tf/cover.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -89,7 +89,7 @@
 <meta name="twitter:title" content="Printre inteligențe — roman SF despre Artemis 2">
 <meta name="twitter:description" content="Un Prolog. O defecțiune imposibilă. O Lună care nu-i aștepta. 17 scenarii de supraviețuire. 108 recenzii — de la cititori din România la Sagittarius A* și entități extrauniversale. Carte interactivă, gratis, în română.">
 <meta name="twitter:image" content="https://alexio.tf/cover.png">
-<meta name="twitter:image:alt" content="Coperta romanului „Printre inteligențe" "="">
+<meta name="twitter:image:alt" content="Coperta romanului „Printre inteligențe”">
 
 <!-- Schema.org JSON-LD (Google Knowledge Graph) -->
 
@@ -105,10 +105,8 @@
 <link rel="alternate" hreflang="ro" href="https://alexio.tf/">
 <link rel="alternate" hreflang="x-default" href="https://alexio.tf/">
 <link rel="dns-prefetch" href="//alexio.tf">
-<link rel="dns-prefetch" href="//api.anthropic.com">
 <link rel="dns-prefetch" href="//buymeacoffee.com">
 <link rel="dns-prefetch" href="//www.patreon.com">
-<link rel="preconnect" href="https://api.anthropic.com" crossorigin="">
 <!-- Fonturile nu sunt încărcate extern: fontul principal e Georgia (system); Montserrat/Roboto sunt doar fallback-uri în stack. Preconnect-urile către Google au fost eliminate (nu se descarcă niciun font, deci nu mai există handshake/scurgere de IP către Google). -->
 <meta name="format-detection" content="telephone=no">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -203,7 +201,7 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 #sidebar.closed{transform:translateX(-100%)}
 .sb-h{padding:14px;border-bottom:1px solid var(--border);background:var(--nav-bg);color:var(--nav-text);flex-shrink:0}
 .sb-h h1{font-size:14px;font-weight:normal;font-style:italic}
-.sb-h h2{font-size:9px;color:#8a7a65;margin-top:2px;font-weight:normal}
+.sb-h h2{font-size:9px;color:var(--nav-text);opacity:.75;margin-top:2px;font-weight:normal}
 .sb-s{padding:6px;border-bottom:1px solid var(--border);flex-shrink:0}
 .sb-s input{width:100%;padding:6px 8px;border:1px solid var(--border);border-radius:3px;font:12px inherit;background:var(--card)}
 .sb-n{flex:1;overflow-y:auto;padding:4px 0;padding-bottom:8px;scrollbar-width:none;-ms-overflow-style:none}
@@ -212,16 +210,16 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 .rh:hover,.rh.act{background:var(--accent);opacity:.25}
 .g1{padding:1px 0}
 .g1l{padding:6px 10px 3px;font-size:9.5px;text-transform:uppercase;letter-spacing:1px;color:var(--nav-text);font-weight:bold;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px;opacity:.9}
-.g1l:hover{color:#fff;opacity:1}
+.g1l:hover{color:var(--accent);opacity:1}
 .arr{font-size:7px;transition:transform .2s}.arr.op{transform:rotate(90deg)}
 .g1b{overflow:hidden;transition:max-height .3s;word-wrap:break-word;overflow-wrap:break-word;white-space:normal}.g1b.shut{max-height:0!important}
-.g2l{padding:3px 10px 2px 18px;font-size:9.5px;color:#a0b4c8;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px}
-.g2l:hover{color:#fff;opacity:1}
+.g2l{padding:3px 10px 2px 18px;font-size:9.5px;color:var(--nav-text);opacity:.85;cursor:pointer;user-select:none;display:flex;align-items:center;gap:3px}
+.g2l:hover{color:var(--accent);opacity:1}
 .g2b{overflow:hidden;transition:max-height .3s}.g2b.shut{max-height:0!important}
 .ni{display:block;padding:2px 10px 2px 26px;font-size:11.5px;color:var(--nav-text);text-decoration:none;cursor:pointer;border-left:3px solid transparent;word-break:break-word}
 .ni:hover{background:var(--nav-hover);border-left-color:var(--accent);color:var(--accent)}
 .ni.on{background:var(--nav-hover);border-left-color:var(--accent);font-weight:bold;color:var(--accent)}
-.ni.l2{padding-left:34px;font-size:11px;color:#a8bfd4}
+.ni.l2{padding-left:34px;font-size:11px;color:var(--nav-text);opacity:.9}
 .nih{font-weight:bold;padding:6px 10px;border-bottom:1px solid var(--border);cursor:pointer;font-size:12px;color:var(--nav-text)}
 .nih:hover{background:var(--nav-hover);color:var(--accent)}
 .sum-link{display:block;padding:2px 10px 2px 18px;font-size:10px;color:var(--accent);cursor:pointer;font-style:italic;opacity:.85}
@@ -239,12 +237,12 @@ body{font-family:Georgia,'Times New Roman',serif;background:var(--bg);color:var(
 .ct p{margin-bottom:9px;text-indent:1.3em;text-align:justify}
 .ct p:first-of-type{text-indent:0}
 .ct .center{text-align:center;text-indent:0;font-style:italic}
-.ct .caption{text-align:center;text-indent:0;font-size:12px;color:#888;font-style:italic;margin:4px 0 16px}
+.ct .caption{text-align:center;text-indent:0;font-size:12px;color:var(--text);opacity:.7;font-style:italic;margin:4px 0 16px}
 .ct .dialog{text-indent:0;padding-left:1em}
 .ct .sep{text-align:center;color:var(--accent);margin:18px 0;letter-spacing:8px;font-size:12px}
 .ct .spacer{height:8px}
 .ct [id]{scroll-margin-top:52px}
-.ct .cb{display:inline-block;padding:2px 7px;background:var(--accent);color:#fff;font-size:8px;text-transform:uppercase;letter-spacing:1px;border-radius:3px;margin-bottom:10px}
+.ct .cb{display:inline-block;padding:2px 7px;background:var(--accent);color:#fff;font-size:10px;text-transform:uppercase;letter-spacing:1px;border-radius:3px;margin-bottom:10px}
 .ct img{max-width:100%}
 .bn{display:flex;justify-content:space-between;padding:18px 0;margin-top:28px;border-top:1px solid var(--border)}
 .bn a{color:var(--link);text-decoration:none;font-size:12px;cursor:pointer}
@@ -316,11 +314,11 @@ body>.skiptranslate,iframe.skiptranslate,.goog-te-banner-frame{display:none!impo
 .share-copy .link-text{flex:1;text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px;opacity:.7}
 .share-copy .copy-label{font-size:10px;color:var(--accent);font-weight:bold;white-space:nowrap}
 .stats{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px;margin:16px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:center}
-.sn{font-size:22px;font-weight:bold;color:var(--accent)}.sl{font-size:8px;color:#888;text-transform:uppercase;letter-spacing:1px}
+.sn{font-size:22px;font-weight:bold;color:var(--accent)}.sl{font-size:10px;color:var(--text);opacity:.7;text-transform:uppercase;letter-spacing:1px}
 .home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-top:14px}
 .hcard{background:var(--card);border:1px solid var(--border);border-radius:5px;padding:12px;cursor:pointer;transition:box-shadow .2s}
 .hcard:hover{box-shadow:0 3px 8px var(--shadow)}
-.hcard h3{font-size:12px;color:var(--accent);margin-bottom:2px}.hcard .cnt{font-size:10px;color:#888}
+.hcard h3{font-size:12px;color:var(--accent);margin-bottom:2px}.hcard .cnt{font-size:10px;color:var(--text);opacity:.7}
 .sum-box{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:16px;margin:12px 0;font-size:13px;line-height:1.6}
 .sum-box a{color:var(--link);cursor:pointer}.sum-box a:hover{text-decoration:underline}
 .ref-link{display:inline-block;padding:1px 6px;background:#e8dcc8;color:var(--link);font-size:10px;border-radius:3px;cursor:pointer;text-decoration:none;margin:2px 0}
@@ -329,7 +327,7 @@ body>.skiptranslate,iframe.skiptranslate,.goog-te-banner-frame{display:none!impo
 
 .motto{text-align:center;font-style:italic;color:var(--accent);margin:18px 0 8px;padding:16px 20px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);animation:mottoFade 2s ease-out both;line-height:1.7}
 .motto .mt{font-size:13.5px;display:block;margin-bottom:6px}
-.motto .ms{font-size:10px;color:#888;letter-spacing:.5px}
+.motto .ms{font-size:10px;color:var(--text);opacity:.7;letter-spacing:.5px}
 @media(max-width:768px){
 #sidebar{transform:translateX(-100%);width:80vw!important;min-width:0;max-width:320px;bottom:0;box-shadow:4px 0 20px rgba(0,0,0,.3)}
 #sidebar.open{transform:translateX(0)}
@@ -2106,7 +2104,7 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
 </div>
 </div>
 <div class="eb">
-<span class="eb-live"><span class="ls-dot"></span> <span id="lsReaders" aria-live="polite" aria-label="Număr estimativ de cititori activi">17</span> citesc acum <abbr title="Număr estimativ bazat pe sesiuni active recente — nu un contor în timp real" style="cursor:help;opacity:.6;font-size:9px">~est.</abbr> · Scenariu preferat: <strong>A4</strong> · <a onclick="openGlobe()" title="Harta cititorilor">🌍 Harta cititorilor</a></span>
+<span class="eb-live"><span class="ls-dot"></span> <span id="lsReaders" aria-live="polite" aria-label="Valoare simulată, ilustrativă (nu număr real de cititori)">17</span> citesc acum <abbr title="Valoare simulată (generată aleatoriu în browser), ilustrativă — NU reprezintă cititori reali" style="cursor:help;opacity:.6;font-size:9px">~simulat</abbr> · Scenariu preferat: <strong>A4</strong> · <a onclick="openGlobe()" title="Harta cititorilor">🌍 Harta cititorilor</a></span>
 <div style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap;justify-content:center">
 <span class="gt-wrap"><button type="button" class="gt-btn" id="gtBtn" title="Traduce pagina">Traduceri <span class="gt-curlang" id="gtCurLang">RO</span> ▾</button><div class="gt-menu" id="gtMenu" onclick="event.stopPropagation()"></div></span>
 <button onclick="openEnglish()" title="English summary" style="background:linear-gradient(135deg,#1e3a5f,#2c5282);color:#fff;border:none;padding:4px 10px;border-radius:3px;cursor:pointer;font-size:10px;font-family:inherit;font-weight:bold">EN</button>
@@ -2725,7 +2723,7 @@ function escapeHtml(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 function highlightText(text,q){if(!q)return text;const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return text.replace(re,'<mark>$1</mark>')}
 function getSnippet(html,q){const plain=stripHtml(html);if(!q)return escapeHtml(plain.substring(0,120))+'…';const lower=plain.toLowerCase();const idx=lower.indexOf(q.toLowerCase());if(idx===-1)return escapeHtml(plain.substring(0,120))+'…';const start=Math.max(0,idx-50);const end=Math.min(plain.length,idx+q.length+70);let sn=(start>0?'…':'')+plain.substring(start,end)+(end<plain.length?'…':'');return highlightText(escapeHtml(sn),q)}
 function renderResults(q,from,to){let h='';srchAllResults.slice(from,to).forEach((r,ri)=>{const i=from+ri;h+='<div class="srch-item" data-ri="'+i+'" onclick="closeSearch();go('+r.idx+')">';h+='<span class="srch-cat">'+escapeHtml(r.pg.catLabel)+'</span>';h+='<div><div class="srch-title">'+highlightText(escapeHtml(r.pg.title),q)+'</div>';h+='<div class="srch-snippet">'+getSnippet(r.pg.html,q)+'</div></div></div>'});return h}
-function liveSearch(q){const box=document.getElementById('srchResults');srchActive=-1;srchLastQuery=q;if(!q||q.length<2){box.innerHTML='<div class="srch-empty">'+(q.length===1?'Mai tastează…':'Tastează pentru a căuta…')+'</div>';srchAllResults=[];srchShown=0;return}const ql=q.toLowerCase();srchAllResults=[];P.forEach((pg,i)=>{const tMatch=pg.title.toLowerCase().includes(ql);const plainText=stripHtml(pg.html).toLowerCase();const cMatch=plainText.includes(ql);if(tMatch||cMatch){srchAllResults.push({idx:i,pg,tMatch,cMatch})}});if(!srchAllResults.length){box.innerHTML='<div class="srch-empty">Niciun rezultat pentru „'+escapeHtml(q)+'"</div>';srchShown=0;return}srchShown=Math.min(SRCH_PAGE,srchAllResults.length);let h='<div class="srch-count">'+srchAllResults.length+' rezultat'+(srchAllResults.length!==1?'e':'')+' pentru „'+escapeHtml(q)+'"</div>';h+=renderResults(q,0,srchShown);if(srchShown<srchAllResults.length){h+='<div class="srch-more" onclick="showMoreResults(event)">▼ Arată încă '+Math.min(SRCH_PAGE,srchAllResults.length-srchShown)+' din '+(srchAllResults.length-srchShown)+' rămase</div>'}box.innerHTML=h}
+function liveSearch(q){const box=document.getElementById('srchResults');srchActive=-1;srchLastQuery=q;if(!q||q.length<2){box.innerHTML='<div class="srch-empty">'+(q.length===1?'Mai tastează…':'Tastează pentru a căuta…')+'</div>';srchAllResults=[];srchShown=0;return}const ql=q.toLowerCase();srchAllResults=[];P.forEach((pg,i)=>{const tMatch=pg.title.toLowerCase().includes(ql);const plainText=pg._pt||(pg._pt=stripHtml(pg.html).toLowerCase());const cMatch=plainText.includes(ql);if(tMatch||cMatch){srchAllResults.push({idx:i,pg,tMatch,cMatch})}});if(!srchAllResults.length){box.innerHTML='<div class="srch-empty">Niciun rezultat pentru „'+escapeHtml(q)+'"</div>';srchShown=0;return}srchShown=Math.min(SRCH_PAGE,srchAllResults.length);let h='<div class="srch-count">'+srchAllResults.length+' rezultat'+(srchAllResults.length!==1?'e':'')+' pentru „'+escapeHtml(q)+'"</div>';h+=renderResults(q,0,srchShown);if(srchShown<srchAllResults.length){h+='<div class="srch-more" onclick="showMoreResults(event)">▼ Arată încă '+Math.min(SRCH_PAGE,srchAllResults.length-srchShown)+' din '+(srchAllResults.length-srchShown)+' rămase</div>'}box.innerHTML=h}
 function showMoreResults(ev){ev.stopPropagation();const box=document.getElementById('srchResults');const q=srchLastQuery;const from=srchShown;const to=Math.min(srchShown+SRCH_PAGE,srchAllResults.length);const moreBtn=box.querySelector('.srch-more');if(moreBtn)moreBtn.remove();const tmp=document.createElement('div');tmp.innerHTML=renderResults(q,from,to);while(tmp.firstChild){box.appendChild(tmp.firstChild)}srchShown=to;if(srchShown<srchAllResults.length){const btn=document.createElement('div');btn.className='srch-more';btn.onclick=function(e){showMoreResults(e)};btn.textContent='▼ Arată încă '+Math.min(SRCH_PAGE,srchAllResults.length-srchShown)+' din '+(srchAllResults.length-srchShown)+' rămase';box.appendChild(btn)}}
 document.addEventListener('keydown',function(e){const ov=document.getElementById('srchOverlay');if(e.key==='k'&&(e.ctrlKey||e.metaKey)){e.preventDefault();if(ov.classList.contains('open'))closeSearch();else openSearch();return}if(!ov.classList.contains('open'))return;if(e.key==='Escape'){closeSearch();e.stopPropagation();return}const items=ov.querySelectorAll('.srch-item');if(!items.length)return;if(e.key==='ArrowDown'){e.preventDefault();srchActive=Math.min(srchActive+1,items.length-1);items.forEach((el,i)=>el.classList.toggle('active',i===srchActive));items[srchActive].scrollIntoView({block:'nearest'})}else if(e.key==='ArrowUp'){e.preventDefault();srchActive=Math.max(srchActive-1,0);items.forEach((el,i)=>el.classList.toggle('active',i===srchActive));items[srchActive].scrollIntoView({block:'nearest'})}else if(e.key==='Enter'&&srchActive>=0){items[srchActive].click()}});
 
@@ -4585,7 +4583,7 @@ document.addEventListener('touchmove',e=>{if(d){moveDrag(e.touches[0].clientX);e
 document.addEventListener('touchend',endDrag);
 }());
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeShare();return}if(document.getElementById('srchOverlay').classList.contains('open'))return;if(e.target.tagName==='INPUT')return;if(e.key==='ArrowLeft')go(cIdx-1);if(e.key==='ArrowRight')go(cIdx+1);if(e.key==='Home')goHome()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSearch();closeShare();return}if(document.getElementById('srchOverlay').classList.contains('open'))return;const _tg=e.target&&e.target.tagName;if(_tg==='INPUT'||_tg==='TEXTAREA'||_tg==='SELECT'||(e.target&&e.target.isContentEditable)||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;if(e.key==='ArrowLeft')go(cIdx-1);if(e.key==='ArrowRight')go(cIdx+1);if(e.key==='Home')goHome()});
 
 // SHARE
 let shareWithHashtag=false;
@@ -4989,8 +4987,9 @@ function copyShareLink(){
 
   // --- Initial run: only if not already shown this session ---
   let already=null; try{already=sessionStorage.getItem('introShown')}catch(e){}
-  if(already){
-    intro.style.display='none';
+  const _rmIntro=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  if(already||_rmIntro){
+    intro.style.display='none';document.documentElement.style.overflow='';
   } else {
     start(false);
   }
@@ -5079,12 +5078,14 @@ function updateEmoBar(){
 }
 
 // ═══════ MOON MODE ═══════
-let moonMode=localStorage.getItem('moonMode')||'off';
+function ssGet(k){try{return sessionStorage.getItem(k)}catch(e){return null}}
+function ssSet(k,v){try{sessionStorage.setItem(k,v)}catch(e){}}
+let moonMode='off';try{moonMode=localStorage.getItem('moonMode')||'off'}catch(e){}
 function toggleMoonMode(){
   if(moonMode==='off'){moonMode='night';document.body.classList.add('moon-night');document.body.classList.remove('moon-day')}
   else if(moonMode==='night'){moonMode='day';document.body.classList.remove('moon-night');document.body.classList.add('moon-day')}
   else{moonMode='off';document.body.classList.remove('moon-night','moon-day')}
-  localStorage.setItem('moonMode',moonMode);
+  try{localStorage.setItem('moonMode',moonMode)}catch(e){}
 }
 function applyScenarioMood(){
   if(moonMode==='off'&&!dark)return;
@@ -5137,7 +5138,7 @@ function showQuizResult(){
 function shareQuiz(r){
   const text=encodeURIComponent(`Am făcut quiz-ul „Printre inteligențe" și recenzorul meu interior este ${r}. Tu cine ești? #PrintreInteligente`);
   const url=encodeURIComponent(location.href.split('#')[0]);
-  window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`,'_blank','width=600,height=500');
+  window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`,'_blank','noopener,width=600,height=500');
 }
 
 // ═══════ GENERATE REVIEW ═══════
@@ -5201,7 +5202,7 @@ Gândul personal despre carte: ${thought||'(nu a specificat)'}`;
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'claude-sonnet-5-5',
         max_tokens:1000,
         system:systemPrompt,
         messages:[{role:'user',content:userMsg}]
@@ -5225,14 +5226,14 @@ Gândul personal despre carte: ${thought||'(nu a specificat)'}`;
     typeChar();
   }catch(e){
     console.error('Review generation error:',e);
-    result.innerHTML=`<div class="grm-result" style="color:#c0392b">Eroare de rețea sau serviciu temporar indisponibil: ${e.message||'Eroare necunoscută'}.<br><br><small>Încearcă din nou în câteva secunde. Dacă eroarea persistă, funcția de generare este disponibilă doar din interfața Claude.ai.</small></div>`;
+    result.innerHTML=`<div class="grm-result" style="color:#c0392b">Eroare de rețea sau serviciu temporar indisponibil: ${escapeHtml(String(e.message||'Eroare necunoscută'))}.<br><br><small>Încearcă din nou în câteva secunde. Dacă eroarea persistă, funcția de generare este disponibilă doar din interfața Claude.ai.</small></div>`;
   }
   btn.disabled=false;btn.textContent='✨ Generează recenzia mea';
 }
 function shareGenReview(){
   const text=encodeURIComponent('Mi-am generat propria recenzie la „Printre inteligențe" — o carte SF scrisă cu ajutorul AI-ului. Tu ce notă ai da? #PrintreInteligente');
   const url=encodeURIComponent(location.href.split('#')[0]);
-  window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`,'_blank','width=600,height=500');
+  window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`,'_blank','noopener,width=600,height=500');
 }
 
 // ═══════ AUDIO AMBIENT ═══════
@@ -5339,8 +5340,8 @@ go=function(idx){
     // Show wrapped when reaching last page
     if(idx===P.length-1){
       setTimeout(()=>{
-        if(Object.keys(readingStats.pagesVisited).length>3&&!sessionStorage.getItem('wrappedShown')){
-          sessionStorage.setItem('wrappedShown','1');
+        if(Object.keys(readingStats.pagesVisited).length>3&&!ssGet('wrappedShown')){
+          ssSet('wrappedShown','1');
           showWrapped();
         }
       },5000);
@@ -5422,11 +5423,12 @@ async function generateMyEnding(){
     const resp=await fetch(window.PI_API_ENDPOINT,{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:1000,
+        model:'claude-sonnet-5-5',max_tokens:1000,
         system:`Ești naratorul cărții "Printre inteligențe" de Alexio. Scrii un mini-scenariu SF (150-200 cuvinte) despre un astronaut pe Lună care ia o decizie critică. Stilul: proză scurtă, tensiune, detalii senzoriale (temperatură, lumină, sunet), final deschis sau surprinzător. Scrie la persoana a II-a singular ("tu"). Limba: română. Nu folosi clișee. Scrie DOAR scenariul, fără titlu sau preambul.`,
         messages:[{role:'user',content:`Astronaut: ${name}\nSituația: ${scenario}\nDecizia: ${decision}\n\nScrie scenariul.`}]
       })
     });
+    if(!resp.ok){const _ed=await resp.json().catch(()=>({}));throw new Error((_ed.error&&_ed.error.message)||('HTTP '+resp.status))}
     const data=await resp.json();
     const text=(data.content||[]).filter(c=>c.type==='text').map(c=>c.text).join('');
     // Typing animation
@@ -5436,7 +5438,7 @@ async function generateMyEnding(){
     shareBtn.onclick=()=>{
       const t=encodeURIComponent(`Am creat propriul ending în "Printre inteligențe": ${name} pe Lună. Ce-ai fi făcut tu? #PrintreInteligente`);
       const u=encodeURIComponent(location.href.split('#')[0]);
-      window.open(`https://x.com/intent/tweet?text=${t}&url=${u}`,'_blank','width=600,height=500');
+      window.open(`https://x.com/intent/tweet?text=${t}&url=${u}`,'_blank','noopener,width=600,height=500');
     };
     result.innerHTML='';result.appendChild(container);result.appendChild(shareBtn);
     let i=0;const typeChar=()=>{
@@ -5444,7 +5446,7 @@ async function generateMyEnding(){
       else{shareBtn.style.opacity='1'}
     };typeChar();
   }catch(e){
-    result.innerHTML=`<div class="mye-result" style="color:#c0392b">Eroare: ${e.message}. Deschide fișierul din Claude.ai.</div>`;
+    result.innerHTML=`<div class="mye-result" style="color:#c0392b">Eroare: ${escapeHtml(String(e.message))}. Deschide fișierul din Claude.ai.</div>`;
   }
   btn.disabled=false;btn.textContent='🚀 Generează ending-ul meu';
 }
@@ -5522,7 +5524,7 @@ function closeWrapped(){document.getElementById('wrapped-overlay').style.display
 function shareWrapped(){
   const t=encodeURIComponent(`Am terminat misiunea „Printre inteligențe". ${Object.keys(readingStats.pagesVisited).length} pagini. Tu ai curajul? #PrintreInteligente`);
   const u=encodeURIComponent(location.href.split('#')[0]);
-  window.open(`https://x.com/intent/tweet?text=${t}&url=${u}`,'_blank','width=600,height=500');
+  window.open(`https://x.com/intent/tweet?text=${t}&url=${u}`,'_blank','noopener,width=600,height=500');
 }
 
 // ═══════ #3 CRONOMETRUL MISIUNII ═══════
@@ -5574,9 +5576,9 @@ function exitMissionMode(){
   const now=new Date();
   if(now.getHours()===18&&now.getMinutes()===35){
     const ee=document.getElementById('easter-1835');
-    if(ee&&!sessionStorage.getItem('ee1835')){
+    if(ee&&!ssGet('ee1835')){
       ee.style.display='flex';
-      sessionStorage.setItem('ee1835','1');
+      ssSet('ee1835','1');
       initEE1835Canvas(document.getElementById('ee-bg-canvas'));
     }
   }
@@ -5754,9 +5756,9 @@ function submitC108(){
   const words=text.split(/\s+/).length;
   if(words!==108){alert('Trebuie exact 108 cuvinte!');return}
   // Save locally
-  const entries=JSON.parse(localStorage.getItem('c108entries')||'[]');
+  let entries=[];try{entries=JSON.parse(localStorage.getItem('c108entries')||'[]');if(!Array.isArray(entries))entries=[]}catch(e){entries=[]}
   entries.push({text:text,date:new Date().toISOString(),author:'Cititor anonim'});
-  localStorage.setItem('c108entries',JSON.stringify(entries));
+  try{localStorage.setItem('c108entries',JSON.stringify(entries))}catch(e){alert('Stocarea locală a browserului este indisponibilă — recenzia nu a putut fi salvată.')}
   document.getElementById('c108Text').value='';
   updateC108Count();
   loadC108Wall();
@@ -5764,17 +5766,17 @@ function submitC108(){
   if(confirm('Recenzia a fost salvată! Vrei să o partajezi pe X?')){
     const t=encodeURIComponent(`Am scris o recenzie de exact 108 cuvinte la „Printre inteligențe". Provocarea #108cuvinte. Tu poți? #PrintreInteligente`);
     const u=encodeURIComponent(location.href.split('#')[0]);
-    window.open(`https://x.com/intent/tweet?text=${t}&url=${u}`,'_blank','width=600,height=500');
+    window.open(`https://x.com/intent/tweet?text=${t}&url=${u}`,'_blank','noopener,width=600,height=500');
   }
 }
 function loadC108Wall(){
-  const entries=JSON.parse(localStorage.getItem('c108entries')||'[]');
+  let entries=[];try{entries=JSON.parse(localStorage.getItem('c108entries')||'[]');if(!Array.isArray(entries))entries=[]}catch(e){entries=[]}
   const wall=document.getElementById('c108Wall');
   if(!entries.length){wall.innerHTML='<p style="font-size:11px;color:#999;font-style:italic">Fii primul care scrie o recenzie de 108 cuvinte.</p>';return}
   let h='<h4>Peretele recenziilor de 108 cuvinte</h4>';
   entries.slice(-5).reverse().forEach(e=>{
     const d=new Date(e.date).toLocaleDateString('ro');
-    h+=`<div class="c108-entry">${e.text}<div class="c108-author">— ${e.author} · ${d}</div></div>`;
+    h+=`<div class="c108-entry">${escapeHtml(String(e.text))}<div class="c108-author">— ${escapeHtml(String(e.author))} · ${d}</div></div>`;
   });
   wall.innerHTML=h;
 }
@@ -5785,6 +5787,7 @@ function closeGift(){document.getElementById('giftOverlay').classList.remove('op
 function generateGiftLink(){
   const from=document.getElementById('giftFrom').value||'Cineva';
   const to=document.getElementById('giftTo').value||'Prietene';
+  const fromS=from.replace(/[^\p{L}\p{N} _.,-]/gu,''),toS=to.replace(/[^\p{L}\p{N} _.,-]/gu,'');
   const base=location.href.split('#')[0].split('?')[0];
   const params=new URLSearchParams({gift:'1',from:from,to:to});
   const link=`${base}?${params.toString()}#home`;
@@ -5792,8 +5795,8 @@ function generateGiftLink(){
     <div class="gift-link" onclick="navigator.clipboard.writeText('${link}');this.style.background='var(--accent)';this.style.color='#fff';setTimeout(()=>{this.style.background='';this.style.color=''},1500)">${link}</div>
     <p style="font-size:11px;color:#999">Click pe link pentru a-l copia</p>
     <div style="display:flex;gap:8px;justify-content:center;margin-top:10px">
-      <button onclick="window.open('https://wa.me/?text='+encodeURIComponent('${to}, ai o misiune pe Lună: ${link}'))" style="background:#25D366;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:12px">WhatsApp</button>
-      <button onclick="window.open('mailto:?subject=O misiune pe Lună pentru tine&body='+encodeURIComponent('${from} ți-a trimis o carte: ${link}'))" style="background:#555;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:12px">Email</button>
+      <button onclick="window.open('https://wa.me/?text='+encodeURIComponent('${toS}, ai o misiune pe Lună: ${link}'))" style="background:#25D366;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:12px">WhatsApp</button>
+      <button onclick="window.open('mailto:?subject=O misiune pe Lună pentru tine&body='+encodeURIComponent('${fromS} ți-a trimis o carte: ${link}'))" style="background:#555;color:#fff;border:none;padding:6px 14px;border-radius:4px;cursor:pointer;font-size:12px">Email</button>
     </div>`;
 }
 // Check if opened as gift
@@ -6264,6 +6267,8 @@ if(epIdx>=0){
 }());
 let hash='';try{hash=location.hash.slice(1)}catch(e){}
 if(hash&&hash!=='home'){const idx=P.findIndex(p=>p.id===hash);if(idx>=0)go(idx);else goHome()}else goHome();
+/* Butoanele Înapoi/Înainte și hash-urile editate manual navighează efectiv (fără hashchange, doar URL-ul se schimba). */
+window.addEventListener('hashchange',function(){let h2='';try{h2=decodeURIComponent(location.hash.slice(1))}catch(e){return}if(h2==='home'){if(currentView.type!=='home')goHome();return}const i2=P.findIndex(p=>p.id===h2);if(i2>=0&&!(currentView.type==='page'&&currentView.idx===i2))go(i2)});
 
 // Audiobook bar permanent + SFX default-on
 try{
@@ -6453,7 +6458,7 @@ try{
 <div class="ee-content">
 <div class="ee-msg">„Ora 18:35 — momentul în care totul s-a schimbat.<br><br>Nu pentru ei. Pentru tine.<br><br>Ai deschis cartea la ora exactă. Asta nu e o coincidență.<br><br>Sau poate e. Dar pe Lună, coincidențele ucid."</div>
 <div class="ee-sub">— Recenzie secretă #109, nedescoperită până acum</div>
-<div class="ee-close" onclick="document.getElementById('easter-1835').style.display='none';if(window._eeAnim){cancelAnimationFrame(window._eeAnim);window._eeAnim=null};sessionStorage.removeItem('ee1835')">Am înțeles</div>
+<div class="ee-close" onclick="document.getElementById('easter-1835').style.display='none';if(window._eeAnim){cancelAnimationFrame(window._eeAnim);window._eeAnim=null};try{sessionStorage.removeItem('ee1835')}catch(e){}">Am înțeles</div>
 </div>
 </div>
 
@@ -6462,7 +6467,7 @@ try{
 <div class="globe-box">
 <button class="globe-close" onclick="closeGlobe()">✕</button>
 <canvas class="globe-canvas" id="globeCanvas" width="1200" height="1000" role="img" aria-label="Harta interactivă a cititorilor activi — distribuție geografică estimativă"></canvas>
-<div class="globe-info" id="globeInfo" aria-live="polite">🟢 <span id="globeCount">11</span> cititori activi <abbr title="Număr estimativ bazat pe sesiuni localStorage active — nu un contor server în timp real" style="cursor:help;opacity:.7">~est.</abbr> din <span id="globeCities">7</span> orașe</div>
+<div class="globe-info" id="globeInfo" aria-live="polite">🟢 <span id="globeCount">11</span> cititori activi <abbr title="Valoare simulată (generată aleatoriu în browser), ilustrativă — NU reprezintă cititori reali" style="cursor:help;opacity:.7">~simulat</abbr> din <span id="globeCities">7</span> orașe</div>
 </div>
 </div>
 
@@ -6535,7 +6540,7 @@ try{
 <!-- LIVE STATS TICKER -->
 <div class="live-stats show" id="liveStats">
   <div class="ls-dot"></div>
-  <span id="lsReaders">18</span> citesc acum ·
+  <span id="lsReaders2">18</span> citesc acum ·
   Scenariu preferat: <strong>A4</strong>
 </div>
 
@@ -8947,7 +8952,7 @@ if(document.readyState==='loading'){
 <table style="width:100%;border-collapse:collapse;font-size:12px;margin:10px 0">
 <thead><tr style="background:#f0ebe0"><th style="border:1px solid #d4c5a9;padding:6px;text-align:left">Nume / cheie</th><th style="border:1px solid #d4c5a9;padding:6px;text-align:left">Tip</th><th style="border:1px solid #d4c5a9;padding:6px;text-align:left">Scop</th><th style="border:1px solid #d4c5a9;padding:6px;text-align:left">Durată</th><th style="border:1px solid #d4c5a9;padding:6px;text-align:left">Consimțământ necesar?</th></tr></thead>
 <tbody>
-<tr><td style="border:1px solid #d4c5a9;padding:6px"><code>pi-theme</code>, <code>pi-font</code>, <code>pi-width</code>, <code>pi-bg</code></td><td style="border:1px solid #d4c5a9;padding:6px">localStorage</td><td style="border:1px solid #d4c5a9;padding:6px">Preferințe vizuale: temă zi/noapte, dimensiune font, lățime lectură, fundal</td><td style="border:1px solid #d4c5a9;padding:6px">Persistent (până la ștergere manuală)</td><td style="border:1px solid #d4c5a9;padding:6px">Nu — strict necesar pentru funcția solicitată</td></tr>
+<tr><td style="border:1px solid #d4c5a9;padding:6px"><code>bgfxMode</code>, <code>bgfxActive</code>, <code>moonMode</code>, <code>rdMode</code>, <code>rdapMenuHidden</code>, <code>sfx_prefs</code>, <code>ab_voice_prefs</code>, <code>pi-reader-state</code>, <code>pi-quick-guide-v1</code>, <code>c108entries</code>, <code>nlSubs</code></td><td style="border:1px solid #d4c5a9;padding:6px">localStorage</td><td style="border:1px solid #d4c5a9;padding:6px">Preferințe vizuale/audio (fundal, mod Lună, mod citire, efecte sonore, voci), etapa de deblocare a funcțiilor, recenzia de 108 cuvinte și e-mailul pentru newsletter (acestea două doar dacă le trimiți tu). Tema zi/noapte și dimensiunea fontului NU se salvează între sesiuni.</td><td style="border:1px solid #d4c5a9;padding:6px">Persistent (până la ștergere manuală)</td><td style="border:1px solid #d4c5a9;padding:6px">Nu — strict necesar pentru funcția solicitată</td></tr>
 <tr><td style="border:1px solid #d4c5a9;padding:6px"><code>pi-progress</code>, <code>pi-bookmarks</code></td><td style="border:1px solid #d4c5a9;padding:6px">localStorage</td><td style="border:1px solid #d4c5a9;padding:6px">Progresul lecturii, semne de carte</td><td style="border:1px solid #d4c5a9;padding:6px">Persistent</td><td style="border:1px solid #d4c5a9;padding:6px">Nu — activat doar prin acțiune explicită</td></tr>
 <tr><td style="border:1px solid #d4c5a9;padding:6px"><code>pi-reviews</code>, <code>pi-endings</code></td><td style="border:1px solid #d4c5a9;padding:6px">localStorage</td><td style="border:1px solid #d4c5a9;padding:6px">Recenzii și finaluri personale compuse de utilizator</td><td style="border:1px solid #d4c5a9;padding:6px">Persistent</td><td style="border:1px solid #d4c5a9;padding:6px">Nu — stocat doar la cererea ta</td></tr>
 <tr><td style="border:1px solid #d4c5a9;padding:6px"><code>pi-legal-notice</code></td><td style="border:1px solid #d4c5a9;padding:6px">localStorage</td><td style="border:1px solid #d4c5a9;padding:6px">Confirmă că ai văzut bannerul informativ</td><td style="border:1px solid #d4c5a9;padding:6px">12 luni</td><td style="border:1px solid #d4c5a9;padding:6px">Nu — strict necesar pentru a nu afișa repetat</td></tr>
@@ -8989,7 +8994,9 @@ if(document.readyState==='loading'){
 <ul>
 <li><code>alexio.tf</code> — pentru imaginile ilustrative din carte;</li>
 <li><code>fonts.googleapis.com</code> / <code>fonts.gstatic.com</code> — <em>doar dacă</em> pagina folosește fonturi externe (verificabil în sursa paginii);</li>
-<li>API-uri AI (ex. <code>api.anthropic.com</code>) — <em>doar dacă</em> folosești funcțiile generative („Recenzia ta”, „Ending-ul tău”) și doar cu acțiunea ta.</li>
+<li>API-uri AI (ex. <code>api.anthropic.com</code>) — <em>doar dacă</em> folosești funcțiile generative („Recenzia ta”, „Ending-ul tău”) și doar cu acțiunea ta;</li>
+<li><code>translate.googleapis.com</code> — <em>doar dacă</em> alegi o altă limbă din meniul „Traduceri”: textul paginii este trimis către Google Translate;</li>
+<li><code>tts-proxy.chiuta.workers.dev</code> (Cloudflare Worker → Azure Neural TTS) — la deschiderea paginii se trimite o cerere de test („Test.”), iar la redarea audiobook-ului textul citit este trimis pentru sinteză vocală; dacă serviciul nu răspunde, se folosește vocea locală a browserului.</li>
 </ul>
 
 <p style="margin-top:20px;font-size:11px;color:#888;text-align:center"><em>Pentru întrebări specifice: vezi Politica de confidențialitate (GDPR) sau contactează operatorul.</em></p>
@@ -9614,6 +9621,7 @@ document.addEventListener('keydown',function(e){
 <li><strong><code>alexio.tf</code></strong> — domeniul care găzduiește fișierul HTML însuși, precum și CDN-ul autorului pentru ilustrațiile din carte (imagini <code>.jpg</code> folosite în capitole și scenarii). Găzduirea este statică (un simplu server HTTP care servește fișierele), fără logică dinamică. Aceste cereri HTTP dezvăluie IP-ul tău și agentul de browser furnizorului de găzduire, conform funcționării normale a internetului. Nu se stabilesc cookies de urmărire;</li>
 <li><strong><code>trom.tf</code></strong> — domeniu folosit exclusiv pentru adresa de e-mail a autorului (contact); <em>nu</em> este contactat de browser la deschiderea paginii și nu servește conținut web;</li>
 <li><strong>CDN-uri de biblioteci third-party (dacă sunt prezente)</strong> — dacă o anumită versiune folosește biblioteci externe (ex. pentru grafice sau animații), acestea pot fi încărcate de pe CDN-uri publice cu integritate SRI (Subresource Integrity) pentru a preveni injectarea de cod;</li>
+<li><strong><code>translate.googleapis.com</code> și <code>tts-proxy.chiuta.workers.dev</code></strong> — Google Translate (doar la alegerea unei limbi din meniul „Traduceri”; textul paginii este trimis către Google) și proxy-ul de sinteză vocală Azure (cerere de test la încărcarea paginii; textul citit de audiobook este trimis pentru sinteză). Ambele pot dezvălui IP-ul tău și conținutul trimis către acești furnizori;</li>
 <li><strong>API-uri ale furnizorilor de AI (numai la acțiunea ta)</strong> — de exemplu <code>api.anthropic.com</code>. Aceste apeluri se fac <strong>doar dacă</strong> activezi o funcție generativă („Recenzia ta”, „Ending-ul tău”, etc.) și doar după ce confirmi. Conținutul trimis include mesajul tău și un prompt-sistem; nu include date personale identificabile în afara celor pe care le scrii tu voluntar.</li>
 </ul>
 
@@ -10016,4 +10024,26 @@ function nlSignup(){
     PI.init();
   }
 })(typeof window !== 'undefined' ? window : this);
-</script></body></html>
+</script><script>
+/* Accesibilitate tastatură: elementele cu onclick fără href (grupuri de navigație, linkuri interne din carte) devin focusabile
+   și se activează cu Enter/Spațiu (role="button" singur nu declanșează click la tastatură). */
+(function(){
+  var SEL='.g1l,.g2l,.nih,.sum-link,#ct a[onclick]:not([href]),#ct .cb[onclick],.srch-more,.gift-link';
+  var pending=false;
+  function enh(){pending=false;try{document.querySelectorAll(SEL).forEach(function(el){if(!el.hasAttribute('tabindex'))el.setAttribute('tabindex','0');if(!el.hasAttribute('role'))el.setAttribute('role','button')})}catch(e){}}
+  function sched(){if(pending)return;pending=true;(window.requestAnimationFrame||setTimeout)(enh)}
+  document.addEventListener('keydown',function(e){
+    if(e.key!=='Enter'&&e.key!==' ')return;
+    if(e.ctrlKey||e.metaKey||e.altKey)return;
+    var t=e.target;
+    if(!t||!t.getAttribute||t.getAttribute('role')!=='button'||t.tagName==='BUTTON'||!t.hasAttribute('onclick'))return;
+    e.preventDefault();t.click();
+  });
+  if(window.MutationObserver){
+    var mo=new MutationObserver(sched);
+    ['nav','ct','srchResults'].forEach(function(id){var el=document.getElementById(id);if(el)mo.observe(el,{childList:true,subtree:true})});
+  }
+  enh();
+})();
+</script>
+</body></html>
