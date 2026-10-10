@@ -50,9 +50,14 @@ Gazde terțe contactate:
 - `tts-proxy.chiuta.workers.dev` (Cloudflare Worker către Azure Neural TTS): o cerere de test la încărcarea paginii și textul audiobook-ului la redare, pentru sinteză vocală; dacă nu răspunde, se folosește vocea browserului.
 - `translate.googleapis.com`: numai dacă alegi o altă limbă din „Traduceri"; textul paginii este trimis la Google Translate.
 - Un API de AI prin `/api/claude` (proxy-ul `claude-proxy.worker.js` din repository, către API-ul Anthropic): numai dacă folosești „Recenzia ta" / „Ending-ul tău".
-- Fonturi Google: pagina de confidențialitate le menționează condiționat; nu am verificat în cod o cerere explicită.
+- Fonturi Google: verificat la audit (2026-10-10) — nu există nicio cerere către `fonts.googleapis.com` / `fonts.gstatic.com`; pagina de confidențialitate le menționează doar condiționat.
+- Formularul „Următoarea poveste” (newsletter): adresa de email se salvează doar local, în `localStorage` (`nlSubs`); nu se trimite nicăieri și nimeni nu va primi notificări pe baza ei, deși mesajul de confirmare spune „Te anunț când apare ceva nou”.
 
 Pagina găzduită pe GitHub Pages nu are ruta `/api/claude`, așa că funcțiile generative probabil nu răspund acolo decât dacă este configurat `window.PI_API_ENDPOINT`.
+
+## Avertisment
+
+Ficțiune / speculație: romanul, scenariile și cele 108 recenzii sunt opere de ficțiune; recenziile sunt fictive, iar valorile „cititori activi” sunt simulate (marcate „~simulat” în pagină). Povestea folosește numele reale ale membrilor echipajului Artemis 2 (Koch, Wiseman, Glover, Hansen) ca personaje într-un scenariu integral imaginar; nu este afiliată NASA, CSA, ESA sau echipajul. Textele generate prin „Recenzia ta” / „Ending-ul tău” sunt produse de un model AI și pot conține erori.
 
 ## Rulare locală / offline
 
@@ -69,3 +74,7 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf
 ## English summary
 
 "Printre inteligențe" is an interactive Romanian-language SF novel built around the NASA Artemis 2 mission, published as a web app: prologue, chapters, epilogue, 17 alternate scenarios and 108 fictional reviews, with an integrated audiobook. It stores preferences, reading progress and user texts in localStorage. It contacts alexio.tf (images), a TTS proxy on Cloudflare Workers, Google Translate (only if you pick a language) and an AI API endpoint (only for the generative features). The licence is inconsistent in the files and not yet settled.
+
+## Audit
+
+Audit: 2026-10-10 — claimurile de rețea din acest README corespund codului (fetch către `tts-proxy.chiuta.workers.dev` — inclusiv o cerere de test la încărcare —, `translate.googleapis.com`, `window.PI_API_ENDPOINT`; imagini de pe `alexio.tf`). Antetul aplicației spune „offline-first, fără telemetrie”, iar pagina conține formulări absolute („rulează integral în browser”, în rezumatul în engleză) care nu țin cont de aceste apeluri; licențele rămân contradictorii (JSON-LD CC BY-NC-ND 4.0 vs. antet CC0 1.0). Corectat accesibilitatea (contrast în toate temele, etichete la câmpurile de selectare).

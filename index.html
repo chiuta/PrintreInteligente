@@ -548,6 +548,25 @@ html:not(.dark-mode) .sb-h{--nav-bg:#e8dcc8;--nav-text:#1a1410}
 html:not(.dark-mode) #sidebar{--sbg:#f0ebe0;--nav-text:#1a1410;--nav-hover:rgba(0,0,0,.08)}
 html:not(.dark-mode) .ab-panel{--nav-bg:#e8dcc8;--nav-text:#1a1410;--nav-hover:rgba(0,0,0,.08)}
 html:not(.dark-mode) .gt-menu{--nav-bg:#e8dcc8;--nav-text:#1a1410}
+/* a11y (audit 2026-10-10): contrast */
+html:not(.dark-mode) .g1l[style*="color"]{color:#4a5568!important}
+html:not(.dark-mode) #abLangIndicator{color:#0b5a57!important;opacity:1!important}
+.tb .pc{opacity:.85}
+html.dark-mode .eb button,html.dark-mode .grm-submit,body.moon-night .eb button,body.moon-night .grm-submit{color:#1a1410}
+html.dark-mode .ni.on{color:#e3b88f}
+html.dark-mode .ref-link{background:#2a3a4a;color:#e3b88f}
+body.moon-night .ref-link{background:#1c2438}
+body.rd-box .ct span.cb{color:#fff!important}
+html.dark-mode body.rd-box .ct span.cb,body.moon-night.rd-box .ct span.cb{color:#1a1410!important}
+body.rd-box.rd-box-light .ct span.cb{color:#fff!important}
+html.dark-mode body.rd-box.rd-box-light .ct span.cb,body.moon-night.rd-box.rd-box-light .ct span.cb{color:#1a1410!important}
+html body.rd-box.rd-box-light .ct span.cb[style*="2980b9"]{background:#1f6fa0!important;color:#fff!important}
+html body.rd-box .ct span.cb[style*="2980b9"]{background:#1f6fa0!important;color:#fff!important}
+html:not(.dark-mode) .g1b p[style*="d4a44c"]{color:#7a5a12!important}
+abbr[title^="Valoare simulată"]{opacity:1!important}
+html:not(.dark-mode) abbr[title^="Valoare simulată"]{color:#4a4339}
+html.dark-mode abbr[title^="Valoare simulată"]{color:#c0d0e0}
+html.dark-mode a[style*="background:var(--accent)"][style*="color:#fff"],body.moon-night a[style*="background:var(--accent)"][style*="color:#fff"]{color:#1a1410!important}
 /* Radio mode exclus — are propriile sale culori hardcodate */
 html:not(.dark-mode) body.radio-mode .tb,
 html:not(.dark-mode) body.radio-mode .eb,
@@ -2060,7 +2079,7 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
 <button id="btnAB" onclick="abQuickToggle()" title="Audiobook — ascultă cartea (apasă Space pentru play/pause)" aria-label="Audiobook" style="font-size: 13px; opacity: 0.7;">🎧</button>
 <button id="btnRD" onclick="rdToggleMenu(event)" title="Opțiuni de lizibilitate: culoare text, fundal panou, ascunde interfața" aria-label="Opțiuni lizibilitate" aria-haspopup="true" style="font-size:13px;opacity:.75">👁</button>
 <button id="btnTheme" onclick="togDark()" title="Comută la tema întunecată" aria-label="Comută tema zi/noapte" style="font-size:16px;font-weight:bold;min-width:32px;border-radius:6px;border:1px solid var(--border);background:var(--hover);color:var(--nav-text);padding:0 4px;">🌙</button>
-<span class="pc" id="pc" aria-label="Progres lectură">1/115</span>
+<span class="pc" id="pc" title="Progres lectură">1/115</span>
 </div>
 <!-- Readability menu -->
 <div class="rd-menu" id="rdMenu" onclick="event.stopPropagation()">
@@ -6353,7 +6372,7 @@ try{
 <input id="grmName" placeholder="ex: Maria din Timișoara">
 <label>Ce ești? (profesie, vârstă, pasiune)</label>
 <input id="grmRole" placeholder="ex: Inginer software, 34 ani, fan SF">
-<label>Ce te-a mișcat cel mai mult?</label>
+<label for="grmMoment">Ce te-a mișcat cel mai mult?</label>
 <select id="grmMoment">
 <option value="frigul din A3">Frigul din craterul Shackleton (A3)</option>
 <option value="salturile din A4">Salturile pe crater (A4)</option>
@@ -6384,7 +6403,7 @@ try{
 <div class="mye-body">
 <label>Numele tău de astronaut</label>
 <input id="myeName" placeholder="ex: Comandant Maria">
-<label>Scenariul în care te afli</label>
+<label for="myeScenario">Scenariul în care te afli</label>
 <select id="myeScenario">
 <option value="Craterul Shackleton, pol sud lunar, lumină solară permanentă, Pământ vizibil">A1 — Pol Sud, lumină, spre Pământ</option>
 <option value="Craterul Shackleton, pol sud lunar, lumină solară, fără legătură radio directă">A2 — Pol Sud, lumină, ascuns de Pământ</option>
