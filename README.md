@@ -71,13 +71,16 @@ NEREZOLVAT: licența nu este declarată explicit în acest repository și nu am 
 
 ## Istoric / Changelog
 
+### 11 octombrie 2026 (runda 6)
+- Reparat: cele 354 de handlere inline (`onclick`, `onchange` etc.) au fost înlocuite cu un dispatcher delegat (`data-on-*` + un singur listener, fără eval/Function; argumentele dinamice trec printr-o listă albă de funcții). Paritate verificată pe 495 de elemente (0 diferențe). CSP-ul are acum `script-src` cu 16 hash-uri sha256, fără `'unsafe-inline'`.
+
 ### 11 octombrie 2026
 - Actualizat: misiunea reală Artemis 2 nu mai este descrisă ca „programată”: zbor de test în jurul Lunii, lansat în aprilie 2026, amerizare în Pacific pe 10 aprilie 2026 (echipaj Wiseman, Glover, Koch, Hansen). Surse verificate la 11.10.2026: NBC Palm Springs (10.04.2026), NASA. Textul ficțional al romanului nu a fost modificat.
 - Reparat: intro-ul cinematic se poate închide de la tastatură (butonul × este acum `<button>`, plus tasta Escape); durata de 18,35 s a intro-ului rămâne decizie artistică a autorului.
 - Reparat: imaginile cărții (servite de pe alexio.tf) au înlocuitor cu textul alternativ când rețeaua lipsește, în loc de pictogramă ruptă.
 - Reparat: ferestrele/overlay-urile închise nu mai rămân focalizabile (visibility:hidden); `<footer>`, elemente decorative `aria-hidden`, fără `tabindex` pozitiv; 0 violări axe-core la 1280 și 360 px.
-- Adăugat: politică CSP (meta) cu gazdele declarate (alexio.tf, translate.googleapis.com, tts-proxy.chiuta.workers.dev, claude-proxy.alexio.workers.dev); cache Service Worker pi-v12.
-- Neschimbat: ≈360 de handlere `onclick` inline (CSP păstrează `'unsafe-inline'`), contorul „citesc acum” rămâne simulat și etichetat astfel; licența/drepturile de autor nu au fost modificate (decizia autorului).
+- Adăugat: politică CSP (meta) cu gazdele declarate (alexio.tf, translate.googleapis.com, tts-proxy.chiuta.workers.dev, claude-proxy.alexio.workers.dev); cache Service Worker pi-v12 (acum pi-v13).
+- Neschimbat: contorul „citesc acum” rămâne simulat și etichetat astfel; licența/drepturile de autor nu au fost modificate (decizia autorului).
 
 ## Autor
 
