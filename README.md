@@ -46,8 +46,8 @@ Local (`localStorage`/`sessionStorage`), conform paginii de cookies a aplicație
 
 Gazde terțe contactate:
 
-- `alexio.tf`: imagini ilustrative și previzualizări de distribuire.
-- `tts-proxy.chiuta.workers.dev` (Cloudflare Worker către Azure Neural TTS): o cerere de test la încărcarea paginii și textul audiobook-ului la redare, pentru sinteză vocală; dacă nu răspunde, se folosește vocea browserului.
+- `alexio.tf`: imagini ilustrative (cerute la încărcare; singura cerere externă fără acțiune a utilizatorului) și previzualizări de distribuire.
+- `tts-proxy.chiuta.workers.dev` (Cloudflare Worker către Azure Neural TTS): **doar dacă bifezi explicit** „Voce online Azure Neural” în panoul de voci al audiobook-ului (opt-in, implicit oprit; preferința se păstrează în `pi_azure_tts`); atunci se face o cerere de test și textul citit pleacă la proxy pentru sinteză; fără opt-in se folosește vocea locală a browserului și la încărcare nu pleacă nicio cerere către acest serviciu.
 - `translate.googleapis.com`: numai dacă alegi o altă limbă din „Traduceri"; textul paginii este trimis la Google Translate.
 - Un API de AI prin `/api/claude` (proxy-ul `claude-proxy.worker.js` din repository, către API-ul Anthropic): numai dacă folosești „Recenzia ta" / „Ending-ul tău".
 - Fonturi Google: verificat la audit (2026-10-10) — nu există nicio cerere către `fonts.googleapis.com` / `fonts.gstatic.com`; pagina de confidențialitate le menționează doar condiționat.
@@ -61,11 +61,11 @@ Ficțiune / speculație: romanul, scenariile și cele 108 recenzii sunt opere de
 
 ## Rulare locală / offline
 
-Descarcă repository-ul și deschide `index.html`: textul cărții este inclus în fișier și se citește fără internet. Au nevoie de internet: audiobook-ul cu voce online (altfel vocea locală), traducerile, funcțiile generative și imaginile de pe alexio.tf. Service Worker-ul se înregistrează la calea `/sw.js` și funcționează doar pe http(s), nu din fișier local.
+Descarcă repository-ul și deschide `index.html`: textul cărții este inclus în fișier și se citește fără internet. Au nevoie de internet: audiobook-ul cu voce online (opțională; altfel vocea locală), traducerile, funcțiile generative și imaginile de pe alexio.tf. Service Worker-ul se înregistrează la calea `/sw.js` și funcționează doar pe http(s), nu din fișier local.
 
 ## Licență
 
-Licența nu este încă declarată explicit în acest repository; vezi nota din aplicație. Semnale contradictorii în fișiere: metadatele JSON-LD ale paginii indică `https://creativecommons.org/licenses/by-nc-nd/4.0/`, iar antetele din `sw.js` și `claude-proxy.worker.js` indică „TRADE-FREE + CC0 1.0".
+NEREZOLVAT: licența nu este declarată explicit în acest repository și nu am ales una. Semnale contradictorii în fișiere: metadatele JSON-LD ale paginii indică `https://creativecommons.org/licenses/by-nc-nd/4.0/`, iar antetele din `index.html`, `sw.js` și `claude-proxy.worker.js` indică „TRADE-FREE + CC0 1.0”. Conținutul cărții este o colaborare (autor + model AI, dezvăluită în Epilog) și include texte fictive atribuite unor terți (recenzii, personaje), deci regimul de drepturi trebuie stabilit de autor/coautori; până atunci, nu presupune nicio licență de reutilizare. Nu există fișier LICENSE.
 
 ## Autor
 
@@ -76,5 +76,7 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf
 "Printre inteligențe" is an interactive Romanian-language SF novel built around the NASA Artemis 2 mission, published as a web app: prologue, chapters, epilogue, 17 alternate scenarios and 108 fictional reviews, with an integrated audiobook. It stores preferences, reading progress and user texts in localStorage. It contacts alexio.tf (images), a TTS proxy on Cloudflare Workers, Google Translate (only if you pick a language) and an AI API endpoint (only for the generative features). The licence is inconsistent in the files and not yet settled.
 
 ## Audit
+
+Rundă 2 (2026-10-11): cererea de test către proxy-ul TTS de la încărcare a fost înlocuită cu un opt-in explicit în panoul de voci; formulările „offline / fără telemetrie / rulează integral în browser” din antet, FAQ, pagina de confidențialitate și rezumatul EN au fost precizate (textul cărții se citește offline; imaginile, vocea online, traducerea și funcțiile AI folosesc servicii externe); nota de ficțiune despre numele reale ale membrilor echipajului a fost completată în pagină (RO și EN). Licența rămâne NEREZOLVATĂ.
 
 Audit: 2026-10-10 — claimurile de rețea din acest README corespund codului (fetch către `tts-proxy.chiuta.workers.dev` — inclusiv o cerere de test la încărcare —, `translate.googleapis.com`, `window.PI_API_ENDPOINT`; imagini de pe `alexio.tf`). Antetul aplicației spune „offline-first, fără telemetrie”, iar pagina conține formulări absolute („rulează integral în browser”, în rezumatul în engleză) care nu țin cont de aceste apeluri; licențele rămân contradictorii (JSON-LD CC BY-NC-ND 4.0 vs. antet CC0 1.0). Corectat accesibilitatea (contrast în toate temele, etichete la câmpurile de selectare).

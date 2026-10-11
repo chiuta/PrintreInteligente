@@ -3,7 +3,7 @@
   ============================================================================
   PrintreInteligente
   Autor: Alexandru-Ionuț Chiuță (Alexio · „Ecoul Stringurilor")
-  Aplicație single-file, offline-first, fără telemetrie.
+  Aplicație single-file; textul cărții se citește offline; fără telemetrie sau tracking. Serviciile externe (imagini de pe alexio.tf, voce online, traducere, funcții AI) sunt opționale sau la cerere.
 
   LICENȚĂ — TRADE-FREE + CC0 1.0 (Public Domain Dedication)
   Oferită liber, fără troc, în spiritul mișcării TROM (trom.tf). În măsura
@@ -177,7 +177,7 @@
   {"@type":"Question","name":"Cum funcționează audiobook-ul?","acceptedAnswer":{"@type":"Answer","text":"Audiobook-ul folosește Web Speech API — vocea nativă a browserului tău. Pe Windows, instalarea pachetului lingvistic Română din Setări oferă calitate mai bună. Fiecare personaj (Wiseman, Glover, Koch, Hansen, Houston, ARTEMIS-AI) poate primi o voce diferită."}},
   {"@type":"Question","name":"Ce sunt cele 17 scenarii alternative?","acceptedAnswer":{"@type":"Answer","text":"Cele 17 scenarii explorează toate locurile posibile de aselenizare de urgență pe Lună: Polul Sud (craterul Shackleton), Ecuatorul Lunar (lângă Apollo 11), Paralela 45°N, plus 5 scenarii extreme în spațiu profund. Fiecare scenariu are propria fizică, propria dramă și propriul mod de a supraviețui sau nu."}},
   {"@type":"Question","name":"Cine scrie cele 108 recenzii?","acceptedAnswer":{"@type":"Answer","text":"Recenziile sunt ficționale și provin din 12 categorii: critici literari, filosofi, cititori obișnuiți din România, AI-uri din viitor (CLAUDE-7, ARTEMIS-AI 2031), inteligențe non-umane (CORALUL din Europa lui Jupiter, STRUCTURA 7.7.1 din Titan), entități multidimensionale, stele reale (Proxima Centauri, Betelgeuse, Sagittarius A*), hipercivilizații galactice, metacivilizații cosmologice și personajele cărții înseși."}},
-  {"@type":"Question","name":"Pot citi cartea offline?","acceptedAnswer":{"@type":"Answer","text":"Da. Cartea poate fi descărcată ca fișier HTML dintr-un singur fișier și citită complet offline, fără conexiune la internet. De asemenea, poți tipări varianta A4 (115 pagini) direct din meniu. Site-ul nu are server propriu — funcționează complet în browserul tău."}},
+  {"@type":"Question","name":"Pot citi cartea offline?","acceptedAnswer":{"@type":"Answer","text":"Da. Cartea poate fi descărcată ca fișier HTML dintr-un singur fișier și citită complet offline, fără conexiune la internet. De asemenea, poți tipări varianta A4 (115 pagini) direct din meniu. Textul cărții se citește complet în browser, fără server propriu; funcțiile opționale (imagini de pe alexio.tf, voce online, traducere, „Recenzia ta”/„Ending-ul tău”) folosesc servicii externe doar când le activezi."}},
   {"@type":"Question","name":"Misiunea Artemis 2 a avut loc deja?","acceptedAnswer":{"@type":"Answer","text":"Misiunea Artemis 2 a NASA este o misiune de test cu survol lunar fără aselenizare. Această carte este o operă de ficțiune speculativă care plasează echipajul real (Wiseman, Koch, Glover, Hansen) într-un scenariu complet imaginar. Nu este afiliată cu NASA, CSA sau orice altă agenție."}},
   {"@type":"Question","name":"Cum susțin proiectul pe Patreon?","acceptedAnswer":{"@type":"Answer","text":"Pe Patreon (patreon.com/c/alexio_tf) poți alege nivelul de susținere care ți se potrivește. Susținerea ajută direct la finanțarea vocii române profesionale pentru audiobook, a ilustrațiilor originale, a scenariilor noi și a viitoarelor proiecte literare. Sau poți oferi o cafea prin buymeacoffee.com/echo.of.the.strings."}}
 ]}
@@ -1982,7 +1982,7 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
   </ul>
 
   <h2 style="font-size:20px;margin-top:30px;color:#6b3a1f">Disclaimer</h2>
-  <p>Misiunea reală Artemis 2 este o misiune de test fără aselenizare. Această carte este o operă de ficțiune și nu este afiliată cu NASA, CSA sau orice altă agenție. Numele astronauților reali apar exclusiv în contexte ficționale, în lumină pozitivă, în temeiul libertății de exprimare artistică.</p>
+  <p>Misiunea reală Artemis 2 este o misiune de test fără aselenizare. Această carte este o operă de ficțiune și nu este afiliată cu NASA, CSA sau orice altă agenție. Numele astronauților reali ai misiunii (Koch, Wiseman, Glover, Hansen) sunt folosite ca personaje într-un scenariu imaginar: replicile, gândurile și faptele atribuite lor sunt inventate și nu reprezintă declarații sau acțiuni ale persoanelor reale. Ele apar exclusiv în contexte ficționale, în lumină pozitivă, în temeiul libertății de exprimare artistică.</p>
 
   <h3 style="font-size:17px;margin-top:24px;color:#6b3a1f">Cartea — capitole principale</h3>
   <article>
@@ -2840,7 +2840,8 @@ const AB={
   voiceLang:'ro-RO',
   /* ── Azure Neural TTS ── */
   azureWorker:'https://tts-proxy.chiuta.workers.dev',
-  azureEnabled:false,      // setat true după ping de succes
+  azureOptIn:(function(){try{return localStorage.getItem('pi_azure_tts')==='1'}catch(e){return false}})(), // opt-in explicit: fără el nu pleacă nimic către proxy-ul TTS
+  azureEnabled:false,      // setat true după ping de succes (doar cu opt-in)
   azureChecking:false,     // previne ping dublu
   azureCache:new Map(),    // key→objectURL, max 60 intrări
   azureAudio:null,         // Audio element curent Azure
@@ -2858,8 +2859,8 @@ const AB={
   }
 };
 function abInit(){
-  /* Pornește ping-ul Azure imediat — asincron, nu blochează */
-  azurePing();
+  /* Ping-ul Azure pornește doar dacă utilizatorul a activat explicit vocea online (opt-in) */
+  if(AB.azureOptIn)azurePing();
   if(!AB.synth)return;
   const loadV=()=>{
     const list=AB.synth.getVoices();
@@ -3179,7 +3180,7 @@ function abToggleVoicesPanel(){
 function abRenderVoicePicker(){
   const p=document.getElementById('abVoicesPanel');
   if(!p)return;
-  if(!AB.voices.length){p.innerHTML='<div style="font-size:11px;opacity:.6;padding:6px 0">Nicio voce disponibilă pe acest dispozitiv. Browserul tău nu expune motoare TTS — încearcă Chrome, Edge, Safari sau Firefox recent.</div>';return}
+  if(!AB.voices.length){p.innerHTML=azureOptHTML()+'<div style="font-size:11px;opacity:.6;padding:6px 0">Nicio voce disponibilă pe acest dispozitiv. Browserul tău nu expune motoare TTS — încearcă Chrome, Edge, Safari sau Firefox recent.</div>';return}
   /* Info banner: Azure status (primar) sau Web Speech fallback */
   const narr=AB.voiceMap.narrator;
   const hasRo=AB.voices.some(v=>v.lang.toLowerCase().startsWith('ro'));
@@ -3196,9 +3197,9 @@ function abRenderVoicePicker(){
     }
     if(!hasRo){
       info+='<br>⚠ Nicio voce română în browser. Se folosește o voce latină. '
-           +'<br><span style="color:#7ff">✓ Azure Neural e configurat ca motor primar — va fi activ la prima conexiune.</span>';
+           +'<br><span style="opacity:.85">Poți activa, opțional, vocea online Azure Neural din caseta de mai sus.</span>';
     } else {
-      info+='<br><span style="opacity:.7;font-size:9px">Azure Neural se verifică... dacă worker-ul răspunde, vocea se va comuta automat.</span>';
+      info+=AB.azureOptIn?'<br><span style="opacity:.7;font-size:9px">Azure Neural se verifică... dacă worker-ul răspunde, vocea se va comuta automat.</span>':'';
     }
   }
   info+='</div>';
@@ -3216,7 +3217,7 @@ function abRenderVoicePicker(){
     {k:'artemis',label:'ARTEMIS-AI',color:AB.colors.artemis},
     {k:'narratorAI',label:'Narator AI',color:AB.colors.narratorAI}
   ];
-  let html=info;
+  let html=azureOptHTML()+info;
   roles.forEach(r=>{
     const cur=AB.voiceMap[r.k];
     const curIdx=cur?AB.voices.indexOf(cur):-1;
@@ -3534,9 +3535,26 @@ function azureUpdateBadge(){
   }
 }
 
-/* Ping async — verifică dacă worker-ul Azure răspunde */
+/* Opt-in pentru vocea online (Azure Neural prin tts-proxy.chiuta.workers.dev) */
+function azureOptHTML(){
+  return '<div class="ab-voices-info" style="margin-bottom:8px"><label style="display:flex;gap:8px;align-items:flex-start;cursor:pointer"><input type="checkbox" id="abAzureOpt" onchange="abSetAzureOptIn(this.checked)"'+(AB.azureOptIn?' checked':'')+' style="margin-top:2px;flex:none"><span>Voce online Azure Neural (opțional, implicit oprită). Dacă o activezi, textul citit de audiobook este trimis la <strong>tts-proxy.chiuta.workers.dev</strong> (Cloudflare Worker, către Microsoft Azure) pentru sinteză vocală; fără ea se folosește vocea locală a browserului și nu pleacă nimic.</span></label></div>';
+}
+function abSetAzureOptIn(on){
+  AB.azureOptIn=!!on;
+  try{if(on)localStorage.setItem('pi_azure_tts','1');else localStorage.removeItem('pi_azure_tts');}catch(e){}
+  if(on){azurePing();}
+  else{
+    AB.azureEnabled=false;
+    AB.azureCache.forEach(url=>{try{URL.revokeObjectURL(url);}catch(e){}});
+    AB.azureCache.clear();
+    azureUpdateBadge();
+    if(AB.playing){abCancel();abSpeak(AB.pIdx);}
+  }
+  if(document.getElementById('abVoicesPanel'))abRenderVoicePicker();
+}
+/* Ping async — verifică dacă worker-ul Azure răspunde (doar după opt-in) */
 async function azurePing(){
-  if(AB.azureChecking||AB.azureEnabled)return;
+  if(!AB.azureOptIn||AB.azureChecking||AB.azureEnabled)return;
   AB.azureChecking=true;
   try{
     const r=await fetch(AB.azureWorker,{
@@ -8762,7 +8780,7 @@ if(document.readyState==='loading'){
 <p class="sub">Ultima actualizare: aprilie 2026 · Aplicabil global · Jurisdicție principală: România / Uniunea Europeană</p>
 
 <div class="warnbox">
-<strong>⚠ Notă importantă de ficțiune.</strong> „Printre inteligențe” este o <strong>operă literară de ficțiune științifico-fantastică</strong>. Orice eveniment, dialog, decizie operațională, procedură tehnică, rezultat al simulărilor sau consecință descrisă în această carte este <strong>complet imaginar</strong>. Misiunea reală <em>Artemis 2</em> este o misiune de test cu survol lunar fără aselenizare; capsula Orion nu are capabilități de aselenizare; echipajul real nu a fost implicat în niciunul dintre scenariile descrise. Orice asemănare cu evenimente reale dincolo de datele publice ale misiunii este folosită exclusiv ca punct de plecare narativ.
+<strong>⚠ Notă importantă de ficțiune.</strong> „Printre inteligențe” este o <strong>operă literară de ficțiune științifico-fantastică</strong>. Orice eveniment, dialog, decizie operațională, procedură tehnică, rezultat al simulărilor sau consecință descrisă în această carte este <strong>complet imaginar</strong>. Misiunea reală <em>Artemis 2</em> este o misiune de test cu survol lunar fără aselenizare; capsula Orion nu are capabilități de aselenizare; echipajul real nu a fost implicat în niciunul dintre scenariile descrise; numele membrilor săi (Koch, Wiseman, Glover, Hansen) sunt folosite doar ca personaje de ficțiune, iar replicile și faptele atribuite lor sunt inventate. Orice asemănare cu evenimente reale dincolo de datele publice ale misiunii este folosită exclusiv ca punct de plecare narativ.
 </div>
 
 <h3>1. Absența afilierii și a avizării</h3>
@@ -9596,11 +9614,11 @@ document.addEventListener('keydown',function(e){
 </div>
 
 <h3>1. Arhitectura generală</h3>
-<p>Acest site este implementat ca o <strong>aplicație web statică, mono-fișier</strong>. Întregul conținut (text, interfață, logică interactivă, stiluri, date) este inclus într-un singur document <code>.html</code>. Nu există server backend care să proceseze cereri, nu există bază de date, nu există cont de utilizator, nu există sesiune server-side, nu există API propriu găzduit pe serverul nostru.</p>
+<p>Acest site este implementat ca o <strong>aplicație web statică, mono-fișier</strong>. Întregul conținut (text, interfață, logică interactivă, stiluri, date) este inclus într-un singur document <code>.html</code>. Nu există server backend care să proceseze cereri, bază de date, cont de utilizator sau sesiune server-side. Singurele componente de server ale autorului sunt două proxy-uri Cloudflare Worker (voce online și funcții AI), folosite numai la cerere, așa cum este descris în secțiunea de rețea a acestei pagini.</p>
 <p>Această arhitectură „<em>single-file application</em>” are trei consecințe importante:</p>
 <ul>
 <li>fișierul poate fi descărcat și citit <strong>offline</strong>, fără conexiune la internet;</li>
-<li>nu există server care să poată fi compromis și care să scurgă date personale;</li>
+<li>aplicația nu are un server propriu care să colecteze date personale; serviciile externe opționale (voce online, traducere, funcții AI) primesc textul doar când le folosești;</li>
 <li>verificarea independentă a afirmațiilor noastre privind confidențialitatea se poate face prin simpla inspectare a codului-sursă (click-dreapta → „Vizualizează sursa paginii”).</li>
 </ul>
 
@@ -9672,9 +9690,9 @@ document.addEventListener('keydown',function(e){
 <p>Toate afirmațiile din această politică de confidențialitate și din secțiunea de transparență tehnică pot fi <strong>verificate independent</strong> de orice utilizator, fără instrumente speciale:</p>
 <ul>
 <li><strong>Codul-sursă</strong> — întregul site este un singur fișier HTML. Click-dreapta → „Vizualizează sursa paginii" (sau <code>Ctrl+U</code>) permite inspectarea completă a codului, a scripturilor și a stilurilor;</li>
-<li><strong>Absența cererilor de rețea</strong> — deschideți <em>Instrumente pentru dezvoltatori</em> → fila <em>Network</em> și reîncărcați pagina: nu se fac cereri către servere terțe de tracking, analytics sau publicitate;</li>
+<li><strong>Absența cererilor de rețea</strong> — deschideți <em>Instrumente pentru dezvoltatori</em> → fila <em>Network</em> și reîncărcați pagina: nu se fac cereri către servere de tracking, analytics sau publicitate. La încărcare se cer doar imaginile de pe <code>alexio.tf</code>; celelalte cereri (voce online, traducere, funcții AI) apar numai după ce activezi funcția respectivă;</li>
 <li><strong>Stocare locală</strong> — fila <em>Application</em> → <em>Local Storage</em> arată exact ce date sunt stocate, sub ce chei, și pot fi șterse oricând;</li>
-<li><strong>Funcționare offline</strong> — descărcați fișierul HTML și deschideți-l fără conexiune la internet pentru a confirma că nu depinde de servere externe;</li>
+<li><strong>Funcționare offline</strong> — descărcați fișierul HTML și deschideți-l fără conexiune la internet pentru a confirma că textul cărții nu depinde de servere externe (imaginile, vocea online, traducerea și funcțiile AI da);</li>
 <li><strong>Lipsa cookie-urilor terțe</strong> — verificabilă prin fila <em>Application</em> → <em>Cookies</em>.</li>
 </ul>
 <p>Autorul încurajează verificarea independentă și consideră transparența ca pe o obligație, nu ca pe o opțiune. Orice discrepanță între afirmațiile din această secțiune și comportamentul real al codului poate fi raportată la adresa de contact <a href="mailto:alexio@trom.tf">alexio@trom.tf</a>.</p>
@@ -9722,7 +9740,7 @@ document.addEventListener('keydown',function(e){
 <p>Beyond the story: 108 fictional reviews from literary critics, philosophers, readers, future AIs, alien intelligences, stars, hyper-civilizations, and entities from the end of the universe. Each rates the book on its own scale — from black holes that find it irrelevant to dark matter that recognizes itself in the unseen narrator.</p>
 
 <h3 style="color:#8b4513;margin:18px 0 8px;font-size:16px">Why It Matters</h3>
-<p>This is one of the first long-form fictional texts that uses AI as both subject and co-author transparently. Romanian SF reaches back to Ion Hobana and Vladimir Colin; this book pushes the tradition into the post-human era. It's free, runs entirely in your browser (single HTML file, offline-capable), and respects your privacy by design — no tracking, no cookies, no analytics.</p>
+<p>This is one of the first long-form fictional texts that uses AI as both subject and co-author transparently. Romanian SF reaches back to Ion Hobana and Vladimir Colin; this book pushes the tradition into the post-human era. It's free, the book text is read entirely in your browser (single HTML file, offline-capable), and it respects your privacy by design — no tracking, no cookies, no analytics. <em>Fiction notice:</em> the names of the real Artemis II crew members (Koch, Wiseman, Glover, Hansen) are used only as characters in an imaginary scenario; the words and deeds attributed to them are invented and are not statements or actions of the real people. Optional features (images from alexio.tf, online voice, translation, AI-generated reviews/endings) use external services only when you enable or use them.</p>
 
 <div style="margin-top:24px;padding:18px;background:linear-gradient(135deg,#1e3a5f,#2c5282);border-radius:8px;color:#fff;text-align:center">
 <p style="margin:0 0 12px;font-size:14px">If you'd like to support a Romanian voice for the audiobook, new illustrations, or future stories:</p>
