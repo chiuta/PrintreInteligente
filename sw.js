@@ -10,7 +10,7 @@
 /* Printre inteligențe — Service Worker v11
    DOCUMENT = network-first (o reîncărcare aduce mereu ultima versiune; evită „cache zombi").
    Restul asset-urilor = cache-first cu populare leneșă. Include kill-switch. */
-const CACHE = 'pi-v11';
+const CACHE = 'pi-v12';
 const SHELL = ['/'];
 
 self.addEventListener('install', e => {

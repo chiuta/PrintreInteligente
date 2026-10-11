@@ -6,9 +6,11 @@ Roman SF interactiv despre misiunea Artemis 2, „recenzat de stele și hiperciv
 
 ![Captura de ecran](screenshot.png)
 
+**Ultima actualizare:** 11 octombrie 2026
+
 ## Ce este
 
-„Printre inteligențe" este o carte vie, publicată ca aplicație web (un fișier `index.html` mare, plus `sw.js`, `robots.txt`, `sitemap.xml` și imagini de previzualizare). Romanul, inspirat de misiunea Artemis 2 a NASA, plasează echipajul într-un scenariu integral ficțional, în care o defecțiune tehnică îi obligă la o aselenizare de urgență. Conform paginii, cartea conține un Prolog, două capitole, un Epilog, 17 scenarii alternative, grupate în 5 familii, și 108 recenzii fictive în 12 categorii (literare, filosofice, ale cititorilor, ale AI din viitor, NHI, hipercivilizații etc.). Pagina declară că este o operă de ficțiune, nu este afiliată NASA sau CSA, și că este o colaborare om-AI, dezvăluită în Epilog.
+„Printre inteligențe" este o carte vie, publicată ca aplicație web (un fișier `index.html` mare, plus `sw.js`, `robots.txt`, `sitemap.xml` și imagini de previzualizare). Romanul, inspirat de misiunea Artemis 2 a NASA (zbor de test lunar, încheiat pe 10 aprilie 2026), plasează echipajul într-un scenariu integral ficțional, în care o defecțiune tehnică îi obligă la o aselenizare de urgență. Conform paginii, cartea conține un Prolog, două capitole, un Epilog, 17 scenarii alternative, grupate în 5 familii, și 108 recenzii fictive în 12 categorii (literare, filosofice, ale cititorilor, ale AI din viitor, NHI, hipercivilizații etc.). Pagina declară că este o operă de ficțiune, nu este afiliată NASA sau CSA, și că este o colaborare om-AI, dezvăluită în Epilog.
 
 ## Funcții
 
@@ -66,6 +68,16 @@ Descarcă repository-ul și deschide `index.html`: textul cărții este inclus �
 ## Licență
 
 NEREZOLVAT: licența nu este declarată explicit în acest repository și nu am ales una. Semnale contradictorii în fișiere: metadatele JSON-LD ale paginii indică `https://creativecommons.org/licenses/by-nc-nd/4.0/`, iar antetele din `index.html`, `sw.js` și `claude-proxy.worker.js` indică „TRADE-FREE + CC0 1.0”. Conținutul cărții este o colaborare (autor + model AI, dezvăluită în Epilog) și include texte fictive atribuite unor terți (recenzii, personaje), deci regimul de drepturi trebuie stabilit de autor/coautori; până atunci, nu presupune nicio licență de reutilizare. Nu există fișier LICENSE.
+
+## Istoric / Changelog
+
+### 11 octombrie 2026
+- Actualizat: misiunea reală Artemis 2 nu mai este descrisă ca „programată”: zbor de test în jurul Lunii, lansat în aprilie 2026, amerizare în Pacific pe 10 aprilie 2026 (echipaj Wiseman, Glover, Koch, Hansen). Surse verificate la 11.10.2026: NBC Palm Springs (10.04.2026), NASA. Textul ficțional al romanului nu a fost modificat.
+- Reparat: intro-ul cinematic se poate închide de la tastatură (butonul × este acum `<button>`, plus tasta Escape); durata de 18,35 s a intro-ului rămâne decizie artistică a autorului.
+- Reparat: imaginile cărții (servite de pe alexio.tf) au înlocuitor cu textul alternativ când rețeaua lipsește, în loc de pictogramă ruptă.
+- Reparat: ferestrele/overlay-urile închise nu mai rămân focalizabile (visibility:hidden); `<footer>`, elemente decorative `aria-hidden`, fără `tabindex` pozitiv; 0 violări axe-core la 1280 și 360 px.
+- Adăugat: politică CSP (meta) cu gazdele declarate (alexio.tf, translate.googleapis.com, tts-proxy.chiuta.workers.dev, claude-proxy.alexio.workers.dev); cache Service Worker pi-v12.
+- Neschimbat: ≈360 de handlere `onclick` inline (CSP păstrează `'unsafe-inline'`), contorul „citesc acum” rămâne simulat și etichetat astfel; licența/drepturile de autor nu au fost modificate (decizia autorului).
 
 ## Autor
 

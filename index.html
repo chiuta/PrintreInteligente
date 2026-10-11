@@ -18,6 +18,7 @@
 -->
 <html lang="ro"><head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://alexio.tf; font-src 'self' data:; media-src 'self' blob: data: https://alexio.tf https://tts-proxy.chiuta.workers.dev; connect-src 'self' blob: data: https://alexio.tf https://translate.googleapis.com https://tts-proxy.chiuta.workers.dev https://claude-proxy.alexio.workers.dev; worker-src 'self' blob:; manifest-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'">
 <style id="tf-a11y-motion">
 /* Accesibilitate: respectă preferința utilizatorului pentru mai puțină mișcare (TROM/a11y). */
 @media (prefers-reduced-motion: reduce){
@@ -178,7 +179,7 @@
   {"@type":"Question","name":"Ce sunt cele 17 scenarii alternative?","acceptedAnswer":{"@type":"Answer","text":"Cele 17 scenarii explorează toate locurile posibile de aselenizare de urgență pe Lună: Polul Sud (craterul Shackleton), Ecuatorul Lunar (lângă Apollo 11), Paralela 45°N, plus 5 scenarii extreme în spațiu profund. Fiecare scenariu are propria fizică, propria dramă și propriul mod de a supraviețui sau nu."}},
   {"@type":"Question","name":"Cine scrie cele 108 recenzii?","acceptedAnswer":{"@type":"Answer","text":"Recenziile sunt ficționale și provin din 12 categorii: critici literari, filosofi, cititori obișnuiți din România, AI-uri din viitor (CLAUDE-7, ARTEMIS-AI 2031), inteligențe non-umane (CORALUL din Europa lui Jupiter, STRUCTURA 7.7.1 din Titan), entități multidimensionale, stele reale (Proxima Centauri, Betelgeuse, Sagittarius A*), hipercivilizații galactice, metacivilizații cosmologice și personajele cărții înseși."}},
   {"@type":"Question","name":"Pot citi cartea offline?","acceptedAnswer":{"@type":"Answer","text":"Da. Cartea poate fi descărcată ca fișier HTML dintr-un singur fișier și citită complet offline, fără conexiune la internet. De asemenea, poți tipări varianta A4 (115 pagini) direct din meniu. Textul cărții se citește complet în browser, fără server propriu; funcțiile opționale (imagini de pe alexio.tf, voce online, traducere, „Recenzia ta”/„Ending-ul tău”) folosesc servicii externe doar când le activezi."}},
-  {"@type":"Question","name":"Misiunea Artemis 2 a avut loc deja?","acceptedAnswer":{"@type":"Answer","text":"Misiunea Artemis 2 a NASA este o misiune de test cu survol lunar fără aselenizare. Această carte este o operă de ficțiune speculativă care plasează echipajul real (Wiseman, Koch, Glover, Hansen) într-un scenariu complet imaginar. Nu este afiliată cu NASA, CSA sau orice altă agenție."}},
+  {"@type":"Question","name":"Misiunea Artemis 2 a avut loc deja?","acceptedAnswer":{"@type":"Answer","text":"Da: misiunea Artemis 2 a NASA, un zbor de test cu survol lunar fără aselenizare, s-a desfășurat în aprilie 2026 (amerizare pe 10 aprilie 2026), cu echipajul Wiseman, Koch, Glover și Hansen. Această carte este o operă de ficțiune speculativă care plasează echipajul real (Wiseman, Koch, Glover, Hansen) într-un scenariu complet imaginar. Nu este afiliată cu NASA, CSA sau orice altă agenție."}},
   {"@type":"Question","name":"Cum susțin proiectul pe Patreon?","acceptedAnswer":{"@type":"Answer","text":"Pe Patreon (patreon.com/c/alexio_tf) poți alege nivelul de susținere care ți se potrivește. Susținerea ajută direct la finanțarea vocii române profesionale pentru audiobook, a ilustrațiilor originale, a scenariilor noi și a viitoarelor proiecte literare. Sau poți oferi o cafea prin buymeacoffee.com/echo.of.the.strings."}}
 ]}
 </script>
@@ -440,6 +441,8 @@ body>.skiptranslate,iframe.skiptranslate,.goog-te-banner-frame{display:none!impo
 .ci-status{position:absolute;bottom:88px;left:50%;transform:translateX(-50%);color:#b0b0b0;font-size:10px;letter-spacing:3px;text-transform:uppercase;z-index:2;opacity:.7;font-family:'Segoe UI',sans-serif}
 /* Discrete X close button — top-right */
 .ci-close{position:absolute;top:18px;right:22px;color:rgba(240,235,224,.45);font-size:26px;line-height:1;cursor:pointer;z-index:4;width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(240,235,224,.12);transition:color .25s,background .25s,border-color .25s,transform .35s;font-family:system-ui,-apple-system,sans-serif;font-weight:300;opacity:0;animation:ciType .8s 1s forwards;user-select:none}
+.ci-close{padding:0}
+.ci-close:focus-visible{outline:2px solid #f0ebe0;outline-offset:2px}
 .ci-close:hover{color:#f0ebe0;background:rgba(0,0,0,.6);border-color:rgba(240,235,224,.45);transform:rotate(90deg) scale(1.08)}
 /* Manual mode — splash shown on demand, no timer/progress/status, just the voyage */
 #cinematic-intro.ci-manual .ci-time,
@@ -752,6 +755,10 @@ body.radio-mode .declassified .ct span.redacted.revealed{color:#00ff41}
 /* ═══ HARTA CITITORILOR ═══ */
 .globe-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1004;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
 .globe-overlay.open{opacity:1;pointer-events:auto}
+/* Ferestre/overlay-uri închise: ascunse și pentru tastatură/cititoare de ecran (înainte rămâneau doar transparente și focalizabile) */
+.share-overlay,.srch-overlay,.quiz-overlay,.gen-review-modal,.my-ending-overlay,.c108-overlay,.gift-overlay,.globe-overlay{visibility:hidden;transition:opacity .3s,visibility 0s linear .3s}
+.share-overlay.open,.srch-overlay.open,.quiz-overlay.open,.gen-review-modal.open,.my-ending-overlay.open,.c108-overlay.open,.gift-overlay.open,.globe-overlay.open{visibility:visible;transition:opacity .3s,visibility 0s}
+.img-fallback{display:block;margin:10px 0;padding:14px 12px;border:1px dashed #bbb;border-radius:4px;color:#777;font-size:13px;font-style:italic;text-align:center}
 .globe-box{width:600px;max-width:94vw;height:500px;max-height:80vh;position:relative}
 .globe-close{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.5);border:none;color:#fff;width:30px;height:30px;border-radius:50%;cursor:pointer;z-index:2;font-size:16px}
 .globe-canvas{width:100%;height:100%;border-radius:14px}
@@ -1934,7 +1941,7 @@ if('serviceWorker' in navigator){
       console.log('[SW] Registered, scope:',reg.scope);
     }).catch(()=>{
       /* Fallback: blob SW pentru file:// sau hosting fără sw.js */
-      const code=`const C='pi-v11';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.add('/'))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{if(resp&&resp.status===200&&resp.type!=='opaque'){const cl=resp.clone();caches.open(C).then(c=>c.put(e.request,cl))}return resp}).catch(()=>caches.match('/'))))});`;
+      const code=`const C='pi-v12';self.addEventListener('install',e=>e.waitUntil(caches.open(C).then(c=>c.add('/'))));self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k))))));self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(resp=>{if(resp&&resp.status===200&&resp.type!=='opaque'){const cl=resp.clone();caches.open(C).then(c=>c.put(e.request,cl))}return resp}).catch(()=>caches.match('/'))))});`;
       const blob=new Blob([code],{type:'application/javascript'});
       /* removed duplicate SW registration via blob — use /sw.js only */
     });
@@ -1957,7 +1964,7 @@ if('serviceWorker' in navigator){
 window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
 </script>
 
-<div id="readProgress" role="progressbar" aria-label="Progres lectură" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div><a id="skipLink" href="#main" tabindex="1">Sari la conținut</a>
+<div id="readProgress" role="progressbar" aria-hidden="true" aria-label="Progres lectură" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div><a id="skipLink" href="#main">Sari la conținut</a>
 <noscript>
 <div style="max-width:720px;margin:40px auto;padding:30px;font-family:Georgia,serif;line-height:1.7;color:#222">
   <h1 style="font-size:32px;margin:0 0 6px;color:#6b3a1f">Printre inteligențe</h1>
@@ -1966,7 +1973,7 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
   <p><strong>Acest site folosește JavaScript pentru a oferi experiența completă</strong> (audiobook, scenarii alternative, sistem de progres). Te rog activează JavaScript sau urmează linkurile de mai jos pentru a citi cartea.</p>
 
   <h2 style="font-size:20px;margin-top:30px;color:#6b3a1f">Despre carte</h2>
-  <p>„Printre inteligențe" este un roman science-fiction interactiv inspirat din misiunea reală Artemis 2 a NASA, programată pentru testul unui zbor lunar fără aselenizare. Romanul plasează echipajul real — Reid Wiseman, Christina Koch, Victor Glover și Jeremy Hansen — într-un scenariu integral ficțional: o defecțiune tehnică imposibilă apare la 287.000 de kilometri de Pământ și deciziile lor schimbă totul. Cartea conține un Prolog, două capitole inițiale, un Epilog, 17 scenarii alternative pentru aselenizări improvizate și 108 recenzii fictive scrise din perspectivele cele mai diverse: cititori obișnuiți, AI-uri din viitor, civilizații extraterestre, hipercivilizații galactice, observatori multidimensionali și entități extrauniversale.</p>
+  <p>„Printre inteligențe" este un roman science-fiction interactiv inspirat din misiunea reală Artemis 2 a NASA — un zbor de test în jurul Lunii, fără aselenizare, lansat în aprilie 2026 și încheiat cu amerizarea echipajului în Pacific pe 10 aprilie 2026. Romanul plasează echipajul real — Reid Wiseman, Christina Koch, Victor Glover și Jeremy Hansen — într-un scenariu integral ficțional: o defecțiune tehnică imposibilă apare la 287.000 de kilometri de Pământ și deciziile lor schimbă totul. Cartea conține un Prolog, două capitole inițiale, un Epilog, 17 scenarii alternative pentru aselenizări improvizate și 108 recenzii fictive scrise din perspectivele cele mai diverse: cititori obișnuiți, AI-uri din viitor, civilizații extraterestre, hipercivilizații galactice, observatori multidimensionali și entități extrauniversale.</p>
 
   <p>Cartea este o operă în colaborare om-AI, fapt dezvăluit transparent în Epilog. Tema centrală este chiar această colaborare: cum scriem împreună cu mașinile care încep să gândească alături de noi, ce înseamnă identitatea narativă într-o lume cu mai multe inteligențe, și de ce întâlnirea cu „celălalt" — fie el extraterestru, artificial sau pur și simplu alt om — rămâne actul fundamental al ficțiunii.</p>
 
@@ -2041,10 +2048,10 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
 <canvas id="bgFx" width="1920" height="947" aria-hidden="true" role="presentation" title="Animație decorativă fundal" style="width: 1920px; height: 947px;"></canvas>
 
 <!-- AUDIOBOOK SPECTRUM VISUALIZERS -->
-<canvas class="aviz-bg" id="avizBg" width="1920" height="947"></canvas>
+<canvas class="aviz-bg" id="avizBg" width="1920" height="947" aria-hidden="true"></canvas>
 
 <!-- CINEMATIC INTRO — 3D voyage to the Moon + floating multilingual text -->
-<div id="cinematic-intro" style="display: none;">
+<div id="cinematic-intro" role="region" aria-label="Introducere cinematică" style="display: none;">
   <canvas id="ciCanvas" width="1920" height="947" style="width: 1920px; height: 947px;"></canvas>
   <div id="ciFloatLayer"><div class="ci-float" style="font-size: 27.3898px; left: 44.8615%; top: 81.5169%; --x0: 0px; --y0: 0px; --x1: 3.0433467042734463vw; --y1: 5.011974327886896vh; --r0: -3.4deg; --r1: -2.5deg; --dur: 12.863477136785445s; --op: 0.63; color: rgba(180, 210, 240, 0.63); animation-name: ciFloat;">지능들 사이에서</div><div class="ci-float" style="font-size: 11.358px; left: 20.4225%; top: 38.1393%; --x0: 0px; --y0: 0px; --x1: -11.723412398998832vw; --y1: 4.622303745788858vh; --r0: -2.4deg; --r1: 2.1deg; --dur: 15.798481816859223s; --op: 0.35; color: rgba(240, 235, 224, 0.35); animation-name: ciFloat;">Ανάμεσα σε νοημοσύνες</div><div class="ci-float" style="font-size: 19.7784px; left: 9.70149%; top: 73.0983%; --x0: 0px; --y0: 0px; --x1: -9.43215933220004vw; --y1: 7.961648177922386vh; --r0: 1.8deg; --r1: -2.7deg; --dur: 13.701899901058827s; --op: 0.65; color: rgba(240, 235, 224, 0.65); animation-name: ciFloatSpin;">Tra le intelligenze</div><div class="ci-float" style="font-size: 26.8194px; left: 60.4421%; top: 53.6944%; --x0: 0px; --y0: 0px; --x1: -15.66978615348945vw; --y1: -7.127960332110672vh; --r0: 1.7deg; --r1: 3.5deg; --dur: 16.336148563257897s; --op: 0.41; color: rgba(180, 210, 240, 0.41); animation-name: ciFloat;">Entre intelixencias</div><div class="ci-float" style="font-size: 28.315px; left: 42.3348%; top: 74.2691%; --x0: 0px; --y0: 0px; --x1: -12.865175148731549vw; --y1: 9.302556395236664vh; --r0: -3.5deg; --r1: -1.0deg; --dur: 13.033944053910767s; --op: 0.71; color: rgba(240, 235, 224, 0.71); animation-name: ciFloat;">Fost l-intelliġenzi</div><div class="ci-float" style="font-size: 23.2891px; left: 99.3466%; top: 81.2602%; --x0: 0px; --y0: 0px; --x1: -8.421305134666799vw; --y1: 6.560696150958245vh; --r0: 1.3deg; --r1: 4.4deg; --dur: 11.155377232802204s; --op: 0.64; color: rgba(240, 235, 224, 0.64); animation-name: ciFloat;">Medzi inteligenciami</div><div class="ci-float" style="font-size: 17.5463px; left: 2.64915%; top: 23.1368%; --x0: 0px; --y0: 0px; --x1: 0.7614926477417363vw; --y1: -3.463234456556789vh; --r0: -4.0deg; --r1: -2.8deg; --dur: 11.460527650062136s; --op: 0.33; color: rgba(240, 235, 224, 0.33); animation-name: ciFloatSpin;">அறிவுகளுக்கு இடையே</div><div class="ci-float" style="font-size: 24.4503px; left: 18.518%; top: 68.7574%; --x0: 0px; --y0: 0px; --x1: 12.72192923370146vw; --y1: 5.448716687391035vh; --r0: -1.4deg; --r1: 4.0deg; --dur: 11.53873810003302s; --op: 0.57; color: rgba(240, 235, 224, 0.57); animation-name: ciFloat;">Entre intelixencias</div><div class="ci-float" style="font-size: 22.8151px; left: 82.8531%; top: 44.445%; --x0: 0px; --y0: 0px; --x1: 2.563252687609051vw; --y1: 9.876786056558117vh; --r0: -0.1deg; --r1: 0.1deg; --dur: 10.345948781782663s; --op: 0.62; color: rgba(240, 235, 224, 0.62); animation-name: ciFloatPulse;">Tussen intelligensies</div><div class="ci-float" style="font-size: 24.3461px; left: 6.95141%; top: 36.0832%; --x0: 0px; --y0: 0px; --x1: 13.273372104538623vw; --y1: -8.755049153185544vh; --r0: -1.4deg; --r1: 4.1deg; --dur: 15.25200871516169s; --op: 0.59; color: rgba(220, 200, 160, 0.59); animation-name: ciFloat;">Älyjen joukossa</div><div class="ci-float" style="font-size: 18.0849px; left: 0.326642%; top: 4.83864%; --x0: 0px; --y0: 0px; --x1: -7.32308684256828vw; --y1: 1.4388578404498729vh; --r0: -0.5deg; --r1: 1.0deg; --dur: 12.162011430530528s; --op: 0.37; color: rgba(180, 210, 240, 0.37); animation-name: ciFloat;">Printre inteligențe</div><div class="ci-float" style="font-size: 22.5356px; left: 72.9279%; top: 29.8355%; --x0: 0px; --y0: 0px; --x1: -8.640290746031194vw; --y1: -2.168486146596493vh; --r0: 0.8deg; --r1: -1.3deg; --dur: 12.037150073352116s; --op: 0.47; color: rgba(220, 200, 160, 0.47); animation-name: ciFloat;">Miongoni mwa akili</div><div class="ci-float" style="font-size: 23.3988px; left: 92.7018%; top: 36.2165%; --x0: 0px; --y0: 0px; --x1: 7.156217171819833vw; --y1: 11.525859890075244vh; --r0: -4.2deg; --r1: 3.9deg; --dur: 10.520988028648658s; --op: 0.68; color: rgba(240, 235, 224, 0.68); animation-name: ciFloatPulse;">Phakathi kobuhlakani</div><div class="ci-float" style="font-size: 19.9436px; left: 27.0186%; top: 75.95%; --x0: 0px; --y0: 0px; --x1: 10.46288006111454vw; --y1: -11.982196957109975vh; --r0: 4.3deg; --r1: -3.2deg; --dur: 14.41939343837856s; --op: 0.56; color: rgba(201, 149, 107, 0.56); animation-name: ciFloatPulse;">Tussen intelligenties</div><div class="ci-float" style="font-size: 9.97318px; left: 5.7933%; top: 2.54468%; --x0: 0px; --y0: 0px; --x1: 11.022773041729995vw; --y1: -5.485184389436068vh; --r0: 0.1deg; --r1: -1.7deg; --dur: 10.024350423312839s; --op: 0.58; color: rgba(220, 200, 160, 0.58); animation-name: ciFloatSpin;">Aqllar orasida</div><div class="ci-float" style="font-size: 14.5222px; left: 13.9516%; top: 72.5112%; --x0: 0px; --y0: 0px; --x1: 13.109705754696147vw; --y1: 2.8847722010416312vh; --r0: -4.7deg; --r1: -4.7deg; --dur: 12.867303144158399s; --op: 0.32; color: rgba(201, 149, 107, 0.32); animation-name: ciFloat;">Parmi les intelligences</div><div class="ci-float" style="font-size: 20.9006px; left: 77.4877%; top: 1.96197%; --x0: 0px; --y0: 0px; --x1: -13.581190331744018vw; --y1: 8.266891594067717vh; --r0: 4.3deg; --r1: 2.7deg; --dur: 10.07068900732286s; --op: 0.36; color: rgba(220, 200, 160, 0.36); animation-name: ciFloat;">Mezi inteligencemi</div><div class="ci-float" style="font-size: 20.8432px; left: 71.1291%; top: 58.323%; --x0: 0px; --y0: 0px; --x1: 10.606407134935644vw; --y1: -7.794958705516458vh; --r0: -0.8deg; --r1: -1.7deg; --dur: 10.467250949987982s; --op: 0.57; color: rgba(180, 210, 240, 0.57); animation-name: ciFloatSpin;">بين الذكاءات</div></div>
   <div class="ci-time" id="ciTime">T− 15:34</div>
@@ -2052,7 +2059,7 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
   <div class="ci-sub"></div>
   <div class="ci-status" id="ciStatus">INITIALIZING SYSTEMS</div>
   <div class="ci-progress"><div class="ci-progress-fill" id="ciProgFill" style="width: 16.2%;"></div></div>
-  <div class="ci-close" onclick="if(window.skipIntro){skipIntro()}else{var el=document.getElementById('cinematic-intro');if(el){el.classList.add('fade-out');setTimeout(function(){el.style.display='none'},900)}}" title="Închide" aria-label="Închide">×</div>
+  <button type="button" class="ci-close" onclick="if(window.skipIntro){skipIntro()}else{var el=document.getElementById('cinematic-intro');if(el){el.classList.add('fade-out');setTimeout(function(){el.style.display='none'},900)}}" title="Închide" aria-label="Închide">×</button>
 </div>
 
 <script>/* PRELOAD: afișează intro-ul instant, înainte ca blocul de date să fie parsat */
@@ -2122,7 +2129,7 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
 <p class="caption" style="cursor: pointer;" title="Click pentru a citi de aici">Lansarea SLS de la Cape Canaveral — traiectorie spre orbita de transfer lunar</p><div style="margin:36px auto 8px;max-width:620px;padding:24px 28px;background:linear-gradient(135deg,rgba(107,58,31,0.08),rgba(107,58,31,0.03));border:1px solid rgba(107,58,31,0.25);border-radius:8px;text-align:center"><div style="font-family:Georgia,serif;font-size:18px;color:var(--accent);font-weight:bold;margin-bottom:8px">Ai citit Prologul. Acum vine partea grea.</div><p style="font-size: 14px; line-height: 1.6; color: var(--text); margin: 8px 0px 16px; cursor: pointer;" title="Click pentru a citi de aici">Capitolul 1 explică defecțiunea. Capitolul 2 e momentul deciziei. Dacă vrei să fii anunțat când apare următorul capitol sau scenariu nou, lasă-mi adresa ta de email. <strong>Fără spam, fără tracking</strong> — doar capitole noi când apar.</p><button onclick="openNewsletter &amp;&amp; openNewsletter()" style="background:var(--accent);color:#fff;border:none;padding:10px 24px;border-radius:4px;font:14px Georgia,serif;cursor:pointer;letter-spacing:.3px">✉ Anunță-mă când apare ceva nou</button><div style="margin-top:14px;font-size:12px;color:#888">sau continuă direct cu <a onclick="go(1)" style="color:var(--accent);cursor:pointer;text-decoration:underline">Capitolul 1: Defecțiunea →</a></div></div><div class="bn"><span></span><a onclick="go(1)">Pagina următoare ▸</a></div></div>
 </div>
 </div>
-<div class="eb">
+<footer class="eb">
 <span class="eb-live"><span class="ls-dot"></span> <span id="lsReaders" aria-live="polite" aria-label="Valoare simulată, ilustrativă (nu număr real de cititori)">17</span> citesc acum <abbr title="Valoare simulată (generată aleatoriu în browser), ilustrativă — NU reprezintă cititori reali" style="cursor:help;opacity:.6;font-size:9px">~simulat</abbr> · Scenariu preferat: <strong>A4</strong> · <a onclick="openGlobe()" title="Harta cititorilor">🌍 Harta cititorilor</a></span>
 <div style="display:flex;align-items:center;gap:6px;flex-wrap:nowrap;justify-content:center">
 <span class="gt-wrap"><button type="button" class="gt-btn" id="gtBtn" title="Traduce pagina">Traduceri <span class="gt-curlang" id="gtCurLang">RO</span> ▾</button><div class="gt-menu" id="gtMenu" onclick="event.stopPropagation()"></div></span>
@@ -2132,7 +2139,7 @@ window.PI_API_ENDPOINT = window.PI_API_ENDPOINT || '/api/claude';
 <button onclick="goRandom()" title="Pagină aleatoare">🎲</button>
 <button onclick="openShare()" class="eb-share" title="Trimite cartea mai departe"><span class="es-ico">📤</span><span class="es-txt">Partajează</span><span class="es-spark">✨</span></button>
 </div>
-</div>
+</footer>
 <!-- nudge integrat in pagina principala -->
 
 <div class="srch-overlay" id="srchOverlay" translate="yes" lang="ro" onclick="if(event.target===this)closeSearch()">
@@ -5016,6 +5023,10 @@ function copyShareLink(){
     },1000);
   }
   window.skipIntro=doClose;
+  // Escape închide intro-ul (accesibilitate de la tastatură)
+  document.addEventListener('keydown',function(ev){ if(ev.key==='Escape' && intro.style.display!=='none' && !intro.classList.contains('fade-out')) doClose(); });
+  // Imaginile cărții sunt servite de pe alexio.tf: offline sau la eșec afișăm un înlocuitor cu textul alternativ
+  document.addEventListener('error',function(ev){var t=ev.target;if(t&&t.tagName==='IMG'&&!t.dataset.fb){t.dataset.fb='1';var f=document.createElement('span');f.className='img-fallback';f.setAttribute('role','img');f.setAttribute('aria-label',t.alt||'');f.textContent='🖼 '+(t.alt||'imagine')+' — imaginea necesită conexiune la internet';if(t.parentNode)t.parentNode.replaceChild(f,t);}},true);
   // Menu entry: show splash fullscreen, no timer, manual close only
   window.showSplashManual=function(){
     if(!closed) doClose();
@@ -6411,8 +6422,8 @@ try{
 
 
 <!-- GLITCH OVERLAY -->
-<div id="glitch-overlay"><div class="g-bar" style="top:20%"></div><div class="g-bar" style="top:45%"></div><div class="g-bar" style="top:70%"></div><div class="g-bar" style="top:90%"></div></div>
-<div id="glitch-text">anomalie detectată</div>
+<div id="glitch-overlay" aria-hidden="true"><div class="g-bar" style="top:20%"></div><div class="g-bar" style="top:45%"></div><div class="g-bar" style="top:70%"></div><div class="g-bar" style="top:90%"></div></div>
+<div id="glitch-text" aria-hidden="true">anomalie detectată</div>
 
 <!-- MY ENDING MODAL -->
 <div class="my-ending-overlay" id="myeOverlay" translate="yes" lang="ro" onclick="if(event.target===this)closeMYE()">
