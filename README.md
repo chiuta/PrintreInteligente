@@ -71,6 +71,10 @@ NEREZOLVAT: licența nu este declarată explicit în acest repository și nu am 
 
 ## Istoric / Changelog
 
+### 11 octombrie 2026 (runda 7)
+- Reparat: grupurile restrânse din meniul lateral (CARTEA, SCENARII, ACȚIUNI etc.) ascundeau linkurile doar vizual (`max-height:0`); acestea rămâneau în ordinea Tab și sub elementele vecine (clic real interceptat de titlurile grupurilor). Acum grupurile restrânse sunt `visibility:hidden` (cu tranziție), deci nu mai pot fi focalizate sau citite de cititoarele de ecran. Verificat: clic real pe „Prolog” după deschiderea grupului, 0 violări axe-core. Cache Service Worker: pi-v14.
+- Reparat: în vizualizarea de lectură, panoul audiobook, banda „Disclaimer & Termeni” și notificarea „Funcții noi” nu erau în niciun reper ARIA (axe-core `region`); au acum `role="region"`/`role="status"`.
+
 ### 11 octombrie 2026 (runda 6)
 - Reparat: cele 354 de handlere inline (`onclick`, `onchange` etc.) au fost înlocuite cu un dispatcher delegat (`data-on-*` + un singur listener, fără eval/Function; argumentele dinamice trec printr-o listă albă de funcții). Paritate verificată pe 495 de elemente (0 diferențe). CSP-ul are acum `script-src` cu 16 hash-uri sha256, fără `'unsafe-inline'`.
 
