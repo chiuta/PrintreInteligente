@@ -6,7 +6,7 @@ Roman SF interactiv despre misiunea Artemis 2, „recenzat de stele și hiperciv
 
 ![Captura de ecran](screenshot.png)
 
-**Ultima actualizare:** 11 octombrie 2026
+**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
 
 ## Ce este
 
@@ -70,6 +70,9 @@ Descarcă repository-ul și deschide `index.html`: textul cărții este inclus �
 NEREZOLVAT: licența nu este declarată explicit în acest repository și nu am ales una. Semnale contradictorii în fișiere: metadatele JSON-LD ale paginii indică `https://creativecommons.org/licenses/by-nc-nd/4.0/`, iar antetele din `index.html`, `sw.js` și `claude-proxy.worker.js` indică „TRADE-FREE + CC0 1.0”. Conținutul cărții este o colaborare (autor + model AI, dezvăluită în Epilog) și include texte fictive atribuite unor terți (recenzii, personaje), deci regimul de drepturi trebuie stabilit de autor/coautori; până atunci, nu presupune nicio licență de reutilizare. Nu există fișier LICENSE.
 
 ## Istoric / Changelog
+
+### 1.0.0 — 2026-10-12
+- Versiunea și data ultimei actualizări sunt afișate în aplicație (fereastra „Termeni & Confidențialitate”).
 
 ### 11 octombrie 2026 (runda 7)
 - Reparat: grupurile restrânse din meniul lateral (CARTEA, SCENARII, ACȚIUNI etc.) ascundeau linkurile doar vizual (`max-height:0`); acestea rămâneau în ordinea Tab și sub elementele vecine (clic real interceptat de titlurile grupurilor). Acum grupurile restrânse sunt `visibility:hidden` (cu tranziție), deci nu mai pot fi focalizate sau citite de cititoarele de ecran. Verificat: clic real pe „Prolog” după deschiderea grupului, 0 violări axe-core. Cache Service Worker: pi-v14.
