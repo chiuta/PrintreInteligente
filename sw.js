@@ -11,7 +11,9 @@
    DOCUMENT = network-first (o reîncărcare aduce mereu ultima versiune; evită „cache zombi").
    Restul asset-urilor = cache-first cu populare leneșă. Include kill-switch. */
 const CACHE = 'pi-v15';
-const SHELL = ['/'];
+const ROOT = self.registration.scope;               // rădăcina aplicației (ex. …/PrintreInteligente/), nu rădăcina originii
+const ROOT_PATH = new URL(ROOT).pathname;
+const SHELL = [ROOT];
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -22,7 +24,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(ks => Promise.all(ks.filter(k => k.startsWith('pi-') && k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
@@ -31,7 +33,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('message', e => {
   if (e.data === 'sw-unregister') {
     self.registration.unregister()
-      .then(() => caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))));
+      .then(() => caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('pi-')).map(k => caches.delete(k)))));
   }
 });
 
@@ -41,15 +43,15 @@ self.addEventListener('fetch', e => {
   const url = new URL(req.url);
 
   /* DOCUMENT (navigare sau index.html) → NETWORK-FIRST, fallback la cache doar offline. */
-  if (req.mode === 'navigate' || url.pathname === '/' || url.pathname.endsWith('/index.html')) {
+  if (req.mode === 'navigate' || url.pathname === ROOT_PATH || url.pathname.endsWith('/index.html')) {
     e.respondWith(
       fetch(req).then(res => {
         if (res && res.status === 200) {
           const copy = res.clone();
-          caches.open(CACHE).then(c => c.put('/', copy));
+          caches.open(CACHE).then(c => c.put(ROOT, copy));
         }
         return res;
-      }).catch(() => caches.match('/').then(r => r || caches.match(req)))
+      }).catch(() => caches.match(ROOT).then(r => r || caches.match(req)))
     );
     return;
   }
@@ -62,6 +64,6 @@ self.addEventListener('fetch', e => {
         caches.open(CACHE).then(c => c.put(req, copy));
       }
       return res;
-    }).catch(() => caches.match('/')))
+    }).catch(() => caches.match(ROOT)))
   );
 });

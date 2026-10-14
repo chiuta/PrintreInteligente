@@ -53,8 +53,8 @@
     "rdapMenuHidden",
     "sfx_prefs"
   ],
-  "sizeBytes": 1015619,
-  "sha256": "c4397fe8363ac779854fa9abbb27d362314ffba65d4fd8626a87e0d879485c3f",
+  "sizeBytes": 1015620,
+  "sha256": "f11ade8741e209614f6c2b3b34682bdd6eb62252578bb1c6145ac9be19e43556",
   "csp": {
     "present": true,
     "directives": {
