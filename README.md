@@ -6,7 +6,7 @@ Roman SF interactiv despre misiunea Artemis 2, „recenzat de stele și hiperciv
 
 ![Captura de ecran](screenshot.png)
 
-**Versiune:** 1.0.0 · **Ultima actualizare:** 12 octombrie 2026
+**Versiune:** 1.1.0 · **Ultima actualizare:** 14 octombrie 2026
 
 ## Ce este
 
@@ -69,7 +69,18 @@ Descarcă repository-ul și deschide `index.html`: textul cărții este inclus �
 
 NEREZOLVAT: licența nu este declarată explicit în acest repository și nu am ales una. Semnale contradictorii în fișiere: metadatele JSON-LD ale paginii indică `https://creativecommons.org/licenses/by-nc-nd/4.0/`, iar antetele din `index.html`, `sw.js` și `claude-proxy.worker.js` indică „TRADE-FREE + CC0 1.0”. Conținutul cărții este o colaborare (autor + model AI, dezvăluită în Epilog) și include texte fictive atribuite unor terți (recenzii, personaje), deci regimul de drepturi trebuie stabilit de autor/coautori; până atunci, nu presupune nicio licență de reutilizare. Nu există fișier LICENSE.
 
+## Funcții noi (v1.1.0)
+
+- **Marcaje și note pe pasaje** (butonul 📝 din bara de sus): selectezi un fragment dintr-o pagină (carte, scenarii, recenzii), adaugi o notă; se păstrează doar în browser (FFF.store), „Mergi la fragment” te duce la pagina și la paragraful respectiv, notele se pot șterge și exporta ca Markdown. Sunt separate de semnele de carte existente (`pi-bookmarks`), care rămân neschimbate.
+- **Copie de siguranță .fff.json** prin eticheta „Transparență” (clic pe `v 1.1.0 · 2026-10-14` din „Termeni & Confidențialitate”): exportă/importă (opțional criptat cu parolă) progresul, semnele de carte, notele și recenziile proprii; arată cheile stocate și rețeaua declarată.
+- Kit comun (core, label, bundle). Căutarea (Ctrl+K), audiobook-ul și traducerea existente nu au fost modificate. Cache Service Worker: pi-v15.
+- Textele noi sunt în ro, en, fr, it, es, pt, hu, de; traducerile fr/it/es/pt/hu/de sunt automate și neverificate nativ.
+- Teste: `tests/fff-r8.test.mjs` (rețea blocată; imaginile alexio.tf, cerute și înainte, sunt excluse din numărătoare; 1280 și 360 px, axe 0 violări cu dialogul deschis).
+
 ## Istoric / Changelog
+
+### 1.1.0 — 2026-10-14
+- Nou: marcaje și note pe pasaje cu export Markdown; copie de siguranță .fff.json și etichetă de transparență (kit comun). Cache SW pi-v15.
 
 ### 1.0.0 — 2026-10-12
 - Versiunea și data ultimei actualizări sunt afișate în aplicație (fereastra „Termeni & Confidențialitate”).

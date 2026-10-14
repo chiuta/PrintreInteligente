@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "slug": "printreinteligente",
+  "name": "Printre inteligențe — roman SF despre Artemis 2, recenzat de stele & hipercivilizații",
+  "version": "1.1.0",
+  "updated": "2026-10-14",
+  "description": "Ceasul de la Cape Canaveral arăta 18:35 EDT — unsprezece minute după ora programată — când megaracheta Space Launch System s-a desprins de rampa de lansare cu u…",
+  "egress": [
+    {
+      "host": "alexio.tf",
+      "via": [
+        "csp:connect-src",
+        "csp:img-src",
+        "csp:media-src",
+        "img"
+      ]
+    },
+    {
+      "host": "claude-proxy.alexio.workers.dev",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "translate.googleapis.com",
+      "via": [
+        "csp:connect-src"
+      ]
+    },
+    {
+      "host": "tts-proxy.chiuta.workers.dev",
+      "via": [
+        "csp:connect-src",
+        "csp:media-src"
+      ]
+    }
+  ],
+  "permissions": [
+    "speechSynthesis",
+    "clipboard",
+    "serviceWorker",
+    "localStorage"
+  ],
+  "storageKeys": [
+    "ab_voice_prefs",
+    "bgfxActive",
+    "bgfxMode",
+    "c108entries",
+    "moonMode",
+    "nlSubs",
+    "pi_azure_tts",
+    "rdMode",
+    "rdapMenuHidden",
+    "sfx_prefs"
+  ],
+  "sizeBytes": 1015619,
+  "sha256": "c4397fe8363ac779854fa9abbb27d362314ffba65d4fd8626a87e0d879485c3f",
+  "csp": {
+    "present": true,
+    "directives": {
+      "default-src": "'none'",
+      "script-src": "'self' sha256×18",
+      "style-src": "'self' 'unsafe-inline'",
+      "img-src": "'self' data: blob: https://alexio.tf",
+      "font-src": "'self' data:",
+      "media-src": "'self' blob: data: https://alexio.tf https://tts-proxy.chiuta.workers.dev",
+      "connect-src": "'self' blob: data: https://alexio.tf https://translate.googleapis.com https://tts-proxy.chiuta.workers.dev https://claude-proxy.alexio.workers.dev",
+      "worker-src": "'self' blob:",
+      "manifest-src": "'self'",
+      "object-src": "'none'",
+      "frame-src": "'none'",
+      "base-uri": "'self'",
+      "form-action": "'none'"
+    },
+    "scriptInline": "hash",
+    "connect": "'self' blob: data: https://alexio.tf https://translate.googleapis.com https://tts-proxy.chiuta.workers.dev https://claude-proxy.alexio.workers.dev"
+  },
+  "features": {
+    "export": true,
+    "import": true,
+    "i18n": [
+      "ro",
+      "en",
+      "fr",
+      "it",
+      "es",
+      "pt",
+      "hu",
+      "de"
+    ],
+    "pwa": {
+      "manifest": false,
+      "serviceWorker": true
+    },
+    "modules": [
+      "core",
+      "label",
+      "bundle"
+    ]
+  },
+  "kit": {
+    "version": "1.0.0",
+    "modules": [
+      "core",
+      "label",
+      "bundle"
+    ]
+  },
+  "selfSerializing": true
+}
