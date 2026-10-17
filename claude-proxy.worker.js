@@ -1,8 +1,8 @@
 /*
   ====================================================================
   Autor: Alexandru-Ionuț Chiuță (Alexio)
-  LICENȚĂ: TRADE-FREE + CC0 1.0 — domeniu public, fără troc (TROM · trom.tf)
-  https://creativecommons.org/publicdomain/zero/1.0/
+  LICENȚĂ: TRADE-FREE + MIT — fără troc (TROM · trom.tf)
+  Vezi fișierul LICENSE.
   Sprijin: Patreon https://www.patreon.com/c/alexio_tf · Buy Me a Coffee https://buymeacoffee.com/echo.of.the.strings
   ====================================================================
 */

@@ -67,7 +67,7 @@ Descarcă repository-ul și deschide `index.html`: textul cărții este inclus �
 
 ## Licență
 
-NEREZOLVAT: licența nu este declarată explicit în acest repository și nu am ales una. Semnale contradictorii în fișiere: metadatele JSON-LD ale paginii indică `https://creativecommons.org/licenses/by-nc-nd/4.0/`, iar antetele din `index.html`, `sw.js` și `claude-proxy.worker.js` indică „TRADE-FREE + CC0 1.0”. Conținutul cărții este o colaborare (autor + model AI, dezvăluită în Epilog) și include texte fictive atribuite unor terți (recenzii, personaje), deci regimul de drepturi trebuie stabilit de autor/coautori; până atunci, nu presupune nicio licență de reutilizare. Nu există fișier LICENSE.
+MIT — vezi fișierul [LICENSE](LICENSE). Drepturile de autor sunt păstrate; codul și textul cărții pot fi folosite, copiate, modificate și redistribuite cu păstrarea notei de licență.
 
 ## Funcții noi (v1.1.0)
 
@@ -106,10 +106,10 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf
 
 ## English summary
 
-"Printre inteligențe" is an interactive Romanian-language SF novel built around the NASA Artemis 2 mission, published as a web app: prologue, chapters, epilogue, 17 alternate scenarios and 108 fictional reviews, with an integrated audiobook. It stores preferences, reading progress and user texts in localStorage. It contacts alexio.tf (images), a TTS proxy on Cloudflare Workers, Google Translate (only if you pick a language) and an AI API endpoint (only for the generative features). The licence is inconsistent in the files and not yet settled.
+"Printre inteligențe" is an interactive Romanian-language SF novel built around the NASA Artemis 2 mission, published as a web app: prologue, chapters, epilogue, 17 alternate scenarios and 108 fictional reviews, with an integrated audiobook. It stores preferences, reading progress and user texts in localStorage. It contacts alexio.tf (images), a TTS proxy on Cloudflare Workers, Google Translate (only if you pick a language) and an AI API endpoint (only for the generative features). Licence: MIT.
 
 ## Audit
 
-Rundă 2 (2026-10-11): cererea de test către proxy-ul TTS de la încărcare a fost înlocuită cu un opt-in explicit în panoul de voci; formulările „offline / fără telemetrie / rulează integral în browser” din antet, FAQ, pagina de confidențialitate și rezumatul EN au fost precizate (textul cărții se citește offline; imaginile, vocea online, traducerea și funcțiile AI folosesc servicii externe); nota de ficțiune despre numele reale ale membrilor echipajului a fost completată în pagină (RO și EN). Licența rămâne NEREZOLVATĂ.
+Rundă 2 (2026-10-11): cererea de test către proxy-ul TTS de la încărcare a fost înlocuită cu un opt-in explicit în panoul de voci; formulările „offline / fără telemetrie / rulează integral în browser” din antet, FAQ, pagina de confidențialitate și rezumatul EN au fost precizate (textul cărții se citește offline; imaginile, vocea online, traducerea și funcțiile AI folosesc servicii externe); nota de ficțiune despre numele reale ale membrilor echipajului a fost completată în pagină (RO și EN). Licența: MIT.
 
-Audit: 2026-10-10 — claimurile de rețea din acest README corespund codului (fetch către `tts-proxy.chiuta.workers.dev` — inclusiv o cerere de test la încărcare —, `translate.googleapis.com`, `window.PI_API_ENDPOINT`; imagini de pe `alexio.tf`). Antetul aplicației spune „offline-first, fără telemetrie”, iar pagina conține formulări absolute („rulează integral în browser”, în rezumatul în engleză) care nu țin cont de aceste apeluri; licențele rămân contradictorii (JSON-LD CC BY-NC-ND 4.0 vs. antet CC0 1.0). Corectat accesibilitatea (contrast în toate temele, etichete la câmpurile de selectare).
+Audit: 2026-10-10 — claimurile de rețea din acest README corespund codului (fetch către `tts-proxy.chiuta.workers.dev` — inclusiv o cerere de test la încărcare —, `translate.googleapis.com`, `window.PI_API_ENDPOINT`; imagini de pe `alexio.tf`). Antetul aplicației spune „offline-first, fără telemetrie”, iar pagina conține formulări absolute („rulează integral în browser”, în rezumatul în engleză) care nu țin cont de aceste apeluri; licența a fost ulterior stabilită ca MIT. Corectat accesibilitatea (contrast în toate temele, etichete la câmpurile de selectare).
