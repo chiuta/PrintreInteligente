@@ -3,7 +3,7 @@
   Autor: Alexandru-Ionuț Chiuță (Alexio)
   LICENȚĂ: TRADE-FREE + MIT — fără troc (TROM · trom.tf)
   Vezi fișierul LICENSE.
-  Sprijin: Patreon https://www.patreon.com/c/alexio_tf · Buy Me a Coffee https://buymeacoffee.com/echo.of.the.strings
+  Sprijin: Buy Me a Coffee https://buymeacoffee.com/echo.of.the.strings
   ====================================================================
 */
 
