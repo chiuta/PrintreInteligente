@@ -108,9 +108,9 @@ MIT — veja o ficheiro [LICENSE](LICENSE). Os direitos de autor são mantidos; 
 
 Alexio — Alexandru-Ionuț Chiuță, contacto: alexio@trom.tf
 
-## English summary
+## Resumo
 
-"Printre inteligențe" is an interactive Romanian-language SF novel built around the NASA Artemis 2 mission, published as a web app: prologue, chapters, epilogue, 17 alternate scenarios and 108 fictional reviews, with an integrated audiobook. It stores preferences, reading progress and user texts in localStorage. It contacts alexio.tf (images), a TTS proxy on Cloudflare Workers, Google Translate (only if you pick a language) and an AI API endpoint (only for the generative features). Licence: MIT.
+«Printre inteligențe» é um romance de ficção científica interativo em romeno, construído em torno da missão Artemis 2 da NASA e publicado como aplicação web: prólogo, capítulos, epílogo, 17 cenários alternativos e 108 críticas fictícias, com um audiolivro integrado. Guarda preferências, progresso de leitura e textos do utilizador em localStorage. Contacta alexio.tf (imagens), um proxy TTS no Cloudflare Workers, o Google Translate (apenas se escolher um idioma) e um ponto de acesso de API de IA (apenas para as funções generativas). Licença: MIT.
 
 ## Auditoria
 
