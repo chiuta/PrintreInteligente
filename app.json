@@ -48,13 +48,17 @@
     "c108entries",
     "moonMode",
     "nlSubs",
+    "notes",
+    "pi-legal-notice-v1",
+    "pi-quick-guide-v1",
+    "pi-reader-state",
     "pi_azure_tts",
     "rdMode",
     "rdapMenuHidden",
     "sfx_prefs"
   ],
-  "sizeBytes": 1015217,
-  "sha256": "6a78f5f0c6c8f00a134643c5d712cf349cdbb8586b9de8a4d2b04a8ab903d287",
+  "sizeBytes": 1015920,
+  "sha256": "7324b7a2b37faaa7cbbd780ab54f9b87c0871ee5c681eff2560158969556bbdc",
   "csp": {
     "present": true,
     "directives": {
@@ -99,7 +103,7 @@
     ]
   },
   "kit": {
-    "version": "1.0.0",
+    "version": "1.1.1",
     "modules": [
       "core",
       "label",
