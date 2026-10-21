@@ -22,7 +22,8 @@ An interactive SF novel about the Artemis 2 mission, "reviewed by stars and hype
 - Integrated audiobook, with speech synthesis (online service or the browser's local voice), voice and playback settings.
 - Generative features "✨ Your review" and "🚀 Your ending", which call an AI API through a configurable endpoint (`/api/claude`).
 - Search, day/night theme, reading mode, optional backgrounds and sound effects, reading progress and bookmarks.
-- Automatic translation of the page, on request, into a long list of languages ("Translations" menu; the original language is Romanian).
+- The book (Epilogue, chapters, 17 scenarios and 108 reviews) exists in 8 languages (Romanian original plus English, French, Italian, Spanish, Portuguese, German and Hungarian) included in the file: the language is switched from the "Translations" menu without any network request, and the search, the A4 export, the page metadata and the audiobook follow the chosen language. For the other languages of the menu (62 in all) the page is translated on request through Google Translate.
+- The translations included in the file were produced with AI assistance and **need native review**; the legal pages and demo texts remain in Romanian (only their titles are translated); the legal content and the medical/physiological passages (oxygen figures, doses) also need specialist review.
 - Keyboard shortcuts panel (opened with `?`).
 - In-app legal pages: privacy/GDPR, cookies, a "Delete all local data" button.
 - PWA: manifest and Service Worker (`sw.js`).
@@ -42,7 +43,7 @@ Steps:
 
 1. Read from the side menu: Prologue, Chapters 1-2, scenarios, reviews, Epilogue.
 2. For the audiobook press `A` and use Play/Pause.
-3. For another language open the "Translations" menu and choose the language.
+3. For another language open the "Translations" menu and choose the language. The 8 languages included in the file work offline; the others use Google Translate (see the network section).
 4. "✨ Your review" and "🚀 Your ending" send your text to an AI API only when you act (and confirm).
 5. Local data can be deleted with "🗑️ Delete all local data now" from the cookies/privacy page.
 
@@ -54,7 +55,7 @@ Third-party hosts contacted:
 
 - `alexio.tf`: illustrative images (requested on load; the only external request without a user action) and sharing previews.
 - `tts-proxy.chiuta.workers.dev` (Cloudflare Worker to Azure Neural TTS): **only if you explicitly tick** "Azure Neural online voice" in the audiobook's voice panel (opt-in, off by default; the preference is kept in `pi_azure_tts`); then a test request is made and the text being read goes to the proxy for synthesis; without opt-in the browser's local voice is used and no request is sent to this service on load.
-- `translate.googleapis.com`: only if you choose another language from "Translations"; the page text is sent to Google Translate.
+- `translate.googleapis.com`: only if you choose from "Translations" a language other than the 8 included in the file (ro, en, fr, it, es, pt, de, hu); the page text is sent to Google Translate.
 - An AI API through `/api/claude` (the `claude-proxy.worker.js` proxy in the repository, to the Anthropic API): only if you use "Your review" / "Your ending".
 - Google Fonts: verified in the audit (2026-10-10) — there is no request to `fonts.googleapis.com` / `fonts.gstatic.com`; the privacy page mentions them only conditionally.
 - The "Next story" form (newsletter): the e-mail address is saved only locally, in `localStorage` (`nlSubs`); it is not sent anywhere and nobody will receive notifications based on it, although the confirmation message says "I'll let you know when something new appears".
@@ -67,7 +68,7 @@ Fiction / speculation: the novel, the scenarios and the 108 reviews are works of
 
 ## Local / offline use
 
-Download the repository and open `index.html`: the text of the book is included in the file and can be read without internet. Internet is needed for: the audiobook with online voice (optional; otherwise the local voice), translations, generative features and the images from alexio.tf. The Service Worker registers at the path `/sw.js` and works only over http(s), not from a local file.
+Download the repository and open `index.html`: the text of the book is included in the file and can be read without internet. Internet is needed for: the audiobook with online voice (optional; otherwise the local voice), translations into languages other than the 8 included, generative features and the images from alexio.tf. The Service Worker registers at the path `/sw.js` and works only over http(s), not from a local file.
 
 ## License
 
@@ -82,6 +83,9 @@ MIT — see the [LICENSE](LICENSE) file. Copyright is retained; the code and the
 - Tests: `tests/fff-r8.test.mjs` (network blocked; the alexio.tf images, requested before as well, are excluded from the count; 1280 and 360 px, axe 0 violations with the dialog open).
 
 ## History / Changelog
+
+### 1.2.2 — 2026-10-19
+- The whole narrative text (Epilogue, chapters, scenarios and the 108 reviews: 115 pages) is available in 7 translations besides the Romanian original (en, fr, it, es, pt, de, hu), without falling back to Romanian; the search, the A4 export, the page metadata and the audiobook use the chosen language. The legal/demo texts stay in Romanian. SW cache pi-v18.
 
 ### 1.1.0 — 2026-10-14
 - New: bookmarks and notes on passages with Markdown export; .fff.json backup and transparency label (common kit). SW cache pi-v15.
@@ -110,7 +114,7 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf
 
 ## English summary
 
-"Printre inteligențe" is an interactive Romanian-language SF novel built around the NASA Artemis 2 mission, published as a web app: prologue, chapters, epilogue, 17 alternate scenarios and 108 fictional reviews, with an integrated audiobook. It stores preferences, reading progress and user texts in localStorage. It contacts alexio.tf (images), a TTS proxy on Cloudflare Workers, Google Translate (only if you pick a language) and an AI API endpoint (only for the generative features). Licence: MIT.
+"Printre inteligențe" is an interactive SF novel (Romanian original, with translations into 7 languages) built around the NASA Artemis 2 mission, published as a web app: prologue, chapters, epilogue, 17 alternate scenarios and 108 fictional reviews, with an integrated audiobook. It stores preferences, reading progress and user texts in localStorage. It contacts alexio.tf (images), a TTS proxy on Cloudflare Workers, Google Translate (only if you pick a language outside the 8 included) and an AI API endpoint (only for the generative features). Licence: MIT.
 
 ## Audit
 

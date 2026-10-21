@@ -22,7 +22,8 @@ Roman SF interactiv despre misiunea Artemis 2, „recenzat de stele și hiperciv
 - Audiobook integrat, cu sinteză vocală (serviciu online sau vocea locală a browserului), setări de voci și redare.
 - Funcții generative „✨ Recenzia ta" și „🚀 Ending-ul tău", care apelează un API de AI printr-un endpoint configurabil (`/api/claude`).
 - Căutare, temă zi/noapte, mod de citire, fundaluri și efecte sonore opționale, progres de lectură și semne de carte.
-- Traducere automată a paginii, la alegere, într-o listă lungă de limbi (meniul „Traduceri"; limba originală este româna).
+- Cartea (Epilog, capitole, 17 scenarii și 108 recenzii) există în 8 limbi (originalul român plus engleză, franceză, italiană, spaniolă, portugheză, germană și maghiară), incluse în fișier: limba se schimbă din meniul „Traduceri” fără nicio cerere de rețea, iar căutarea, exportul A4, metadatele paginii și audiobook-ul urmează limba aleasă. Pentru celelalte limbi din meniu (62 în total) pagina se traduce la cerere prin Google Translate.
+- Traducerile incluse în fișier au fost realizate cu asistență AI și **necesită revizie nativă**; paginile juridice și textele demo rămân în română (doar titlurile lor sunt traduse); conținutul juridic și pasajele medicale/fiziologice (valori de oxigen, doze) necesită și revizie de specialitate.
 - Panou cu scurtături de tastatură (apelat cu `?`).
 - Pagini legale în aplicație: confidențialitate/GDPR, cookies, buton „Șterge toate datele locale".
 - PWA: manifest și Service Worker (`sw.js`).
@@ -42,7 +43,7 @@ Pași:
 
 1. Citește din meniul lateral: Prolog, Capitolele 1-2, scenarii, recenzii, Epilog.
 2. Pentru audiobook apasă `A` și folosește Play/Pauză.
-3. Pentru altă limbă deschide meniul „Traduceri" și alege limba.
+3. Pentru altă limbă deschide meniul „Traduceri" și alege limba. Cele 8 limbi incluse în fișier funcționează offline; celelalte folosesc Google Translate (vezi secțiunea despre rețea).
 4. „✨ Recenzia ta" și „🚀 Ending-ul tău" trimit textul tău unui API de AI doar când acționezi (și confirmi).
 5. Datele locale se pot șterge cu „🗑️ Șterge toate datele locale acum" din pagina de cookies/confidențialitate.
 
@@ -54,7 +55,7 @@ Gazde terțe contactate:
 
 - `alexio.tf`: imagini ilustrative (cerute la încărcare; singura cerere externă fără acțiune a utilizatorului) și previzualizări de distribuire.
 - `tts-proxy.chiuta.workers.dev` (Cloudflare Worker către Azure Neural TTS): **doar dacă bifezi explicit** „Voce online Azure Neural” în panoul de voci al audiobook-ului (opt-in, implicit oprit; preferința se păstrează în `pi_azure_tts`); atunci se face o cerere de test și textul citit pleacă la proxy pentru sinteză; fără opt-in se folosește vocea locală a browserului și la încărcare nu pleacă nicio cerere către acest serviciu.
-- `translate.googleapis.com`: numai dacă alegi o altă limbă din „Traduceri"; textul paginii este trimis la Google Translate.
+- `translate.googleapis.com`: numai dacă alegi din „Traduceri" o limbă în afara celor 8 incluse în fișier (ro, en, fr, it, es, pt, de, hu); textul paginii este trimis la Google Translate.
 - Un API de AI prin `/api/claude` (proxy-ul `claude-proxy.worker.js` din repository, către API-ul Anthropic): numai dacă folosești „Recenzia ta" / „Ending-ul tău".
 - Fonturi Google: verificat la audit (2026-10-10) — nu există nicio cerere către `fonts.googleapis.com` / `fonts.gstatic.com`; pagina de confidențialitate le menționează doar condiționat.
 - Formularul „Următoarea poveste” (newsletter): adresa de email se salvează doar local, în `localStorage` (`nlSubs`); nu se trimite nicăieri și nimeni nu va primi notificări pe baza ei, deși mesajul de confirmare spune „Te anunț când apare ceva nou”.
@@ -67,7 +68,7 @@ Ficțiune / speculație: romanul, scenariile și cele 108 recenzii sunt opere de
 
 ## Rulare locală / offline
 
-Descarcă repository-ul și deschide `index.html`: textul cărții este inclus în fișier și se citește fără internet. Au nevoie de internet: audiobook-ul cu voce online (opțională; altfel vocea locală), traducerile, funcțiile generative și imaginile de pe alexio.tf. Service Worker-ul se înregistrează la calea `/sw.js` și funcționează doar pe http(s), nu din fișier local.
+Descarcă repository-ul și deschide `index.html`: textul cărții este inclus în fișier și se citește fără internet. Au nevoie de internet: audiobook-ul cu voce online (opțională; altfel vocea locală), traducerile în alte limbi decât cele 8 incluse, funcțiile generative și imaginile de pe alexio.tf. Service Worker-ul se înregistrează la calea `/sw.js` și funcționează doar pe http(s), nu din fișier local.
 
 ## Licență
 
@@ -82,6 +83,9 @@ MIT — vezi fișierul [LICENSE](LICENSE). Drepturile de autor sunt păstrate; c
 - Teste: `tests/fff-r8.test.mjs` (rețea blocată; imaginile alexio.tf, cerute și înainte, sunt excluse din numărătoare; 1280 și 360 px, axe 0 violări cu dialogul deschis).
 
 ## Istoric / Changelog
+
+### 1.2.2 — 2026-10-19
+- Întregul text narativ (Epilog, capitole, scenarii și cele 108 recenzii: 115 pagini) este disponibil în 7 traduceri pe lângă originalul român (en, fr, it, es, pt, de, hu), fără revenire la română; căutarea, exportul A4, metadatele paginii și audiobook-ul folosesc limba aleasă. Textele juridice/demo rămân în română. Cache SW pi-v18.
 
 ### 1.1.0 — 2026-10-14
 - Nou: marcaje și note pe pasaje cu export Markdown; copie de siguranță .fff.json și etichetă de transparență (kit comun). Cache SW pi-v15.
@@ -110,7 +114,7 @@ Alexio — Alexandru-Ionuț Chiuță, contact: alexio@trom.tf
 
 ## Rezumat
 
-„Printre inteligențe” este un roman SF interactiv în limba română, construit în jurul misiunii NASA Artemis 2, publicat ca aplicație web: prolog, capitole, epilog, 17 scenarii alternative și 108 recenzii fictive, cu o carte audio integrată. Stochează în localStorage preferințele, progresul lecturii și textele utilizatorului. Contactează alexio.tf (imagini), un proxy TTS pe Cloudflare Workers, Google Translate (doar dacă alegi o limbă) și un punct final API AI (doar pentru funcțiile generative). Licență: MIT.
+„Printre inteligențe” este un roman SF interactiv (original în română, cu traduceri în 7 limbi), construit în jurul misiunii NASA Artemis 2, publicat ca aplicație web: prolog, capitole, epilog, 17 scenarii alternative și 108 recenzii fictive, cu o carte audio integrată. Stochează în localStorage preferințele, progresul lecturii și textele utilizatorului. Contactează alexio.tf (imagini), un proxy TTS pe Cloudflare Workers, Google Translate (doar dacă alegi o limbă în afara celor 8 incluse) și un punct final API AI (doar pentru funcțiile generative). Licență: MIT.
 
 ## Audit
 

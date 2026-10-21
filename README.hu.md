@@ -22,7 +22,8 @@ A „Printre inteligențe” élő könyv, webalkalmazásként kiadva (egy nagy 
 - Beépített hangoskönyv beszédszintézissel (online szolgáltatás vagy a böngésző helyi hangja), hang- és lejátszási beállításokkal.
 - „✨ Saját recenziód” és „🚀 Saját befejezésed” generatív funkciók, amelyek egy beállítható végponton (`/api/claude`) keresztül MI-API-t hívnak.
 - Keresés, nappali/éjszakai téma, olvasó mód, opcionális hátterek és hanghatások, olvasási előrehaladás és könyvjelzők.
-- Az oldal automatikus fordítása, választás szerint, nyelvek hosszú listájára („Fordítások” menü; az eredeti nyelv a román).
+- A könyv (epilógus, fejezetek, 17 forgatókönyv és 108 recenzió) 8 nyelven létezik (román eredeti, valamint angol, francia, olasz, spanyol, portugál, német és magyar), a fájlban foglalva: a nyelvet a „Fordítások” menüből lehet váltani hálózati kérés nélkül, és a keresés, az A4-export, az oldal metaadatai és a hangoskönyv a választott nyelvet követi. A menü többi nyelvéhez (összesen 62) az oldalt kérésre a Google Fordító fordítja.
+- A fájlban található fordítások MI segítségével készültek, és **anyanyelvi lektorálásra szorulnak**; a jogi oldalak és a bemutató szövegek románul maradnak (csak a címeik vannak lefordítva); a jogi tartalom és az orvosi/élettani részletek (oxigénértékek, adagok) szakmai felülvizsgálatot is igényelnek.
 - Billentyűparancs-panel (a `?` billentyűvel hívható elő).
 - Jogi oldalak az alkalmazásban: adatvédelem/GDPR, sütik, „Minden helyi adat törlése” gomb.
 - PWA: manifest és Service Worker (`sw.js`).
@@ -42,7 +43,7 @@ Lépések:
 
 1. Olvass az oldalmenüből: Prológus, 1–2. fejezet, forgatókönyvek, recenziók, Epilógus.
 2. A hangoskönyvhöz nyomd meg az `A` billentyűt, és használd a Lejátszás/Szünet gombot.
-3. Másik nyelvhez nyisd meg a „Fordítások” menüt, és válaszd ki a nyelvet.
+3. Másik nyelvhez nyisd meg a „Fordítások” menüt, és válaszd ki a nyelvet. A fájlban található 8 nyelv offline is működik; a többi a Google Fordítót használja (lásd a hálózatról szóló szakaszt).
 4. A „✨ Saját recenziód” és a „🚀 Saját befejezésed” csak akkor küldi el a szövegedet MI-API-nak, ha cselekszel (és megerősíted).
 5. A helyi adatok a „🗑️ Minden helyi adat törlése most” gombbal törölhetők a sütik/adatvédelem oldalon.
 
@@ -54,7 +55,7 @@ Kapcsolatba lépett harmadik fél gazdagépei:
 
 - `alexio.tf`: illusztrációs képek (betöltéskor kéri le; az egyetlen külső kérés felhasználói művelet nélkül) és megosztási előnézetek.
 - `tts-proxy.chiuta.workers.dev` (Cloudflare Worker az Azure Neural TTS felé): **csak ha kifejezetten bejelölöd** az „Azure Neural online hang” opciót a hangoskönyv hangpaneljén (opt-in, alapértelmezés szerint kikapcsolva; a beállítás a `pi_azure_tts` kulcsban marad meg); ekkor tesztkérés történik, és a felolvasott szöveg a proxyhoz kerül szintézisre; opt-in nélkül a böngésző helyi hangja használatos, és betöltéskor nem indul kérés erre a szolgáltatásra.
-- `translate.googleapis.com`: csak ha a „Fordítások” menüből másik nyelvet választasz; az oldal szövege a Google Translate-nek kerül elküldésre.
+- `translate.googleapis.com`: csak ha a „Fordítások” menüből a fájlban található 8 nyelven (ro, en, fr, it, es, pt, de, hu) kívüli nyelvet választasz; az oldal szövege a Google Translate-nek kerül elküldésre.
 - Egy MI-API a `/api/claude` végponton keresztül (a tárhely `claude-proxy.worker.js` proxyja az Anthropic API felé): csak ha a „Saját recenziód” / „Saját befejezésed” funkciót használod.
 - Google Fonts: az auditon ellenőrizve (2026-10-10) — nincs kérés a `fonts.googleapis.com` / `fonts.gstatic.com` felé; az adatvédelmi oldal csak feltételesen említi őket.
 - A „Következő történet” űrlap (hírlevél): az e-mail-cím csak helyben, a `localStorage`-ban (`nlSubs`) tárolódik; sehová nem kerül elküldésre, és senki nem fog értesítést kapni ennek alapján, bár a visszaigazoló üzenet azt mondja: „Szólok, ha valami új jelenik meg”.
@@ -67,7 +68,7 @@ Fikció / spekuláció: a regény, a forgatókönyvek és a 108 recenzió fikci�
 
 ## Helyi / offline futtatás
 
-Töltsd le a tárhelyet, és nyisd meg az `index.html` fájlt: a könyv szövege a fájlban van, és internet nélkül olvasható. Internetet igényel: az online hangú hangoskönyv (opcionális; egyébként a helyi hang), a fordítások, a generatív funkciók és az alexio.tf képei. A Service Worker a `/sw.js` útvonalon regisztrálja magát, és csak http(s) felett működik, helyi fájlból nem.
+Töltsd le a tárhelyet, és nyisd meg az `index.html` fájlt: a könyv szövege a fájlban van, és internet nélkül olvasható. Internetet igényel: az online hangú hangoskönyv (opcionális; egyébként a helyi hang), a fájlban lévő 8 nyelven kívüli nyelvekre készülő fordítások, a generatív funkciók és az alexio.tf képei. A Service Worker a `/sw.js` útvonalon regisztrálja magát, és csak http(s) felett működik, helyi fájlból nem.
 
 ## Licenc
 
@@ -82,6 +83,9 @@ MIT — lásd a [LICENSE](LICENSE) fájlt. A szerzői jogok megmaradnak; a kód 
 - Tesztek: `tests/fff-r8.test.mjs` (hálózat blokkolva; az alexio.tf képei, amelyeket korábban is lekértek, kimaradnak a számlálásból; 1280 és 360 px, axe 0 szabálysértés nyitott párbeszédablakkal).
 
 ## Előzmények / Changelog
+
+### 1.2.2 — 2026-10-19
+- A teljes elbeszélő szöveg (epilógus, fejezetek, forgatókönyvek és a 108 recenzió: 115 oldal) a román eredeti mellett 7 fordításban elérhető (en, fr, it, es, pt, de, hu), román tartalékszöveg nélkül; a keresés, az A4-export, az oldal metaadatai és a hangoskönyv a választott nyelvet használja. A jogi/bemutató szövegek románul maradnak. SW-gyorsítótár: pi-v18.
 
 ### 1.1.0 — 2026-10-14
 - Új: könyvjelzők és jegyzetek szövegrészekhez Markdown-exporttal; .fff.json biztonsági mentés és átláthatósági címke (közös kit). SW gyorsítótár pi-v15.
@@ -109,7 +113,7 @@ MIT — lásd a [LICENSE](LICENSE) fájlt. A szerzői jogok megmaradnak; a kód 
 Alexio — Alexandru-Ionuț Chiuță, kapcsolat: alexio@trom.tf
 
 ## Összefoglaló
-A „Printre inteligențe” interaktív, román nyelvű sci-fi regény a NASA Artemis 2 küldetése köré építve, webalkalmazásként kiadva: prológus, fejezetek, epilógus, 17 alternatív forgatókönyv és 108 kitalált kritika, beépített hangoskönyvvel. A beállításokat, az olvasási haladást és a felhasználói szövegeket a localStorage-ban tárolja. Kapcsolatba lép az alexio.tf címmel (képek), egy Cloudflare Workers-en futó TTS-proxyval, a Google Fordítóval (csak ha nyelvet választasz) és egy MI API-végponttal (csak a generatív funkciókhoz). Licenc: MIT.
+A „Printre inteligențe” interaktív sci-fi regény (román eredeti, 7 nyelvű fordításokkal) a NASA Artemis 2 küldetése köré építve, webalkalmazásként kiadva: prológus, fejezetek, epilógus, 17 alternatív forgatókönyv és 108 kitalált kritika, beépített hangoskönyvvel. A beállításokat, az olvasási haladást és a felhasználói szövegeket a localStorage-ban tárolja. Kapcsolatba lép az alexio.tf címmel (képek), egy Cloudflare Workers-en futó TTS-proxyval, a Google Fordítóval (csak ha a 8 beépített nyelven kívüli nyelvet választasz) és egy MI API-végponttal (csak a generatív funkciókhoz). Licenc: MIT.
 
 ## Audit
 

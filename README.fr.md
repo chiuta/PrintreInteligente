@@ -22,7 +22,8 @@ Roman de SF interactif sur la mission Artemis 2, « critiqué par les étoiles e
 - Livre audio intégré, avec synthèse vocale (service en ligne ou voix locale du navigateur), réglages des voix et de la lecture.
 - Fonctions génératives « ✨ Ta critique » et « 🚀 Ta fin », qui appellent une API d'IA via un point d'accès configurable (`/api/claude`).
 - Recherche, thème jour/nuit, mode lecture, fonds et effets sonores optionnels, progression de lecture et signets.
-- Traduction automatique de la page, au choix, dans une longue liste de langues (menu « Traductions » ; la langue d'origine est le roumain).
+- Le livre (épilogue, chapitres, 17 scénarios et 108 critiques) existe en 8 langues (original roumain plus anglais, français, italien, espagnol, portugais, allemand et hongrois), incluses dans le fichier : la langue se change depuis le menu « Traductions » sans aucune requête réseau, et la recherche, l'export A4, les métadonnées de la page et le livre audio suivent la langue choisie. Pour les autres langues du menu (62 au total), la page est traduite à la demande via Google Translate.
+- Les traductions incluses dans le fichier ont été réalisées avec l'aide de l'IA et **doivent être relues par des locuteurs natifs** ; les pages juridiques et les textes de démonstration restent en roumain (seuls leurs titres sont traduits) ; le contenu juridique et les passages médicaux/physiologiques (valeurs d'oxygène, doses) doivent aussi être relus par un spécialiste.
 - Panneau des raccourcis clavier (ouvert avec `?`).
 - Pages légales dans l'application : confidentialité/RGPD, cookies, bouton « Supprimer toutes les données locales ».
 - PWA : manifeste et Service Worker (`sw.js`).
@@ -42,7 +43,7 @@ Raccourcis affichés par l'application :
 
 1. Lisez depuis le menu latéral : Prologue, Chapitres 1-2, scénarios, critiques, Épilogue.
 2. Pour le livre audio, appuyez sur `A` et utilisez Lecture/Pause.
-3. Pour une autre langue, ouvrez le menu « Traductions » et choisissez la langue.
+3. Pour une autre langue, ouvrez le menu « Traductions » et choisissez la langue. Les 8 langues incluses dans le fichier fonctionnent hors ligne ; les autres utilisent Google Translate (voir la section sur le réseau).
 4. « ✨ Ta critique » et « 🚀 Ta fin » n'envoient ton texte à une API d'IA que lorsque tu agis (et confirmes).
 5. Les données locales peuvent être supprimées avec « 🗑️ Supprimer toutes les données locales maintenant » depuis la page cookies/confidentialité.
 
@@ -54,7 +55,7 @@ Hôtes tiers contactés :
 
 - `alexio.tf` : images d'illustration (demandées au chargement ; la seule requête externe sans action de l'utilisateur) et aperçus de partage.
 - `tts-proxy.chiuta.workers.dev` (Cloudflare Worker vers Azure Neural TTS) : **uniquement si tu coches explicitement** « Voix en ligne Azure Neural » dans le panneau des voix du livre audio (opt-in, désactivé par défaut ; la préférence est conservée dans `pi_azure_tts`) ; une requête de test est alors faite et le texte lu part vers le proxy pour la synthèse ; sans opt-in, la voix locale du navigateur est utilisée et aucune requête ne part vers ce service au chargement.
-- `translate.googleapis.com` : uniquement si tu choisis une autre langue dans « Traductions » ; le texte de la page est envoyé à Google Translate.
+- `translate.googleapis.com` : uniquement si tu choisis dans « Traductions » une langue autre que les 8 incluses dans le fichier (ro, en, fr, it, es, pt, de, hu) ; le texte de la page est envoyé à Google Translate.
 - Une API d'IA via `/api/claude` (le proxy `claude-proxy.worker.js` du dépôt, vers l'API Anthropic) : uniquement si tu utilises « Ta critique » / « Ta fin ».
 - Google Fonts : vérifié à l'audit (2026-10-10) — il n'y a aucune requête vers `fonts.googleapis.com` / `fonts.gstatic.com` ; la page de confidentialité ne les mentionne que de façon conditionnelle.
 - Le formulaire « Prochaine histoire » (newsletter) : l'adresse e-mail est enregistrée uniquement en local, dans `localStorage` (`nlSubs`) ; elle n'est envoyée nulle part et personne ne recevra de notifications sur cette base, bien que le message de confirmation dise « Je te préviens quand quelque chose de nouveau paraît ».
@@ -67,7 +68,7 @@ Fiction / spéculation : le roman, les scénarios et les 108 critiques sont des 
 
 ## Exécution locale / hors ligne
 
-Téléchargez le dépôt et ouvrez `index.html` : le texte du livre est inclus dans le fichier et se lit sans Internet. Une connexion Internet est nécessaire pour : le livre audio avec voix en ligne (optionnelle ; sinon la voix locale), les traductions, les fonctions génératives et les images d'alexio.tf. Le Service Worker s'enregistre au chemin `/sw.js` et ne fonctionne que sur http(s), pas depuis un fichier local.
+Téléchargez le dépôt et ouvrez `index.html` : le texte du livre est inclus dans le fichier et se lit sans Internet. Une connexion Internet est nécessaire pour : le livre audio avec voix en ligne (optionnelle ; sinon la voix locale), les traductions vers d'autres langues que les 8 incluses, les fonctions génératives et les images d'alexio.tf. Le Service Worker s'enregistre au chemin `/sw.js` et ne fonctionne que sur http(s), pas depuis un fichier local.
 
 ## Licence
 
@@ -82,6 +83,9 @@ MIT — voir le fichier [LICENSE](LICENSE). Les droits d'auteur sont conservés 
 - Tests : `tests/fff-r8.test.mjs` (réseau bloqué ; les images d'alexio.tf, déjà demandées auparavant, sont exclues du décompte ; 1280 et 360 px, axe 0 violation avec la boîte de dialogue ouverte).
 
 ## Historique / Changelog
+
+### 1.2.2 — 2026-10-19
+- Tout le texte narratif (épilogue, chapitres, scénarios et les 108 critiques : 115 pages) est disponible en 7 traductions en plus de l'original roumain (en, fr, it, es, pt, de, hu), sans retour au roumain ; la recherche, l'export A4, les métadonnées de la page et le livre audio utilisent la langue choisie. Les textes juridiques/de démonstration restent en roumain. Cache SW pi-v18.
 
 ### 1.1.0 — 2026-10-14
 - Nouveau : signets et notes sur des passages avec export Markdown ; sauvegarde .fff.json et étiquette de transparence (kit commun). Cache SW pi-v15.
@@ -110,7 +114,7 @@ Alexio — Alexandru-Ionuț Chiuță, contact : alexio@trom.tf
 
 ## Résumé
 
-« Printre inteligențe » est un roman de science-fiction interactif en roumain, construit autour de la mission Artemis 2 de la NASA et publié sous forme d'application web : prologue, chapitres, épilogue, 17 scénarios alternatifs et 108 critiques fictives, avec un livre audio intégré. Il stocke les préférences, la progression de lecture et les textes de l'utilisateur dans localStorage. Il contacte alexio.tf (images), un proxy TTS sur Cloudflare Workers, Google Translate (seulement si vous choisissez une langue) et un point d'accès d'API d'IA (seulement pour les fonctions génératives). Licence : MIT.
+« Printre inteligențe » est un roman de science-fiction interactif (original roumain, avec des traductions en 7 langues), construit autour de la mission Artemis 2 de la NASA et publié sous forme d'application web : prologue, chapitres, épilogue, 17 scénarios alternatifs et 108 critiques fictives, avec un livre audio intégré. Il stocke les préférences, la progression de lecture et les textes de l'utilisateur dans localStorage. Il contacte alexio.tf (images), un proxy TTS sur Cloudflare Workers, Google Translate (seulement si vous choisissez une langue en dehors des 8 incluses) et un point d'accès d'API d'IA (seulement pour les fonctions génératives). Licence : MIT.
 
 ## Audit
 

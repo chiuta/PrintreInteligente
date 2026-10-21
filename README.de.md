@@ -22,7 +22,8 @@ Interaktiver SF-Roman über die Mission Artemis 2, „rezensiert von Sternen und
 - Integriertes Hörbuch mit Sprachsynthese (Online-Dienst oder lokale Stimme des Browsers), Stimm- und Wiedergabeeinstellungen.
 - Generative Funktionen „✨ Deine Rezension“ und „🚀 Dein Ende“, die über einen konfigurierbaren Endpunkt (`/api/claude`) eine KI-API aufrufen.
 - Suche, Tag-/Nacht-Thema, Lesemodus, optionale Hintergründe und Soundeffekte, Lesefortschritt und Lesezeichen.
-- Automatische Übersetzung der Seite, auf Wunsch, in eine lange Liste von Sprachen (Menü „Übersetzungen“; die Originalsprache ist Rumänisch).
+- Das Buch (Epilog, Kapitel, 17 Szenarien und 108 Rezensionen) liegt in 8 Sprachen vor (rumänisches Original plus Englisch, Französisch, Italienisch, Spanisch, Portugiesisch, Deutsch und Ungarisch) und ist in der Datei enthalten: Die Sprache wird über das Menü „Übersetzungen“ ohne jede Netzwerkanfrage gewechselt, und Suche, A4-Export, Seitenmetadaten und Hörbuch folgen der gewählten Sprache. Für die übrigen Sprachen des Menüs (insgesamt 62) wird die Seite auf Wunsch über Google Translate übersetzt.
+- Die in der Datei enthaltenen Übersetzungen entstanden mit KI-Unterstützung und **müssen von Muttersprachlern geprüft werden**; die Rechtsseiten und Demotexte bleiben auf Rumänisch (nur ihre Titel sind übersetzt); auch der juristische Inhalt und die medizinischen/physiologischen Passagen (Sauerstoffwerte, Dosen) müssen fachlich geprüft werden.
 - Panel mit Tastenkürzeln (aufgerufen mit `?`).
 - Rechtsseiten in der Anwendung: Datenschutz/DSGVO, Cookies, Schaltfläche „Alle lokalen Daten löschen“.
 - PWA: Manifest und Service Worker (`sw.js`).
@@ -42,7 +43,7 @@ Schritte:
 
 1. Lesen Sie über das Seitenmenü: Prolog, Kapitel 1-2, Szenarien, Rezensionen, Epilog.
 2. Für das Hörbuch drücken Sie `A` und nutzen Wiedergabe/Pause.
-3. Für eine andere Sprache öffnen Sie das Menü „Übersetzungen“ und wählen die Sprache.
+3. Für eine andere Sprache öffnen Sie das Menü „Übersetzungen“ und wählen die Sprache. Die 8 in der Datei enthaltenen Sprachen funktionieren offline; die übrigen nutzen Google Translate (siehe den Abschnitt zum Netzwerk).
 4. „✨ Deine Rezension“ und „🚀 Dein Ende“ senden deinen Text nur dann an eine KI-API, wenn du handelst (und bestätigst).
 5. Lokale Daten können mit „🗑️ Jetzt alle lokalen Daten löschen“ auf der Cookie-/Datenschutzseite gelöscht werden.
 
@@ -54,7 +55,7 @@ Kontaktierte Drittanbieter-Hosts:
 
 - `alexio.tf`: Illustrationsbilder (beim Laden angefordert; die einzige externe Anfrage ohne Benutzeraktion) und Freigabevorschauen.
 - `tts-proxy.chiuta.workers.dev` (Cloudflare Worker zu Azure Neural TTS): **nur wenn du ausdrücklich** „Azure-Neural-Online-Stimme“ im Stimmen-Panel des Hörbuchs ankreuzt (Opt-in, standardmäßig aus; die Einstellung wird in `pi_azure_tts` gespeichert); dann wird eine Testanfrage gestellt und der gelesene Text geht zur Synthese an den Proxy; ohne Opt-in wird die lokale Stimme des Browsers verwendet und beim Laden geht keine Anfrage an diesen Dienst.
-- `translate.googleapis.com`: nur wenn du unter „Übersetzungen“ eine andere Sprache wählst; der Text der Seite wird an Google Translate gesendet.
+- `translate.googleapis.com`: nur wenn du unter „Übersetzungen“ eine andere als die 8 in der Datei enthaltenen Sprachen wählst (ro, en, fr, it, es, pt, de, hu); der Text der Seite wird an Google Translate gesendet.
 - Eine KI-API über `/api/claude` (der Proxy `claude-proxy.worker.js` aus dem Repository, zur Anthropic-API): nur wenn du „Deine Rezension“ / „Dein Ende“ nutzt.
 - Google Fonts: im Audit geprüft (2026-10-10) — es gibt keine Anfrage an `fonts.googleapis.com` / `fonts.gstatic.com`; die Datenschutzseite erwähnt sie nur bedingt.
 - Das Formular „Nächste Geschichte“ (Newsletter): Die E-Mail-Adresse wird nur lokal in `localStorage` gespeichert (`nlSubs`); sie wird nirgendwohin gesendet, und niemand erhält auf dieser Grundlage Benachrichtigungen, obwohl die Bestätigungsmeldung sagt „Ich sage dir Bescheid, wenn etwas Neues erscheint“.
@@ -67,7 +68,7 @@ Fiktion / Spekulation: Der Roman, die Szenarien und die 108 Rezensionen sind Wer
 
 ## Lokale Ausführung / offline
 
-Laden Sie das Repository herunter und öffnen Sie `index.html`: Der Text des Buches ist in der Datei enthalten und lässt sich ohne Internet lesen. Internet benötigen: das Hörbuch mit Online-Stimme (optional; sonst die lokale Stimme), die Übersetzungen, die generativen Funktionen und die Bilder von alexio.tf. Der Service Worker registriert sich unter dem Pfad `/sw.js` und funktioniert nur über http(s), nicht aus einer lokalen Datei.
+Laden Sie das Repository herunter und öffnen Sie `index.html`: Der Text des Buches ist in der Datei enthalten und lässt sich ohne Internet lesen. Internet benötigen: das Hörbuch mit Online-Stimme (optional; sonst die lokale Stimme), die Übersetzungen in andere als die 8 enthaltenen Sprachen, die generativen Funktionen und die Bilder von alexio.tf. Der Service Worker registriert sich unter dem Pfad `/sw.js` und funktioniert nur über http(s), nicht aus einer lokalen Datei.
 
 ## Lizenz
 
@@ -82,6 +83,9 @@ MIT — siehe Datei [LICENSE](LICENSE). Die Urheberrechte bleiben gewahrt; der C
 - Tests: `tests/fff-r8.test.mjs` (Netzwerk blockiert; die auch zuvor angeforderten Bilder von alexio.tf sind aus der Zählung ausgenommen; 1280 und 360 px, axe 0 Verstöße bei geöffnetem Dialog).
 
 ## Verlauf / Changelog
+
+### 1.2.2 — 2026-10-19
+- Der gesamte Erzähltext (Epilog, Kapitel, Szenarien und die 108 Rezensionen: 115 Seiten) liegt neben dem rumänischen Original in 7 Übersetzungen vor (en, fr, it, es, pt, de, hu), ohne Rückfall auf Rumänisch; Suche, A4-Export, Seitenmetadaten und Hörbuch verwenden die gewählte Sprache. Die Rechts-/Demotexte bleiben auf Rumänisch. SW-Cache pi-v18.
 
 ### 1.1.0 — 2026-10-14
 - Neu: Lesezeichen und Notizen zu Textstellen mit Markdown-Export; .fff.json-Sicherung und Transparenz-Label (gemeinsames Kit). SW-Cache pi-v15.
@@ -110,7 +114,7 @@ Alexio — Alexandru-Ionuț Chiuță, Kontakt: alexio@trom.tf
 
 ## Zusammenfassung
 
-„Printre inteligențe“ ist ein interaktiver rumänischsprachiger SF-Roman rund um die NASA-Mission Artemis 2, veröffentlicht als Web-App: Prolog, Kapitel, Epilog, 17 alternative Szenarien und 108 fiktive Rezensionen, mit integriertem Hörbuch. Einstellungen, Lesefortschritt und Texte der Nutzer werden in localStorage gespeichert. Sie kontaktiert alexio.tf (Bilder), einen TTS-Proxy auf Cloudflare Workers, Google Translate (nur wenn du eine Sprache wählst) und einen KI-API-Endpunkt (nur für die generativen Funktionen). Lizenz: MIT.
+„Printre inteligențe“ ist ein interaktiver SF-Roman (rumänisches Original, mit Übersetzungen in 7 Sprachen) rund um die NASA-Mission Artemis 2, veröffentlicht als Web-App: Prolog, Kapitel, Epilog, 17 alternative Szenarien und 108 fiktive Rezensionen, mit integriertem Hörbuch. Einstellungen, Lesefortschritt und Texte der Nutzer werden in localStorage gespeichert. Sie kontaktiert alexio.tf (Bilder), einen TTS-Proxy auf Cloudflare Workers, Google Translate (nur wenn du eine Sprache außerhalb der 8 enthaltenen wählst) und einen KI-API-Endpunkt (nur für die generativen Funktionen). Lizenz: MIT.
 
 ## Audit
 

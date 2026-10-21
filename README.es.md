@@ -22,7 +22,8 @@ Novela de ciencia ficción interactiva sobre la misión Artemis 2, «reseñada p
 - Audiolibro integrado, con síntesis de voz (servicio en línea o voz local del navegador), ajustes de voces y reproducción.
 - Funciones generativas «✨ Tu reseña» y «🚀 Tu final», que llaman a una API de IA mediante un endpoint configurable (`/api/claude`).
 - Búsqueda, tema día/noche, modo de lectura, fondos y efectos de sonido opcionales, progreso de lectura y marcadores.
-- Traducción automática de la página, a elección, a una larga lista de idiomas (menú «Traducciones»; el idioma original es el rumano).
+- El libro (epílogo, capítulos, 17 escenarios y 108 reseñas) existe en 8 idiomas (original rumano más inglés, francés, italiano, español, portugués, alemán y húngaro), incluidos en el archivo: el idioma se cambia desde el menú «Traducciones» sin ninguna solicitud de red, y la búsqueda, la exportación A4, los metadatos de la página y el audiolibro siguen el idioma elegido. Para los demás idiomas del menú (62 en total) la página se traduce a petición mediante Google Translate.
+- Las traducciones incluidas en el archivo se realizaron con ayuda de IA y **necesitan revisión nativa**; las páginas legales y los textos de demostración siguen en rumano (solo se traducen sus títulos); el contenido jurídico y los pasajes médicos/fisiológicos (valores de oxígeno, dosis) también requieren revisión especializada.
 - Panel de atajos de teclado (se abre con `?`).
 - Páginas legales en la aplicación: privacidad/RGPD, cookies, botón «Borrar todos los datos locales».
 - PWA: manifiesto y Service Worker (`sw.js`).
@@ -42,7 +43,7 @@ Pasos:
 
 1. Lee desde el menú lateral: Prólogo, Capítulos 1-2, escenarios, reseñas, Epílogo.
 2. Para el audiolibro pulsa `A` y usa Reproducir/Pausa.
-3. Para otro idioma abre el menú «Traducciones» y elige el idioma.
+3. Para otro idioma abre el menú «Traducciones» y elige el idioma. Los 8 idiomas incluidos en el archivo funcionan sin conexión; los demás usan Google Translate (véase la sección sobre la red).
 4. «✨ Tu reseña» y «🚀 Tu final» envían tu texto a una API de IA solo cuando actúas (y confirmas).
 5. Los datos locales se pueden borrar con «🗑️ Borrar ahora todos los datos locales» desde la página de cookies/privacidad.
 
@@ -54,7 +55,7 @@ Hosts de terceros contactados:
 
 - `alexio.tf`: imágenes ilustrativas (solicitadas al cargar; la única solicitud externa sin acción del usuario) y vistas previas para compartir.
 - `tts-proxy.chiuta.workers.dev` (Cloudflare Worker hacia Azure Neural TTS): **solo si marcas explícitamente** «Voz en línea Azure Neural» en el panel de voces del audiolibro (opt-in, desactivado por defecto; la preferencia se guarda en `pi_azure_tts`); entonces se hace una solicitud de prueba y el texto leído sale hacia el proxy para la síntesis; sin opt-in se usa la voz local del navegador y al cargar no sale ninguna solicitud hacia este servicio.
-- `translate.googleapis.com`: solo si eliges otro idioma en «Traducciones»; el texto de la página se envía a Google Translate.
+- `translate.googleapis.com`: solo si eliges en «Traducciones» un idioma distinto de los 8 incluidos en el archivo (ro, en, fr, it, es, pt, de, hu); el texto de la página se envía a Google Translate.
 - Una API de IA mediante `/api/claude` (el proxy `claude-proxy.worker.js` del repositorio, hacia la API de Anthropic): solo si usas «Tu reseña» / «Tu final».
 - Google Fonts: verificado en la auditoría (2026-10-10) — no hay ninguna solicitud a `fonts.googleapis.com` / `fonts.gstatic.com`; la página de privacidad solo los menciona de forma condicional.
 - El formulario «Próxima historia» (newsletter): la dirección de correo se guarda solo localmente, en `localStorage` (`nlSubs`); no se envía a ninguna parte y nadie recibirá notificaciones basadas en ella, aunque el mensaje de confirmación dice «Te aviso cuando aparezca algo nuevo».
@@ -67,7 +68,7 @@ Ficción / especulación: la novela, los escenarios y las 108 reseñas son obras
 
 ## Ejecución local / sin conexión
 
-Descarga el repositorio y abre `index.html`: el texto del libro está incluido en el archivo y se lee sin internet. Necesitan internet: el audiolibro con voz en línea (opcional; si no, la voz local), las traducciones, las funciones generativas y las imágenes de alexio.tf. El Service Worker se registra en la ruta `/sw.js` y funciona solo sobre http(s), no desde un archivo local.
+Descarga el repositorio y abre `index.html`: el texto del libro está incluido en el archivo y se lee sin internet. Necesitan internet: el audiolibro con voz en línea (opcional; si no, la voz local), las traducciones a idiomas distintos de los 8 incluidos, las funciones generativas y las imágenes de alexio.tf. El Service Worker se registra en la ruta `/sw.js` y funciona solo sobre http(s), no desde un archivo local.
 
 ## Licencia
 
@@ -82,6 +83,9 @@ MIT — véase el archivo [LICENSE](LICENSE). Los derechos de autor se conservan
 - Pruebas: `tests/fff-r8.test.mjs` (red bloqueada; las imágenes de alexio.tf, solicitadas también antes, se excluyen del recuento; 1280 y 360 px, axe 0 infracciones con el cuadro de diálogo abierto).
 
 ## Historial / Changelog
+
+### 1.2.2 — 2026-10-19
+- Todo el texto narrativo (epílogo, capítulos, escenarios y las 108 reseñas: 115 páginas) está disponible en 7 traducciones además del original rumano (en, fr, it, es, pt, de, hu), sin volver al rumano; la búsqueda, la exportación A4, los metadatos de la página y el audiolibro usan el idioma elegido. Los textos jurídicos/de demostración siguen en rumano. Caché SW pi-v18.
 
 ### 1.1.0 — 2026-10-14
 - Nuevo: marcadores y notas en pasajes con exportación a Markdown; copia de seguridad .fff.json y etiqueta de transparencia (kit común). Caché SW pi-v15.
@@ -110,7 +114,7 @@ Alexio — Alexandru-Ionuț Chiuță, contacto: alexio@trom.tf
 
 ## Resumen
 
-«Printre inteligențe» es una novela de ciencia ficción interactiva en rumano, construida en torno a la misión Artemis 2 de la NASA y publicada como aplicación web: prólogo, capítulos, epílogo, 17 escenarios alternativos y 108 reseñas ficticias, con un audiolibro integrado. Guarda preferencias, progreso de lectura y textos del usuario en localStorage. Contacta con alexio.tf (imágenes), un proxy TTS en Cloudflare Workers, Google Translate (solo si eliges un idioma) y un punto final de API de IA (solo para las funciones generativas). Licencia: MIT.
+«Printre inteligențe» es una novela de ciencia ficción interactiva (original rumano, con traducciones a 7 idiomas), construida en torno a la misión Artemis 2 de la NASA y publicada como aplicación web: prólogo, capítulos, epílogo, 17 escenarios alternativos y 108 reseñas ficticias, con un audiolibro integrado. Guarda preferencias, progreso de lectura y textos del usuario en localStorage. Contacta con alexio.tf (imágenes), un proxy TTS en Cloudflare Workers, Google Translate (solo si eliges un idioma fuera de los 8 incluidos) y un punto final de API de IA (solo para las funciones generativas). Licencia: MIT.
 
 ## Auditoría
 
