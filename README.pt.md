@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.3 · **Última atualização:** 2026-10-22
+**Versão:** 1.2.4 · **Última atualização:** 2026-10-22
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — veja o ficheiro [LICENSE](LICENSE). Os direitos de autor são mantidos; 
 - Testes: `tests/fff-r8.test.mjs` (rede bloqueada; as imagens de alexio.tf, pedidas também antes, são excluídas da contagem; 1280 e 360 px, axe 0 violações com a caixa de diálogo aberta).
 
 ## Histórico / Changelog
+
+### 1.2.4 — 2026-10-22
+- As últimas cadeias de interface que continuavam em romeno nas outras línguas estão agora traduzidas: o índice completo dos cenários, a transmissão final com a citação de encerramento e a nota de apoio, e o sufixo «a imagem requer ligação à internet» das legendas das figuras.
 
 ### 1.2.3 — 2026-10-22
 - O título da página, os títulos dos cartões sociais e as descrições das imagens seguem o idioma da interface (o excerto do romance na descrição mantém-se em romeno, texto original).

@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.3 · **Last updated:** 2026-10-22
+**Version:** 1.2.4 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — see the [LICENSE](LICENSE) file. Copyright is retained; the code and the
 - Tests: `tests/fff-r8.test.mjs` (network blocked; the alexio.tf images, requested before as well, are excluded from the count; 1280 and 360 px, axe 0 violations with the dialog open).
 
 ## History / Changelog
+
+### 1.2.4 — 2026-10-22
+- The last interface strings still shown in Romanian in the other languages are now translated: the complete scenario index, the final transmission with the closing quote and the support note, and the “image requires an internet connection” suffix of the figure captions. The novel and the reviews themselves intentionally stay as translated.
 
 ### 1.2.3 — 2026-10-22
 - The page title, the social-card titles and image descriptions now follow the interface language (the novel's excerpt in the description stays in Romanian, as the source text).

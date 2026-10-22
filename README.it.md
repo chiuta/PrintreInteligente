@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.3 · **Ultimo aggiornamento:** 2026-10-22
+**Versione:** 1.2.4 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — vedi il file [LICENSE](LICENSE). I diritti d'autore sono mantenuti; il c
 - Test: `tests/fff-r8.test.mjs` (rete bloccata; le immagini di alexio.tf, richieste anche prima, sono escluse dal conteggio; 1280 e 360 px, axe 0 violazioni con la finestra aperta).
 
 ## Storico / Changelog
+
+### 1.2.4 — 2026-10-22
+- Le ultime stringhe di interfaccia rimaste in rumeno nelle altre lingue sono ora tradotte: l’indice completo degli scenari, la trasmissione finale con la citazione di chiusura e la nota di sostegno, e il suffisso «l’immagine richiede una connessione a internet» delle didascalie delle figure.
 
 ### 1.2.3 — 2026-10-22
 - Il titolo della pagina, i titoli delle card social e le descrizioni delle immagini seguono la lingua dell'interfaccia (l'estratto del romanzo nella descrizione resta in rumeno, testo originale).

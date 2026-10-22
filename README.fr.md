@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.2.3 · **Dernière mise à jour :** 2026-10-22
+**Version :** 1.2.4 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — voir le fichier [LICENSE](LICENSE). Les droits d'auteur sont conservés 
 - Tests : `tests/fff-r8.test.mjs` (réseau bloqué ; les images d'alexio.tf, déjà demandées auparavant, sont exclues du décompte ; 1280 et 360 px, axe 0 violation avec la boîte de dialogue ouverte).
 
 ## Historique / Changelog
+
+### 1.2.4 — 2026-10-22
+- Les dernières chaînes d’interface restées en roumain dans les autres langues sont désormais traduites : l’index complet des scénarios, la transmission finale avec la citation de clôture et la note de soutien, ainsi que le suffixe « l’image nécessite une connexion internet » des légendes de figures.
 
 ### 1.2.3 — 2026-10-22
 - Le titre de la page, les titres des cartes sociales et les descriptions d'images suivent la langue de l'interface (l'extrait du roman dans la description reste en roumain, texte source).

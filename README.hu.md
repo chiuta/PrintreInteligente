@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.3 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.2.4 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — lásd a [LICENSE](LICENSE) fájlt. A szerzői jogok megmaradnak; a kód 
 - Tesztek: `tests/fff-r8.test.mjs` (hálózat blokkolva; az alexio.tf képei, amelyeket korábban is lekértek, kimaradnak a számlálásból; 1280 és 360 px, axe 0 szabálysértés nyitott párbeszédablakkal).
 
 ## Előzmények / Changelog
+
+### 1.2.4 — 2026-10-22
+- Az utolsó, a többi nyelven még románul megjelenő felületi szövegek is le vannak fordítva: a teljes forgatókönyv-jegyzék, a záró adás a zárószöveggel és a támogatási megjegyzéssel, valamint az ábrafeliratok „a képhez internetkapcsolat szükséges” toldaléka.
 
 ### 1.2.3 — 2026-10-22
 - Az oldal címe, a közösségi kártyák címei és a képleírások követik a felület nyelvét (a leírásban szereplő regényrészlet eredeti szövegként románul marad).

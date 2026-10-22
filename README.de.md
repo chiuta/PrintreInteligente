@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.3 · **Zuletzt aktualisiert:** 2026-10-22
+**Version:** 1.2.4 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — siehe Datei [LICENSE](LICENSE). Die Urheberrechte bleiben gewahrt; der C
 - Tests: `tests/fff-r8.test.mjs` (Netzwerk blockiert; die auch zuvor angeforderten Bilder von alexio.tf sind aus der Zählung ausgenommen; 1280 und 360 px, axe 0 Verstöße bei geöffnetem Dialog).
 
 ## Verlauf / Changelog
+
+### 1.2.4 — 2026-10-22
+- Die letzten Oberflächentexte, die in den anderen Sprachen noch rumänisch waren, sind jetzt übersetzt: das vollständige Szenarioverzeichnis, die letzte Übertragung mit Schlusszitat und Unterstützungshinweis sowie der Zusatz „das Bild benötigt eine Internetverbindung“ in den Abbildungsunterschriften.
 
 ### 1.2.3 — 2026-10-22
 - Seitentitel, Titel der Social-Cards und Bildbeschreibungen folgen der Oberflächensprache (der Romanauszug in der Beschreibung bleibt als Originaltext rumänisch).
