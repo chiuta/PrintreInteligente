@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.5 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.2.6 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — lásd a [LICENSE](LICENSE) fájlt. A szerzői jogok megmaradnak; a kód 
 - Tesztek: `tests/fff-r8.test.mjs` (hálózat blokkolva; az alexio.tf képei, amelyeket korábban is lekértek, kimaradnak a számlálásból; 1280 és 360 px, axe 0 szabálysértés nyitott párbeszédablakkal).
 
 ## Előzmények / Changelog
+
+### 1.2.6 — 2026-10-22
+- fff-kit 1.1.2: PBKDF2 600 000 iterációval, clickjacking elleni védelem
 
 ### 1.2.5 — 2026-10-22
 - Tárolás: az általános localStorage-kulcsok (háttér, Hold mód, olvasó mód, hangeffektek, hangok, 108 szavas értékelés, hírlevél) egyedi `printreinteligente.` előtagot kaptak; a meglévő értékek automatikusan átkerülnek a régi kulcsokból.

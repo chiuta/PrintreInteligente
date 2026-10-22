@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.5 · **Ultimo aggiornamento:** 2026-10-22
+**Versione:** 1.2.6 · **Ultimo aggiornamento:** 2026-10-22
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — vedi il file [LICENSE](LICENSE). I diritti d'autore sono mantenuti; il c
 - Test: `tests/fff-r8.test.mjs` (rete bloccata; le immagini di alexio.tf, richieste anche prima, sono escluse dal conteggio; 1280 e 360 px, axe 0 violazioni con la finestra aperta).
 
 ## Storico / Changelog
+
+### 1.2.6 — 2026-10-22
+- fff-kit 1.1.2: PBKDF2 con 600.000 iterazioni, protezione anti-clickjacking
 
 ### 1.2.5 — 2026-10-22
 - Archiviazione: le chiavi generiche di localStorage (sfondo, modalità Luna, modalità lettura, effetti sonori, voci, recensione di 108 parole, newsletter) hanno ora il prefisso unico `printreinteligente.`; i valori esistenti vengono migrati automaticamente dalle vecchie chiavi.
