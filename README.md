@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.4 · **Last updated:** 2026-10-22
+**Version:** 1.2.5 · **Last updated:** 2026-10-22
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,11 @@ MIT — see the [LICENSE](LICENSE) file. Copyright is retained; the code and the
 - Tests: `tests/fff-r8.test.mjs` (network blocked; the alexio.tf images, requested before as well, are excluded from the count; 1280 and 360 px, axe 0 violations with the dialog open).
 
 ## History / Changelog
+
+### 1.2.5 — 2026-10-22
+- Storage: the generic localStorage keys (background, Moon mode, reading mode, sound effects, voices, 108-word review, newsletter) now carry the unique prefix `printreinteligente.`; existing values are migrated automatically from the old keys.
+- Accessibility: the search field has an accessible name; keyboard focus is visible in the search panel and sidebar search field.
+- Blocking `alert()` messages were replaced by non-modal translated notifications (role=status).
 
 ### 1.2.4 — 2026-10-22
 - The last interface strings still shown in Romanian in the other languages are now translated: the complete scenario index, the final transmission with the closing quote and the support note, and the “image requires an internet connection” suffix of the figure captions. The novel and the reviews themselves intentionally stay as translated.

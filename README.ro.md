@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.4 · **Ultima actualizare:** 2026-10-22
+**Versiune:** 1.2.5 · **Ultima actualizare:** 2026-10-22
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,11 @@ MIT — vezi fișierul [LICENSE](LICENSE). Drepturile de autor sunt păstrate; c
 - Teste: `tests/fff-r8.test.mjs` (rețea blocată; imaginile alexio.tf, cerute și înainte, sunt excluse din numărătoare; 1280 și 360 px, axe 0 violări cu dialogul deschis).
 
 ## Istoric / Changelog
+
+### 1.2.5 — 2026-10-22
+- Stocare: cheile generice din localStorage (fundal, mod Lună, mod citire, efecte sonore, voci, recenzia de 108 cuvinte, newsletter) au acum prefixul unic `printreinteligente.`; valorile existente se migrează automat din cheile vechi.
+- Accesibilitate: câmpul de căutare are nume accesibil; focusul de tastatură este vizibil în panoul de căutare și în câmpul de căutare din bară.
+- Mesajele blocante `alert()` au fost înlocuite cu notificări nemodale traduse (role=status).
 
 ### 1.2.4 — 2026-10-22
 - Ultimele șiruri de interfață rămase în română în celelalte limbi sunt acum traduse: indexul complet al scenariilor, transmisia finală cu citatul de încheiere și nota de susținere, precum și sufixul „imaginea necesită conexiune la internet” din legendele figurilor.

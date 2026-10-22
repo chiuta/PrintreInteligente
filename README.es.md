@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.2.4 · **Última actualización:** 2026-10-22
+**Versión:** 1.2.5 · **Última actualización:** 2026-10-22
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,11 @@ MIT — véase el archivo [LICENSE](LICENSE). Los derechos de autor se conservan
 - Pruebas: `tests/fff-r8.test.mjs` (red bloqueada; las imágenes de alexio.tf, solicitadas también antes, se excluyen del recuento; 1280 y 360 px, axe 0 infracciones con el cuadro de diálogo abierto).
 
 ## Historial / Changelog
+
+### 1.2.5 — 2026-10-22
+- Almacenamiento: las claves genéricas de localStorage (fondo, modo Luna, modo lectura, efectos de sonido, voces, reseña de 108 palabras, boletín) llevan ahora el prefijo único `printreinteligente.`; los valores existentes se migran automáticamente desde las claves antiguas.
+- Accesibilidad: el campo de búsqueda tiene un nombre accesible; el foco del teclado es visible en el panel de búsqueda y en el campo de la barra lateral.
+- Los mensajes bloqueantes `alert()` se sustituyeron por notificaciones no modales traducidas (role=status).
 
 ### 1.2.4 — 2026-10-22
 - Las últimas cadenas de interfaz que seguían en rumano en los demás idiomas ya están traducidas: el índice completo de escenarios, la transmisión final con la cita de cierre y la nota de apoyo, y el sufijo «la imagen requiere conexión a internet» de los pies de figura.

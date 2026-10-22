@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.4 · **Zuletzt aktualisiert:** 2026-10-22
+**Version:** 1.2.5 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,11 @@ MIT — siehe Datei [LICENSE](LICENSE). Die Urheberrechte bleiben gewahrt; der C
 - Tests: `tests/fff-r8.test.mjs` (Netzwerk blockiert; die auch zuvor angeforderten Bilder von alexio.tf sind aus der Zählung ausgenommen; 1280 und 360 px, axe 0 Verstöße bei geöffnetem Dialog).
 
 ## Verlauf / Changelog
+
+### 1.2.5 — 2026-10-22
+- Speicher: Die generischen localStorage-Schlüssel (Hintergrund, Mondmodus, Lesemodus, Soundeffekte, Stimmen, 108-Wörter-Rezension, Newsletter) tragen jetzt das eindeutige Präfix `printreinteligente.`; vorhandene Werte werden automatisch aus den alten Schlüsseln übernommen.
+- Barrierefreiheit: Das Suchfeld hat einen zugänglichen Namen; der Tastaturfokus ist im Suchpanel und im Suchfeld der Seitenleiste sichtbar.
+- Blockierende `alert()`-Meldungen wurden durch nicht-modale, übersetzte Benachrichtigungen ersetzt (role=status).
 
 ### 1.2.4 — 2026-10-22
 - Die letzten Oberflächentexte, die in den anderen Sprachen noch rumänisch waren, sind jetzt übersetzt: das vollständige Szenarioverzeichnis, die letzte Übertragung mit Schlusszitat und Unterstützungshinweis sowie der Zusatz „das Bild benötigt eine Internetverbindung“ in den Abbildungsunterschriften.

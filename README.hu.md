@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.4 · **Utolsó frissítés:** 2026-10-22
+**Verzió:** 1.2.5 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,11 @@ MIT — lásd a [LICENSE](LICENSE) fájlt. A szerzői jogok megmaradnak; a kód 
 - Tesztek: `tests/fff-r8.test.mjs` (hálózat blokkolva; az alexio.tf képei, amelyeket korábban is lekértek, kimaradnak a számlálásból; 1280 és 360 px, axe 0 szabálysértés nyitott párbeszédablakkal).
 
 ## Előzmények / Changelog
+
+### 1.2.5 — 2026-10-22
+- Tárolás: az általános localStorage-kulcsok (háttér, Hold mód, olvasó mód, hangeffektek, hangok, 108 szavas értékelés, hírlevél) egyedi `printreinteligente.` előtagot kaptak; a meglévő értékek automatikusan átkerülnek a régi kulcsokból.
+- Akadálymentesség: a keresőmezőnek hozzáférhető neve van; a billentyűzetfókusz látható a keresőpanelben és az oldalsáv keresőmezőjében.
+- A blokkoló `alert()` üzeneteket nem modális, lefordított értesítések váltották fel (role=status).
 
 ### 1.2.4 — 2026-10-22
 - Az utolsó, a többi nyelven még románul megjelenő felületi szövegek is le vannak fordítva: a teljes forgatókönyv-jegyzék, a záró adás a zárószöveggel és a támogatási megjegyzéssel, valamint az ábrafeliratok „a képhez internetkapcsolat szükséges” toldaléka.
