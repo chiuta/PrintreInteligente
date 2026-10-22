@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · **Français** · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version :** 1.2.2 · **Dernière mise à jour :** 2026-10-19
+**Version :** 1.2.3 · **Dernière mise à jour :** 2026-10-22
 
 Langues de l'interface : **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — voir le fichier [LICENSE](LICENSE). Les droits d'auteur sont conservés 
 - Tests : `tests/fff-r8.test.mjs` (réseau bloqué ; les images d'alexio.tf, déjà demandées auparavant, sont exclues du décompte ; 1280 et 360 px, axe 0 violation avec la boîte de dialogue ouverte).
 
 ## Historique / Changelog
+
+### 1.2.3 — 2026-10-22
+- Le titre de la page, les titres des cartes sociales et les descriptions d'images suivent la langue de l'interface (l'extrait du roman dans la description reste en roumain, texte source).
 
 ### 1.2.2 — 2026-10-19
 - Tout le texte narratif (épilogue, chapitres, scénarios et les 108 critiques : 115 pages) est disponible en 7 traductions en plus de l'original roumain (en, fr, it, es, pt, de, hu), sans retour au roumain ; la recherche, l'export A4, les métadonnées de la page et le livre audio utilisent la langue choisie. Les textes juridiques/de démonstration restent en roumain. Cache SW pi-v18.

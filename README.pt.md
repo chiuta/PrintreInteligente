@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · **Português** · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versão:** 1.2.2 · **Última atualização:** 2026-10-19
+**Versão:** 1.2.3 · **Última atualização:** 2026-10-22
 
 Idiomas da interface: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — veja o ficheiro [LICENSE](LICENSE). Os direitos de autor são mantidos; 
 - Testes: `tests/fff-r8.test.mjs` (rede bloqueada; as imagens de alexio.tf, pedidas também antes, são excluídas da contagem; 1280 e 360 px, axe 0 violações com a caixa de diálogo aberta).
 
 ## Histórico / Changelog
+
+### 1.2.3 — 2026-10-22
+- O título da página, os títulos dos cartões sociais e as descrições das imagens seguem o idioma da interface (o excerto do romance na descrição mantém-se em romeno, texto original).
 
 ### 1.2.2 — 2026-10-19
 - Todo o texto narrativo (epílogo, capítulos, cenários e as 108 recensões: 115 páginas) está disponível em 7 traduções além do original romeno (en, fr, it, es, pt, de, hu), sem regressar ao romeno; a pesquisa, a exportação A4, os metadados da página e o audiolivro usam o idioma escolhido. Os textos jurídicos/de demonstração continuam em romeno. Cache SW pi-v18.

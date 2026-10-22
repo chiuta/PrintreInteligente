@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · **Deutsch** · [Magyar](README.hu.md)
 
-**Version:** 1.2.2 · **Zuletzt aktualisiert:** 2026-10-19
+**Version:** 1.2.3 · **Zuletzt aktualisiert:** 2026-10-22
 
 Oberflächensprachen: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — siehe Datei [LICENSE](LICENSE). Die Urheberrechte bleiben gewahrt; der C
 - Tests: `tests/fff-r8.test.mjs` (Netzwerk blockiert; die auch zuvor angeforderten Bilder von alexio.tf sind aus der Zählung ausgenommen; 1280 und 360 px, axe 0 Verstöße bei geöffnetem Dialog).
 
 ## Verlauf / Changelog
+
+### 1.2.3 — 2026-10-22
+- Seitentitel, Titel der Social-Cards und Bildbeschreibungen folgen der Oberflächensprache (der Romanauszug in der Beschreibung bleibt als Originaltext rumänisch).
 
 ### 1.2.2 — 2026-10-19
 - Der gesamte Erzähltext (Epilog, Kapitel, Szenarien und die 108 Rezensionen: 115 Seiten) liegt neben dem rumänischen Original in 7 Übersetzungen vor (en, fr, it, es, pt, de, hu), ohne Rückfall auf Rumänisch; Suche, A4-Export, Seitenmetadaten und Hörbuch verwenden die gewählte Sprache. Die Rechts-/Demotexte bleiben auf Rumänisch. SW-Cache pi-v18.

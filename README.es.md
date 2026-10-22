@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · **Español** · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versión:** 1.2.2 · **Última actualización:** 2026-10-19
+**Versión:** 1.2.3 · **Última actualización:** 2026-10-22
 
 Idiomas de la interfaz: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — véase el archivo [LICENSE](LICENSE). Los derechos de autor se conservan
 - Pruebas: `tests/fff-r8.test.mjs` (red bloqueada; las imágenes de alexio.tf, solicitadas también antes, se excluyen del recuento; 1280 y 360 px, axe 0 infracciones con el cuadro de diálogo abierto).
 
 ## Historial / Changelog
+
+### 1.2.3 — 2026-10-22
+- El título de la página, los títulos de las tarjetas sociales y las descripciones de las imágenes siguen el idioma de la interfaz (el fragmento de la novela en la descripción queda en rumano, texto original).
 
 ### 1.2.2 — 2026-10-19
 - Todo el texto narrativo (epílogo, capítulos, escenarios y las 108 reseñas: 115 páginas) está disponible en 7 traducciones además del original rumano (en, fr, it, es, pt, de, hu), sin volver al rumano; la búsqueda, la exportación A4, los metadatos de la página y el audiolibro usan el idioma elegido. Los textos jurídicos/de demostración siguen en rumano. Caché SW pi-v18.

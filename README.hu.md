@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.2 · **Utolsó frissítés:** 2026-10-19
+**Verzió:** 1.2.3 · **Utolsó frissítés:** 2026-10-22
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — lásd a [LICENSE](LICENSE) fájlt. A szerzői jogok megmaradnak; a kód 
 - Tesztek: `tests/fff-r8.test.mjs` (hálózat blokkolva; az alexio.tf képei, amelyeket korábban is lekértek, kimaradnak a számlálásból; 1280 és 360 px, axe 0 szabálysértés nyitott párbeszédablakkal).
 
 ## Előzmények / Changelog
+
+### 1.2.3 — 2026-10-22
+- Az oldal címe, a közösségi kártyák címei és a képleírások követik a felület nyelvét (a leírásban szereplő regényrészlet eredeti szövegként románul marad).
 
 ### 1.2.2 — 2026-10-19
 - A teljes elbeszélő szöveg (epilógus, fejezetek, forgatókönyvek és a 108 recenzió: 115 oldal) a román eredeti mellett 7 fordításban elérhető (en, fr, it, es, pt, de, hu), román tartalékszöveg nélkül; a keresés, az A4-export, az oldal metaadatai és a hangoskönyv a választott nyelvet használja. A jogi/bemutató szövegek románul maradnak. SW-gyorsítótár: pi-v18.

@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.2 · **Ultima actualizare:** 2026-10-19
+**Versiune:** 1.2.3 · **Ultima actualizare:** 2026-10-22
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — vezi fișierul [LICENSE](LICENSE). Drepturile de autor sunt păstrate; c
 - Teste: `tests/fff-r8.test.mjs` (rețea blocată; imaginile alexio.tf, cerute și înainte, sunt excluse din numărătoare; 1280 și 360 px, axe 0 violări cu dialogul deschis).
 
 ## Istoric / Changelog
+
+### 1.2.3 — 2026-10-22
+- Titlul paginii, titlurile cardurilor sociale și descrierile imaginilor urmează limba interfeței (fragmentul din roman din descriere rămâne în română, fiind textul-sursă).
 
 ### 1.2.2 — 2026-10-19
 - Întregul text narativ (Epilog, capitole, scenarii și cele 108 recenzii: 115 pagini) este disponibil în 7 traduceri pe lângă originalul român (en, fr, it, es, pt, de, hu), fără revenire la română; căutarea, exportul A4, metadatele paginii și audiobook-ul folosesc limba aleasă. Textele juridice/demo rămân în română. Cache SW pi-v18.
