@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · **Magyar**
 
-**Verzió:** 1.2.8 · **Utolsó frissítés:** 2026-10-23
+**Verzió:** 1.2.9 · **Utolsó frissítés:** 2026-10-23
 
 A felület nyelvei: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,11 @@ MIT — lásd a [LICENSE](LICENSE) fájlt. A szerzői jogok megmaradnak; a kód 
 - Tesztek: `tests/fff-r8.test.mjs` (hálózat blokkolva; az alexio.tf képei, amelyeket korábban is lekértek, kimaradnak a számlálásból; 1280 és 360 px, axe 0 szabálysértés nyitott párbeszédablakkal).
 
 ## Előzmények / Changelog
+
+### 1.2.9 — 2026-10-23
+
+- A natív `confirm()` párbeszédablakokat az akadálymentes, lefordított `FFF.dialog` váltotta fel (kit 1.2.0); a működés változatlan.
+- A helyi tárhely kulcsai mostantól a `printreinteligente.` előtagot használják (`FFF.store.migrate` induláskor, bármilyen olvasás előtt): a meglévő adatok automatikusan megmaradnak, a régi `.fff.json` mentések továbbra is importálhatók.
 
 ### 1.2.7 — 2026-10-22
 

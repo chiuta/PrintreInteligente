@@ -2,7 +2,7 @@
 
 [English](README.md) · [Română](README.ro.md) · [Français](README.fr.md) · **Italiano** · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versione:** 1.2.8 · **Ultimo aggiornamento:** 2026-10-23
+**Versione:** 1.2.9 · **Ultimo aggiornamento:** 2026-10-23
 
 Lingue dell'interfaccia: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,11 @@ MIT — vedi il file [LICENSE](LICENSE). I diritti d'autore sono mantenuti; il c
 - Test: `tests/fff-r8.test.mjs` (rete bloccata; le immagini di alexio.tf, richieste anche prima, sono escluse dal conteggio; 1280 e 360 px, axe 0 violazioni con la finestra aperta).
 
 ## Storico / Changelog
+
+### 1.2.9 — 2026-10-23
+
+- I dialoghi nativi `confirm()` sono sostituiti da `FFF.dialog` (accessibile, tradotto; kit 1.2.0); il comportamento non cambia.
+- Le chiavi dell'archiviazione locale usano ora il prefisso `printreinteligente.` (`FFF.store.migrate` all'avvio, prima di qualsiasi lettura): i dati esistenti vengono conservati automaticamente e i vecchi backup `.fff.json` si possono ancora importare.
 
 ### 1.2.7 — 2026-10-22
 
