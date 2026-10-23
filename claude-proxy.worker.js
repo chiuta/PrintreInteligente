@@ -140,11 +140,14 @@ export default {
       return jsonError(400, 'Body nu e JSON valid', origin);
     }
 
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return jsonError(400, 'Body trebuie să fie un obiect JSON', origin);   // `null`, `[]`, `"x"` altfel dau TypeError → 500 fără CORS
+    }
     if (!body.model || !ALLOWED_MODELS.has(body.model)) {
       return jsonError(400, 'Model nepermis', origin);
     }
-    if (typeof body.max_tokens !== 'number' || body.max_tokens > MAX_TOKENS_LIMIT) {
-      body.max_tokens = Math.min(body.max_tokens || 1000, MAX_TOKENS_LIMIT);
+    if (typeof body.max_tokens !== 'number' || !(body.max_tokens >= 1) || body.max_tokens > MAX_TOKENS_LIMIT) {
+      body.max_tokens = typeof body.max_tokens === 'number' && body.max_tokens > MAX_TOKENS_LIMIT ? MAX_TOKENS_LIMIT : 1000;   // NaN/negativ/șir → 1000; peste plafon → plafon
     }
     if (!Array.isArray(body.messages) || body.messages.length === 0) {
       return jsonError(400, 'messages lipsă sau invalid', origin);
@@ -170,7 +173,8 @@ export default {
           'x-api-key': env.ANTHROPIC_API_KEY,
           'anthropic-version': '2023-06-01',
         },
-        body: JSON.stringify(body),
+        // doar câmpurile folosite de aplicație: `tools` (ex. web_search facturat separat), `thinking`, `stream`, `metadata` etc. nu se retransmit
+        body: JSON.stringify({ model: body.model, max_tokens: body.max_tokens, system: body.system, messages: body.messages }),
       });
 
       const text = await upstream.text();
@@ -191,7 +195,7 @@ function corsHeaders(origin, allowed) {
   return {
     'Access-Control-Allow-Origin': allowed ? origin : 'null',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Headers': 'Content-Type, cf-turnstile-response',
     'Access-Control-Max-Age': '86400',
     'Vary': 'Origin',
   };
