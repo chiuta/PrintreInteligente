@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 1.2.10 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -27,6 +27,7 @@ Roman SF interactiv despre misiunea Artemis 2, „recenzat de stele și hiperciv
 - Panou cu scurtături de tastatură (apelat cu `?`).
 - Pagini legale în aplicație: confidențialitate/GDPR, cookies, buton „Șterge toate datele locale".
 - PWA: manifest și Service Worker (`sw.js`).
+- **Calea cititorului (v2.0.0):** alegerea scenariului din Capitolul 2 (A, B sau C) se salvează pe dispozitiv (`printreinteligente.cale`); butonul 🌳 deschide „Arborele poveștii” (ramuri parcurse/neparcurse, istoricul alegerilor), iar traseul ales (Prolog → Cap. 1 → Cap. 2 → scenariu → Epilog) se descarcă ca episod de sine stătător (.html sau .txt), în limba curentă, din textul cărții nemodificat. Tot local, fără rețea.
 
 ## Manual de utilizare
 
@@ -83,6 +84,9 @@ MIT — vezi fișierul [LICENSE](LICENSE). Drepturile de autor sunt păstrate; c
 - Teste: `tests/fff-r8.test.mjs` (rețea blocată; imaginile alexio.tf, cerute și înainte, sunt excluse din numărătoare; 1280 și 360 px, axe 0 violări cu dialogul deschis).
 
 ## Istoric / Changelog
+
+### 2.0.0 — 2026-10-26
+- Ficțiune cu ramificații salvate: arborele poveștii (Capitolul 2 → scenariile A/B/C → Epilog), istoricul alegerilor și exportul traseului ca episod de sine stătător (HTML/TXT). Textul cărții nu este modificat.
 
 ### 1.2.9 — 2026-10-23
 

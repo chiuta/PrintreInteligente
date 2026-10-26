@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.2.10 · **Last updated:** 2026-10-26
+**Version:** 2.0.0 · **Last updated:** 2026-10-26
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -83,6 +83,9 @@ MIT — see the [LICENSE](LICENSE) file. Copyright is retained; the code and the
 - Tests: `tests/fff-r8.test.mjs` (network blocked; the alexio.tf images, requested before as well, are excluded from the count; 1280 and 360 px, axe 0 violations with the dialog open).
 
 ## History / Changelog
+
+### 2.0.0 — 2026-10-26
+- The reader's path: the scenario chosen in Chapter 2 is saved locally, the story tree (🌳) shows visited branches and choice history, and the chosen path can be exported as a standalone episode (HTML/TXT) from the unmodified book text.
 
 ### 1.2.9 — 2026-10-23
 
