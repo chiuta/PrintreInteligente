@@ -49,8 +49,8 @@
     "printreinteligente.reader-state",
     "printreinteligente.ui-lang"
   ],
-  "sizeBytes": 3209535,
-  "sha256": "6a469171f2ab3d8fb6e98576f7629c6cc0429daaa8e95ac0790cb3aec1bab2d3",
+  "sizeBytes": 3217636,
+  "sha256": "35a7321602c2d7cec629a052c2b1caa59466ba7bff3bf2863e78ee3350576abd",
   "csp": {
     "present": true,
     "directives": {
