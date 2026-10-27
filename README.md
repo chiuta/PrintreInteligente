@@ -2,7 +2,9 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.0.0 · **Last updated:** 2026-10-26
+**Version:** 2.1.0 · **Last updated:** 2026-10-27
+
+**Status:** stable · **Offline:** partial — the book text, the 8 included languages, search, notes and the branch map work offline; internet is needed for the images from alexio.tf, the online voice, translation into other languages and the AI features (see “Privacy and network”)
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -27,6 +29,12 @@ An interactive SF novel about the Artemis 2 mission, "reviewed by stars and hype
 - Keyboard shortcuts panel (opened with `?`).
 - In-app legal pages: privacy/GDPR, cookies, a "Delete all local data" button.
 - PWA: manifest and Service Worker (`sw.js`).
+
+## Branch map and companion app (v2.1.0)
+
+- **Branch map.** In the story tree dialog (🌳) a new “Branch map” section lays out the whole structure of the book: the shared start (Prologue, Chapters 1–2), the 5 scenario families (A South Pole, B Equator, C 45°N, D Space, E Extremes) with their 17 scenarios, and the shared ending (Epilogue). Every node is a button that opens the page, or jumps to the scenario inside it; families A–C that you have opened are marked as visited. It uses only the book’s own data and the local progress; no network.
+- **NOMIA.** The same dialog now has an explicit link to **NOMIA**, the companion app of this volume (Human·AI·NHI contact protocols): https://chiuta.github.io/NOMIA/. It opens in a new tab only when you click; NOMIA is fiction and conceptual models, not verified facts.
+- The new interface texts are in the 8 languages of the app; the fr/it/es/pt/de/hu versions are AI-assisted and not natively verified. Test: `tests/harta.test.mjs`.
 
 ## User guide
 
@@ -83,6 +91,11 @@ MIT — see the [LICENSE](LICENSE) file. Copyright is retained; the code and the
 - Tests: `tests/fff-r8.test.mjs` (network blocked; the alexio.tf images, requested before as well, are excluded from the count; 1280 and 360 px, axe 0 violations with the dialog open).
 
 ## History / Changelog
+
+Full changelog: [`CHANGELOG.md`](CHANGELOG.md).
+
+### 2.1.0 — 2026-10-27 (previous: v2.0.0)
+- New: “Branch map” (5 families, 17 scenarios, shared start/ending) in the story tree; explicit link to the companion app NOMIA; status/offline notes. Service Worker cache: pi-v24.
 
 ### 2.0.0 — 2026-10-26
 - The reader's path: the scenario chosen in Chapter 2 is saved locally, the story tree (🌳) shows visited branches and choice history, and the chosen path can be exported as a standalone episode (HTML/TXT) from the unmodified book text.

@@ -10,7 +10,7 @@
 /* Printre inteligențe — Service Worker v11
    DOCUMENT = network-first (o reîncărcare aduce mereu ultima versiune; evită „cache zombi").
    Restul asset-urilor = cache-first cu populare leneșă. Include kill-switch. */
-const CACHE = 'pi-v23';
+const CACHE = 'pi-v24';
 const ROOT = self.registration.scope;               // rădăcina aplicației (ex. …/PrintreInteligente/), nu rădăcina originii
 const ROOT_PATH = new URL(ROOT).pathname;
 const SHELL = [ROOT];
