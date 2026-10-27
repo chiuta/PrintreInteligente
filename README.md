@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.1.0 · **Last updated:** 2026-10-27
+**Version:** 2.2.0 · **Last updated:** 2026-10-27
 
 **Status:** stable · **Offline:** partial — the book text, the 8 included languages, search, notes and the branch map work offline; internet is needed for the images from alexio.tf, the online voice, translation into other languages and the AI features (see “Privacy and network”)
 
@@ -32,7 +32,7 @@ An interactive SF novel about the Artemis 2 mission, "reviewed by stars and hype
 
 ## Branch map and companion app (v2.1.0)
 
-- **Branch map.** In the story tree dialog (🌳) a new “Branch map” section lays out the whole structure of the book: the shared start (Prologue, Chapters 1–2), the 5 scenario families (A South Pole, B Equator, C 45°N, D Space, E Extremes) with their 17 scenarios, and the shared ending (Epilogue). Every node is a button that opens the page, or jumps to the scenario inside it; families A–C that you have opened are marked as visited. It uses only the book’s own data and the local progress; no network.
+- **Branch map.** In the story tree dialog (🌳) a new “Branch map” section lays out the whole structure of the book: the shared start (Prologue, Chapters 1–2), the 5 scenario families (A South Pole, B Equator, C 45°N, D Space, E Extremes) with their 17 scenarios, and the shared ending (Epilogue). Every node is a button that opens the page, or jumps to the scenario inside it; families A–C that you have opened are marked as visited. **Since 2.2.0** each of the 17 scenarios also gets a ✓ once it has stayed in the middle band of the screen for at least 3 seconds (a scenario seen, not proof that it was read), so families D and E (inside the Epilogue) can now be marked too. The marks are kept only in this browser and are cleared by “Delete saved choices”. It uses only the book’s own data and the local progress; no network.
 - **NOMIA.** The same dialog now has an explicit link to **NOMIA**, the companion app of this volume (Human·AI·NHI contact protocols): https://chiuta.github.io/NOMIA/. It opens in a new tab only when you click; NOMIA is fiction and conceptual models, not verified facts.
 - The new interface texts are in the 8 languages of the app; the fr/it/es/pt/de/hu versions are AI-assisted and not natively verified. Test: `tests/harta.test.mjs`.
 
@@ -95,6 +95,7 @@ MIT — see the [LICENSE](LICENSE) file. Copyright is retained; the code and the
 Full changelog: [`CHANGELOG.md`](CHANGELOG.md).
 
 ### 2.1.0 — 2026-10-27 (previous: v2.0.0)
+- 2.2.0 (2026-10-27, previous: v2.1.0): the branch map now marks the 17 scenarios (and families D and E) as seen after ≥3 s on screen; new test `tests/scenarii-vazute.test.mjs`.
 - New: “Branch map” (5 families, 17 scenarios, shared start/ending) in the story tree; explicit link to the companion app NOMIA; status/offline notes. Service Worker cache: pi-v24.
 
 ### 2.0.0 — 2026-10-26
