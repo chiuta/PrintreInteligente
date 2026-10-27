@@ -2,7 +2,9 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.0.0 · **Ultima actualizare:** 2026-10-26
+**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
+
+**Stare:** stabil · **Offline:** parțial — textul cărții, cele 8 limbi incluse, căutarea, notele și harta ramificațiilor funcționează offline; internetul e necesar pentru imaginile de pe alexio.tf, vocea online, traducerea în alte limbi și funcțiile AI (vezi „Confidențialitate și rețea”)
 
 Limbile interfeței: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -28,6 +30,12 @@ Roman SF interactiv despre misiunea Artemis 2, „recenzat de stele și hiperciv
 - Pagini legale în aplicație: confidențialitate/GDPR, cookies, buton „Șterge toate datele locale".
 - PWA: manifest și Service Worker (`sw.js`).
 - **Calea cititorului (v2.0.0):** alegerea scenariului din Capitolul 2 (A, B sau C) se salvează pe dispozitiv (`printreinteligente.cale`); butonul 🌳 deschide „Arborele poveștii” (ramuri parcurse/neparcurse, istoricul alegerilor), iar traseul ales (Prolog → Cap. 1 → Cap. 2 → scenariu → Epilog) se descarcă ca episod de sine stătător (.html sau .txt), în limba curentă, din textul cărții nemodificat. Tot local, fără rețea.
+
+## Harta ramificațiilor și aplicația-companion (v2.1.0)
+
+- **Harta ramificațiilor.** În dialogul arborelui poveștii (🌳) apare secțiunea „Harta ramificațiilor”, care arată întreaga structură a cărții: începutul comun (Prolog, Capitolele 1–2), cele 5 familii de scenarii (A Polul Sud, B Ecuatorul, C 45°N, D Spațiu, E Extreme) cu cele 17 scenarii ale lor și finalul comun (Epilogul). Fiecare nod este un buton care deschide pagina sau sare la scenariul din ea; familiile A–C deschise de tine sunt marcate ca parcurse. Folosește doar datele cărții și progresul local; fără rețea.
+- **NOMIA.** Același dialog are acum o legătură explicită spre **NOMIA**, aplicația-companion a acestui volum (protocoale de contact Om·IA·NHI): https://chiuta.github.io/NOMIA/. Se deschide într-o filă nouă, doar la clic; NOMIA este ficțiune și modele conceptuale, nu fapte verificate.
+- Textele noi ale interfeței sunt în cele 8 limbi ale aplicației; versiunile fr/it/es/pt/de/hu sunt asistate de AI și neverificate de vorbitori nativi. Test: `tests/harta.test.mjs`.
 
 ## Manual de utilizare
 
@@ -84,6 +92,11 @@ MIT — vezi fișierul [LICENSE](LICENSE). Drepturile de autor sunt păstrate; c
 - Teste: `tests/fff-r8.test.mjs` (rețea blocată; imaginile alexio.tf, cerute și înainte, sunt excluse din numărătoare; 1280 și 360 px, axe 0 violări cu dialogul deschis).
 
 ## Istoric / Changelog
+
+Jurnal complet: [`CHANGELOG.md`](CHANGELOG.md).
+
+### 2.1.0 — 2026-10-27 (anterior: v2.0.0)
+- Nou: „Harta ramificațiilor” (5 familii, 17 scenarii, început/final comun) în arborele poveștii; legătură explicită spre aplicația-companion NOMIA; note despre stare/offline. Cache Service Worker: pi-v24.
 
 ### 2.0.0 — 2026-10-26
 - Ficțiune cu ramificații salvate: arborele poveștii (Capitolul 2 → scenariile A/B/C → Epilog), istoricul alegerilor și exportul traseului ca episod de sine stătător (HTML/TXT). Textul cărții nu este modificat.
