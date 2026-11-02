@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.2.0 · **Ultima actualizare:** 2026-10-27
+**Versiune:** 2.2.1 · **Ultima actualizare:** 2026-11-02
 
 **Stare:** stabil · **Offline:** parțial — textul cărții, cele 8 limbi incluse, căutarea, notele și harta ramificațiilor funcționează offline; internetul e necesar pentru imaginile de pe alexio.tf, vocea online, traducerea în alte limbi și funcțiile AI (vezi „Confidențialitate și rețea”)
 

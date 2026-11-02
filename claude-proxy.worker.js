@@ -22,7 +22,7 @@
  *   1. Dashboard Cloudflare → Workers & Pages → Create → Hello World
  *   2. Lipește acest cod, click "Save and Deploy"
  *   3. Settings → Variables → Add "ANTHROPIC_API_KEY" ca "Secret"
- *      (obține cheia de pe console.anthropic.com)
+ *      (obține cheia de pe platform.claude.com)
  *   4. Zonă alexio.tf → Rules → Routes → Add route:
  *        alexio.tf/api/claude  →  claude-proxy (worker-ul tău)
  *   5. Testează: deschide alexio.tf și încearcă "Recenzia ta"
