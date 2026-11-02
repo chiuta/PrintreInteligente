@@ -49,8 +49,8 @@
     "printreinteligente.reader-state",
     "printreinteligente.ui-lang"
   ],
-  "sizeBytes": 3221718,
-  "sha256": "304fff4a97b64e6d3b6847f985ca1ef9cc4768f76c384361f717b22468bc827e",
+  "sizeBytes": 3362152,
+  "sha256": "6a78b50162895576b6ff7774fba7a0ab09ccd6077e9661f9ed4216b47ea1d14e",
   "csp": {
     "present": true,
     "directives": {
@@ -93,7 +93,11 @@
       "store",
       "dialog",
       "label",
-      "bundle"
+      "bundle",
+      "qr",
+      "p2p",
+      "sync",
+      "history"
     ]
   },
   "kit": {
@@ -103,7 +107,11 @@
       "store",
       "dialog",
       "label",
-      "bundle"
+      "bundle",
+      "qr",
+      "p2p",
+      "sync",
+      "history"
     ]
   },
   "selfSerializing": true
