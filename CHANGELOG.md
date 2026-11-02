@@ -1,5 +1,12 @@
 # Jurnal de modificări — Printre inteligențe
 
+## 2.2.1 — 2026-11-02
+
+Actualizare surse (verificate la 2026-11-02). Fără schimbări de logică.
+
+- Termeni, Impressum/Informații legale și pagina de termeni scurți: platforma europeană ODR (`ec.europa.eu/consumers/odr`) a fost închisă la 20 iulie 2025 (Regulamentul (UE) 2024/3228); linkul către ea a fost înlocuit cu mențiunea închiderii și trimiterea la entitățile SAL / ANPC.
+- `claude-proxy.worker.js`: comentariul despre cheia API trimite acum la platform.claude.com (fostul console.anthropic.com). Modelul `claude-sonnet-5-5` este activ; `claude-sonnet-4-20250514` e retras din 15.06.2026 (rămâne în lista permisă a workerului, neschimbată).
+
 ## 2.2.0 — 2026-10-27
 
 Anterior: v2.1.0. Recenzie 2 (2026-10-27).
