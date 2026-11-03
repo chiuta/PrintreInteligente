@@ -1,0 +1,7 @@
+# Configurația worker-ului claude-proxy (deploy din .github/workflows/deploy-worker.yml).
+# `name` trebuie să fie IDENTIC cu numele worker-ului din dashboard (claude-proxy.alexio.workers.dev), altfel se creează un worker nou.
+# Secretele (ANTHROPIC_API_KEY, TURNSTILE_SECRET) rămân în Cloudflare; legătura KV `RATELIMIT_KV` o adaugă workflow-ul din secretul CLOUDFLARE_KV_NAMESPACE_ID.
+name = "claude-proxy"
+main = "claude-proxy.worker.js"
+compatibility_date = "2026-11-01"
+routes = [{ pattern = "alexio.tf/api/claude", zone_name = "alexio.tf" }]

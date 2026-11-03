@@ -52,6 +52,11 @@
 
 ### 1. Deploy Worker (obligatoriu pentru GRM/MYE să funcționeze)
 
+**Automat (recomandat):** `.github/workflows/deploy-worker.yml` redeployează worker-ul la fiecare push care atinge `claude-proxy.worker.js`.
+Adaugă o dată, în GitHub > Settings > Secrets and variables > Actions, secretele `CLOUDFLARE_API_TOKEN` (permisiunea „Edit Cloudflare Workers”), `CLOUDFLARE_ACCOUNT_ID` și `CLOUDFLARE_KV_NAMESPACE_ID` (id-ul spațiului KV `pi-ratelimit`); fără ele workflow-ul se sare cu avertisment. Prima rulare: Actions > deploy-worker > Run workflow.
+
+**Manual** (dacă nu folosești workflow-ul):
+
 Urmează pașii din comentariul de cap al `claude-proxy.worker.js`:
 1. Dashboard Cloudflare → Workers & Pages → Create
 2. Lipește conținutul, Save & Deploy

@@ -1,0 +1,50 @@
+# Redeployează worker-ul claude-proxy în Cloudflare când se schimbă codul lui.
+# Cere secretele de depozit CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID și CLOUDFLARE_KV_NAMESPACE_ID (id-ul spațiului KV „pi-ratelimit”).
+# Dacă lipsește oricare, pasul de deploy se sare (jobul rămâne verde, cu avertisment): fără KV worker-ul ar răspunde 503 la orice cerere.
+name: deploy-worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'claude-proxy.worker.js'
+      - 'wrangler.toml'
+      - '.github/workflows/deploy-worker.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verifică secretele
+        id: s
+        env:
+          T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          A: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          K: ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID }}
+        run: |
+          if [ -n "$T" ] && [ -n "$A" ] && [ -n "$K" ]; then echo "ok=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Deploy sărit: lipsesc secretele CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID / CLOUDFLARE_KV_NAMESPACE_ID (Settings > Secrets and variables > Actions)."
+          fi
+      - name: Adaugă legătura KV în configurație
+        if: steps.s.outputs.ok == 'true'
+        env:
+          K: ${{ secrets.CLOUDFLARE_KV_NAMESPACE_ID }}
+        run: printf '\n[[kv_namespaces]]\nbinding = "RATELIMIT_KV"\nid = "%s"\n' "$K" >> wrangler.toml
+      - name: Deploy worker
+        if: steps.s.outputs.ok == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
