@@ -53,9 +53,10 @@ const ALLOWED_ORIGINS = new Set([
 
 const ALLOWED_MODELS = new Set([
   'claude-sonnet-5-5',
-  'claude-sonnet-4-20250514', // retras 15.06.2026 — păstrat doar pentru clienți cache-uiți; elimină după migrare
-  'claude-haiku-4-5-20251001',
-]);
+  'claude-haiku-5-5',
+  'claude-haiku-4-5-20251001',   // activ, dar nu cel mai nou: păstrat pentru clienți cache-uiți
+]);   // verificat în platform.claude.com/docs/en/about-claude/model-deprecations la 2026-11-03; claude-sonnet-4-20250514 a fost retras la 15.06.2026 și a fost scos
+// Versiunea API și valorile de mai jos trebuie să rămână egale cu tools/fff-ai.js din hub (ANTHROPIC_VERSION); `tools/anthropic-audit.mjs` o verifică.
 
 const MAX_TOKENS_LIMIT = 1500;          // hard cap, ignoră orice depășește
 const RATE_LIMIT_PER_IP_PER_HOUR = 30;  // 30 apeluri/oră/IP
@@ -171,7 +172,7 @@ export default {
         headers: {
           'Content-Type': 'application/json',
           'x-api-key': env.ANTHROPIC_API_KEY,
-          'anthropic-version': '2023-06-01',
+          'anthropic-version': '2026-10-21',   // 2026-10-21 elimină temperature/top_p/top_k (400); Worker-ul retransmite doar model, max_tokens, system și messages
         },
         // doar câmpurile folosite de aplicație: `tools` (ex. web_search facturat separat), `thinking`, `stream`, `metadata` etc. nu se retransmit
         body: JSON.stringify({ model: body.model, max_tokens: body.max_tokens, system: body.system, messages: body.messages }),
