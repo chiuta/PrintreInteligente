@@ -1,4 +1,4 @@
-// Teste „scenarii văzute” (v2.2.2): sub-scenariile (sub-a1…sub-e2) se marchează după ≥3 s în banda centrală a ecranului;
+// Teste „scenarii văzute” (v2.2.3): sub-scenariile (sub-a1…sub-e2) se marchează după ≥3 s în banda centrală a ecranului;
 // familiile D și E devin „parcurse” doar prin acest mecanism; persistență locală; ștergere.
 // Rulare: node tests/scenarii-vazute.test.mjs   (Playwright + Chromium; PW_ROOT/CHROMIUM_PATH opționale)
 import {createRequire} from 'module';
