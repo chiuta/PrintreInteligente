@@ -2,8 +2,8 @@
   "schema": 1,
   "slug": "printreinteligente",
   "name": "Printre inteligențe — roman SF despre Artemis 2, recenzat de stele & hipercivilizații",
-  "version": "2.2.4",
-  "updated": "2026-11-10",
+  "version": "2.2.5",
+  "updated": "2026-11-11",
   "description": "Ceasul de la Cape Canaveral arăta 18:35 EDT — unsprezece minute după ora programată — când megaracheta Space Launch System s-a desprins de rampa de lansare cu u…",
   "egress": [
     {
@@ -49,8 +49,8 @@
     "printreinteligente.reader-state",
     "printreinteligente.ui-lang"
   ],
-  "sizeBytes": 3398575,
-  "sha256": "379ddccaf05c8fb3920622235727b59d6b40b05febec9279a30832981ec1f11e",
+  "sizeBytes": 3399802,
+  "sha256": "92acb65476a88df331a5254682b6d20de0873e0c61cec728be32cb45d0a2e5ae",
   "csp": {
     "present": true,
     "directives": {
