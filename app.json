@@ -39,7 +39,8 @@
     "speechSynthesis",
     "clipboard",
     "serviceWorker",
-    "localStorage"
+    "localStorage",
+    "WebGL"
   ],
   "storageKeys": [
     "notes",
@@ -49,13 +50,13 @@
     "printreinteligente.reader-state",
     "printreinteligente.ui-lang"
   ],
-  "sizeBytes": 3416262,
-  "sha256": "9560f9b053b8dcd94f3ebe5cdbff52d7322add94a91c8de4ee270db893904c61",
+  "sizeBytes": 3468272,
+  "sha256": "33a44baf93075015dab5aa869b734e77636436532815a3cd069b99951c31baac",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'none'",
-      "script-src": "'self' sha256×22",
+      "script-src": "'self' sha256×23",
       "style-src": "'self' 'unsafe-inline'",
       "img-src": "'self' data: blob: https://alexio.tf",
       "font-src": "'self' data:",
