@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.2.7 · **Last updated:** 2026-11-13
+**Version:** 2.2.8 · **Last updated:** 2026-11-15
 
 **Status:** stable · **Offline:** partial — the book text, the 8 included languages, search, notes and the branch map work offline; internet is needed for the images from alexio.tf, the online voice, translation into other languages and the AI features (see “Privacy and network”)
 
